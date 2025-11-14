@@ -1,4 +1,4 @@
-<header class="flex items-center justify-between mt-8 px-[4rem] mb-16 z-50 bg-white sticky top-0">
+<header class="flex items-center justify-between mt-8 px-[4rem] border-b pb-[2rem] mb-16 z-50 bg-white sticky top-0">
     <h1 class="sr-only">
         {!! __('global.happies_paws') !!}
     </h1>
