@@ -6,5 +6,6 @@ return [
     'our_team' => 'Notre équipe',
     'contact' => 'Contact',
     'main_nav' => 'Navigation principale',
-    'home_title' => 'Vers l\'accueil',
+    'to_home' => 'Vers l\'accueil',
+    'to_contact' => 'Vers la page contact',
 ];

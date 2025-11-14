@@ -13,8 +13,10 @@
     <!-- Styles / Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body class="w-[calc(100%-32px*2)] md:w-[calc(100%-48*2)] lg:w-[calc(100%-64px*2)] mx-auto font-poppins overflow-x-hidden">
-<x-client.nav/>
-{{$slot}}
+<body class="font-poppins overflow-x-hidden">
+<x-client.global.nav/>
+<main class="w-[calc(100%-32px*2)] md:w-[calc(100%-48*2)] lg:w-[calc(100%-64px*2)] mx-auto h-auto">
+    {{$slot}}
+</main>
 </body>
 </html>

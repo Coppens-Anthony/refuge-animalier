@@ -1,7 +1,7 @@
 <section>
     <h2 class="sr-only">{!! __('client/home.stats_title') !!}</h2>
-    <ul class="flex flex-col lg:flex-row justify-between">
-        <li>
+    <ul class="flex flex-col gap-10 md:flex-row lg:justify-between">
+        <li class="flex justify-center">
             <x-client.home.stat
                 title="{!! __('global.collected_animals') !!}"
                 number="42"
@@ -17,7 +17,7 @@
                 image_alt="{!! __('global.heart_icon') !!}"
             />
         </li>
-        <li class="flex justify-end">
+        <li class="flex justify-center">
             <x-client.home.stat
                 title="{!! __('global.animals_searching_family') !!}"
                 number="18"
