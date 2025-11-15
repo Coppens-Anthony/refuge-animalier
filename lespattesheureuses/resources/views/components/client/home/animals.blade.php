@@ -1,6 +1,6 @@
 <section class="relative">
     <h2 class="text-[1.125rem] md:text-[1.5rem] lg:text-[2rem] font-bold lg:font-medium mb-8">{!! __('client/home.animals_title') !!}</h2>
-    <x-client.global.animals_grid
+    <x-client.global.cards_grid
         number="3"
     />
     <div class="absolute top-[50%] right-[-2rem] w-[120%] -z-20
