@@ -18,5 +18,6 @@
 <main class="w-[calc(100%-32px*2)] md:w-[calc(100%-48*2)] lg:w-[calc(100%-64px*2)] mx-auto">
     {{$slot}}
 </main>
+<x-client.global.footer/>
 </body>
 </html>
