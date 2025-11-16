@@ -11,5 +11,5 @@ return [
     'character' => 'C’est un chien très affectueux qui adore la compagnie des humains. Il aime les balades et s’entend bien avec les autres chiens. Un peu méfiant au début, mais il devient vite un vrai pot de colle une fois en confiance.',
     'request_button' => 'Je voudrais planifier un rendez-vous pour rencontrer :name',
     'request_button_title' => 'Vers le formulaire d\'adoption de :name',
-    'others_animals_title' => 'Il cherche également une famille',
+    'others_animals_title' => 'Ils cherchent également une famille',
 ];

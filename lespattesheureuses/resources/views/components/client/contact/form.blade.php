@@ -1,4 +1,6 @@
-<form action="" method="post" class="flex flex-col gap-6 w-full md:w-1/2">
+@props(['isSubject' => true, 'action', 'method' => 'post', 'button_title'])
+
+<form action="{{$action}}" method="{{$method}}" class="flex flex-col gap-6 w-full md:w-1/2">
     <x-client.form.input
         name="lastname"
         placeholder="Doe">
@@ -21,11 +23,13 @@
         type="telephone">
         {!! __('form.telephone') !!}
     </x-client.form.input>
-    <x-client.form.input
-        name="subject"
-        placeholder="Renseignement">
-        {!! __('form.subject') !!}
-    </x-client.form.input>
+    @if($isSubject)
+        <x-client.form.input
+            name="subject"
+            placeholder="Renseignement">
+            {!! __('form.subject') !!}
+        </x-client.form.input>
+    @endif
     <x-client.form.textarea
         name="message"
         placeholder="Je vous contacte afin de...">
@@ -34,8 +38,8 @@
     <div class="mx-auto mt-8">
         <x-client.global.button
             route=""
-            title="{!! __('form.send_title') !!}">
-            {!! __('form.send') !!}
+            title="{{$button_title}}">
+            {{$slot}}
         </x-client.global.button>
     </div>
 </form>
