@@ -12,8 +12,16 @@ Route::get('/', function () {
 })->name('client_home');
 
 Route::get('animals', function () {
-    return view('client.animals');
+    return view('client/animals.animals');
 })->name('client_animals');
+
+Route::get('animals/animal', function () {
+    return view('client/animals.animal');
+})->name('client_animal');
+
+Route::get('animals/animal/request', function () {
+    return view('client/animals.request');
+})->name('client_animal_request');
 
 Route::get('team', function () {
     return view('client.team');

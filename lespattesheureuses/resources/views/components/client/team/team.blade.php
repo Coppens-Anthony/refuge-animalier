@@ -5,7 +5,7 @@
         number="9"
         image_src="{{asset('assets/images/johndoe.jpg')}}"
         image_alt="{!! __('client/animals.animal_image_alt', ['name' => 'John Doe']) !!}"
-        status="Bénévole"
+        status="{!! __('client/team.volunteer') !!}"
         name="John Doe"
         arg_1="john@doe.com"
         arg_2="0432.54.56.13"

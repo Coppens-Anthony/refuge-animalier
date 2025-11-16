@@ -10,6 +10,10 @@ return [
     'home_icon' => 'Icône de maison',
     'heart_icon' => 'Icône de coeur',
     'paws_icon' => 'Icône de 2 pattes d\'animaux',
+    'paw_icon' => 'Icône d\'une patte d\'animal',
+    'share_icon' => 'Icône de partage',
+    'email_icon' => 'Icône de mail',
+    'telephone_icon' => 'Icône de téléphone',
     'organic_1_alt' => 'Forme organique jaune de décoartion',
     'see_me' => 'Voir ma fiche',
 ];

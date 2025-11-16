@@ -1,5 +1,7 @@
+@props(['title'])
+
 <section class="relative">
-    <h2 class="text-[1.125rem] md:text-[1.5rem] lg:text-[2rem] font-bold lg:font-medium mb-8">{!! __('client/home.animals_title') !!}</h2>
+    <h2 class="text-[1.125rem] md:text-[1.5rem] lg:text-[2rem] font-bold lg:font-medium mb-8">{{$title}}</h2>
     <x-client.global.cards_grid
         number="3"
         image_src="{{asset('assets/images/max.jpg')}}"

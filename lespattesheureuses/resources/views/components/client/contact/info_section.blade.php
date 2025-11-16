@@ -5,11 +5,11 @@
     </div>
     <div class="flex flex-col gap-2">
         <div class="flex gap-2 items-center">
-            <img src="{{asset('assets/icons/email.svg')}}" alt="">
+            <img src="{{asset('assets/icons/email.svg')}}" alt="{!! __('global.email_icon') !!}">
             <a href="mailto:lespattesheureuse@gmail.com" class="link text-[0.8rem]">lespattesheureuse@gmail.com</a>
         </div>
         <div class="flex gap-2 items-center">
-            <img src="{{asset('assets/icons/telephone.svg')}}" alt="">
+            <img src="{{asset('assets/icons/telephone.svg')}}" alt="{!! __('global.telephone_icon') !!}">
             <a href="tel:0123.45.67.89" class="link text-[0.8rem]">0123.45.67.89</a>
         </div>
     </div>
