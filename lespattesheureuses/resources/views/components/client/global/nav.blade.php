@@ -23,13 +23,13 @@
             md:flex-row md:static md:translate-x-0 md:top-auto md:w-auto md:justify-between md:items-center">
             <li class="">
                 <a href="{{route('client_home')}}"
-                   title="{!! __('client/header.to_home') !!}" class="link">{!! __('client/header.home') !!}</a>
+                   title="{!! __('client/header.to_home') !!}" class="{{ request()->routeIs('client_home') ? 'active' : 'link' }}">{!! __('client/header.home') !!}</a>
             </li>
             <li class="">
-                <a href="{!!route('client_animals')!!}" title="{!! __('client/home.to_animals') !!}" class="link">{!! __('client/header.our_animals') !!}</a>
+                <a href="{!!route('client_animals')!!}" title="{!! __('client/home.to_animals') !!}" class="{{ request()->routeIs('client_animals') ? 'active' : 'link' }}">{!! __('client/header.our_animals') !!}</a>
             </li>
             <li class="">
-                <a href="{!!route('client_team')!!}" title="{!! __('client/home.to_team') !!}" class="link">{!! __('client/header.our_team') !!}</a>
+                <a href="{!!route('client_team')!!}" title="{!! __('client/home.to_team') !!}" class="{{ request()->routeIs('client_team') ? 'active' : 'link' }}">{!! __('client/header.our_team') !!}</a>
             </li>
             <li>
                 <x-client.global.button route="{!!route('client_contact')!!}" title="{!! __('client/header.to_contact') !!}">{!! __('client/header.contact') !!}</x-client.global.button>
