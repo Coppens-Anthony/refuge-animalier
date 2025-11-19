@@ -10,8 +10,8 @@
            @if($isRequired)
                required
            @endif
-           class="rounded-4xl border-primary border-3 p-4 @if($isSearch) pl-12 @endif">
+           class="rounded-4xl border-primary border-3 p-2 @if($isSearch) pl-12 @endif">
     @if($isSearch)
-        <img src="{{asset('assets/icons/search.svg')}}" alt="{!! __('global.search_icon') !!}" class="absolute bottom-4 left-4">
+        <img src="{{asset('assets/icons/search.svg')}}" alt="{!! __('global.search_icon') !!}" class="absolute bottom-2 left-4">
     @endif
 </div>

@@ -22,8 +22,7 @@ return [
     'organic_1_alt' => 'Forme organique jaune de décoartion',
     'see_me' => 'Voir ma fiche',
     'search' => 'Recherche',
-    'specie' => 'Espèce',
-    'all' => 'Toutes',
+    'all' => 'Tous',
     'dog' => 'Chien',
-    'cat' => 'Chat'
+    'cat' => 'Chat',
 ];
