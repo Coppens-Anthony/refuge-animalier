@@ -24,11 +24,9 @@
         <img src="{{asset('assets/icons/filters.svg')}}" alt="{!! __('global.message') !!}"
              class="absolute top-[50%] left-[50%] -translate-1/2 transform origin-center">
     </label>
-    <input type="checkbox" name="filters" id="filters" class="absolute top-0 left-0 w-0 h-0 invisible">
-
-
-
-    <div class="<!--invisible opacity-0--> p-6 w-1/3 mx-auto h-auto fixed z-100 top-[50%] left-[50%] -translate-1/2 transform origin-center bg-white border-primary border-2 rounded-2xl shadow-2xl">
+    <input type="checkbox" name="filters" id="filters" class="sr-only peer">
+    <div
+        class="opacity-0 invisible peer-checked:opacity-100 peer-checked:visible duration-300  p-6 w-1/3 mx-auto h-auto fixed z-100 top-[50%] left-[50%] -translate-1/2 transform origin-center bg-white border-primary border-2 rounded-2xl shadow-2xl">
         <p class="font-bold text-center border-b-2 mb-6 border-primary pb-4">Filtres</p>
         <fieldset class="grid grid-cols-2 gap-6">
             <x-client.form.select
