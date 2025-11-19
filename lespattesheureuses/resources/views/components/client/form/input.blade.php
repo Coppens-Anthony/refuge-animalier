@@ -1,6 +1,6 @@
-@props(['name', 'type' => 'text', 'placeholder' , 'isRequired' => true, 'class' => ''])
+@props(['name', 'type' => 'text', 'placeholder' , 'isRequired' => true, 'class' => '', 'isSearch' => false])
 
-<div class="flex flex-col gap-2 {{$class}}">
+<div class="flex flex-col gap-2 {{$class}} relative">
     <label for="{{$name}}" class="font-bold">{{$slot}}
         @if($isRequired)
             <span class="text-secondary">*</span>
@@ -10,5 +10,8 @@
            @if($isRequired)
                required
            @endif
-           class="font-nunito rounded-4xl border-primary border-3 p-4 ">
+           class="rounded-4xl border-primary border-3 p-4 @if($isSearch) pl-12 @endif">
+    @if($isSearch)
+        <img src="{{asset('assets/icons/search.svg')}}" alt="{!! __('global.search_icon') !!}" class="absolute bottom-4 left-4">
+    @endif
 </div>

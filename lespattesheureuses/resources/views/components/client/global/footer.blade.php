@@ -32,7 +32,7 @@
             </ul>
         </section>
         <nav aria-labelledby="navigation-bas-de-page">
-            <h3 id="navigation-bas-de-page" class="text-xl mb-4">Navigation <span class="sr-only">{!! __('client/footer.secondary') !!}</span></h3>
+            <h3 id="navigation-bas-de-page" class="text-xl mb-4">{!! __('global.navigation') !!} <span class="sr-only">{!! __('client/footer.secondary') !!}</span></h3>
             <ul class="font-nunito flex flex-col gap-2">
                 <li>
                     <a href="{{route('client_home')}}"

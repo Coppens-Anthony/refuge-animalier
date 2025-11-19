@@ -24,16 +24,20 @@
         {!! __('form.telephone') !!}
     </x-client.form.input>
     @if($isSubject)
-        <x-client.form.input
+        <x-client.form.select
             name="subject"
-            placeholder="Renseignement">
+            :options="[
+    ['value' => 'question', 'trad' => __('form.question')],
+    ['value' => 'renseignement', 'trad' => __('form.renseignement')],
+    ['value' => 'volunteer', 'trad' => __('form.volunteer')],
+]">
             {!! __('form.subject') !!}
-        </x-client.form.input>
+        </x-client.form.select>
     @endif
     <x-client.form.textarea
         name="message"
-        placeholder="Je vous contacte afin de...">
-        Message
+        placeholder="{!! __('global.contact_message_placeholder') !!}">
+        {!! __('global.message') !!}
     </x-client.form.textarea>
     <div class="mx-auto mt-8">
         <x-client.global.button

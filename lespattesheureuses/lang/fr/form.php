@@ -9,4 +9,7 @@ return [
     'send_title' => 'Envoyer les données du formulaire',
     'send_request' => 'Soumettre la demande',
     'send_request_title' => 'Soumettre la demande d\'adoption',
+    'volunteer' => 'Bénévolat',
+    'renseignement' => 'Renseignement',
+    'question' => 'Question'
 ];
