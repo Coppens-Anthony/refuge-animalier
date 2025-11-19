@@ -6,4 +6,6 @@ return [
     'intro_img_alt' => 'Image d\'une équipe de bénévole',
     'team_title' => 'Notre fabuleuse équipe&nbsp;!',
     'volunteer' => 'Bénévole',
+    'join_us' => 'Envie de nous rejoindre&nbsp;?',
+    'join_us_title' => 'Vers le formulaire de contact',
 ];

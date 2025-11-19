@@ -1,6 +1,5 @@
-<section>
+<section class="flex flex-col justify-center">
     <h2 class="text-[1.125rem] md:text-[1.5rem] lg:text-[2rem] font-bold lg:font-medium mb-8">{!! __('client/team.team_title') !!}</h2>
-
     <x-client.global.cards_grid
         number="9"
         image_src="{{asset('assets/images/johndoe.jpg')}}"
@@ -11,4 +10,12 @@
         arg_2="0432.54.56.13"
         is-animal="{{false}}"
     />
+    <div class="mx-auto mt-8">
+        <x-client.global.button
+            route="{{route('client_contact')}}"
+            title="{!! __('client/team.join_us_title') !!}">
+            {!! __('client/team.join_us') !!}
+        </x-client.global.button>
+    </div>
+
 </section>
