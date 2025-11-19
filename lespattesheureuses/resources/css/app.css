@@ -13,18 +13,6 @@
 @theme {
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-    --color-zinc-50: #fafafa;
-    --color-zinc-100: #f5f5f5;
-    --color-zinc-200: #e5e5e5;
-    --color-zinc-300: #d4d4d4;
-    --color-zinc-400: #a3a3a3;
-    --color-zinc-500: #737373;
-    --color-zinc-600: #525252;
-    --color-zinc-700: #404040;
-    --color-zinc-800: #262626;
-    --color-zinc-900: #171717;
-    --color-zinc-950: #0a0a0a;
-
     --color-primary: #C6CCF8;
     --color-secondary: #FBE6A2;
 
@@ -32,7 +20,6 @@
     --color-accent-content: var(--color-neutral-800);
     --color-accent-foreground: var(--color-white);
     --font-poppins: 'Poppins', sans-serif;
-    --font-nunito: 'Nunito Sans', sans-serif;
 
     --text-title: 2rem;
 
@@ -75,10 +62,6 @@ select:focus[data-flux-control] {
 
 .home_title{
     @apply text-[18px] md:text-[24px] lg:text-[32px]
-}
-
-p{
-    @apply font-nunito
 }
 
 .link {

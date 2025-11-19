@@ -1,7 +1,7 @@
-@props(['name', 'type' => 'text', 'placeholder' , 'isRequired' => true])
+@props(['name', 'type' => 'text', 'placeholder' , 'isRequired' => true, 'class' => ''])
 
-<div class="flex flex-col gap-2">
-    <label for="{{$name}}" class="lg:text-xl">{{$slot}}
+<div class="flex flex-col gap-2 {{$class}}">
+    <label for="{{$name}}" class="font-bold">{{$slot}}
         @if($isRequired)
             <span class="text-secondary">*</span>
         @endif

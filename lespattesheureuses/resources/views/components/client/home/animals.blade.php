@@ -11,7 +11,7 @@
         arg_1="3 ans"
         arg_2="Berger allemand"
     />
-    <div class="absolute top-[50%] right-[-2rem] w-[120%] -z-20
+    <div class="absolute top-[50%] right-[-2rem] w-[130%] -z-20
     sx:w-[115%]
     md:top-[15%]
     lg:right-[-4rem]">

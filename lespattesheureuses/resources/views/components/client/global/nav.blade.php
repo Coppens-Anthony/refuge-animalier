@@ -14,21 +14,22 @@
         <span class="span_burger_menu"></span>
     </label>
 
-    <nav class="fixed inset-0 bg-white text-center transform translate-x-full
+    <nav aria-labelledby="navigation-haut-de-page"
+        class="fixed inset-0 bg-white text-center transform translate-x-full
          peer-checked:translate-x-0 transition-transform duration-700 ease-in-out z-40
          md:static md:translate-x-0 md:flex md:justify-between
          ">
-        <h2 class="sr-only">{!! __('client/header.main_nav') !!}</h2>
+        <h2 class="sr-only" id="navigation-haut-de-page">{!! __('client/header.main_nav') !!}</h2>
         <ul class="flex flex-col gap-8 origin-center absolute top-[25%] left-1/2 -translate-x-1/2
             md:flex-row md:static md:translate-x-0 md:top-auto md:w-auto md:justify-between md:items-center">
-            <li class="">
+            <li>
                 <a href="{{route('client_home')}}"
                    title="{!! __('client/header.to_home') !!}" class="{{ request()->routeIs('client_home') ? 'active' : 'link' }}">{!! __('client/header.home') !!}</a>
             </li>
-            <li class="">
+            <li>
                 <a href="{!!route('client_animals')!!}" title="{!! __('client/home.to_animals') !!}" class="{{ request()->routeIs('client_animals') ? 'active' : 'link' }}">{!! __('client/header.our_animals') !!}</a>
             </li>
-            <li class="">
+            <li>
                 <a href="{!!route('client_team')!!}" title="{!! __('client/home.to_team') !!}" class="{{ request()->routeIs('client_team') ? 'active' : 'link' }}">{!! __('client/header.our_team') !!}</a>
             </li>
             <li>
