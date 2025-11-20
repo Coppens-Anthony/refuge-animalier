@@ -1,5 +1,5 @@
 <footer class="bg-primary px-8 md:px-12 lg:px-16 py-8 mt-16">
-    <section class="flex gap-6 flex-col md:flex-row md:justify-between mb-16">
+    <section class="flex gap-6 flex-col md:grid md:grid-cols-2 lg:flex lg:flex-row lg:justify-between mb-16">
         <h2 class="sr-only">{!! __('client/footer.footer') !!}</h2>
         <div class="w-fit">
             <div class="relative">
@@ -19,7 +19,7 @@
         </div>
         <section>
             <h3 class="text-xl mb-4">{!! __('client/footer.hourlies') !!}</h3>
-            <ul class="font-nunito flex flex-col gap-2">
+            <ul class="flex flex-col gap-2">
                 <li>
                     {!! __('client/footer.monday_to_friday') !!}
                 </li>
@@ -33,7 +33,7 @@
         </section>
         <nav aria-labelledby="navigation-bas-de-page">
             <h3 id="navigation-bas-de-page" class="text-xl mb-4">{!! __('global.navigation') !!} <span class="sr-only">{!! __('client/footer.secondary') !!}</span></h3>
-            <ul class="font-nunito flex flex-col gap-2">
+            <ul class="flex flex-col gap-2">
                 <li>
                     <a href="{{route('client_home')}}"
                        title="{!! __('client/header.to_home') !!}"
@@ -55,7 +55,7 @@
         </nav>
         <section>
             <h3 class="text-xl mb-4">{!! __('client/footer.coords') !!}</h3>
-            <ul class="font-nunito flex flex-col gap-2">
+            <ul class="flex flex-col gap-2">
                 <li>
                     {!! __('client/footer.address') !!}
                 </li>
@@ -71,7 +71,7 @@
             </ul>
         </section>
     </section>
-    <section class="flex flex-col gap-2 md:flex-row justify-between font-poppins">
+    <section class="flex flex-col gap-2 lg:flex-row justify-between">
         <h2 class="sr-only">{!! __('client/footer.politics') !!}</h2>
         <p>{!! __('client/footer.rights') !!}</p>
         <p>
