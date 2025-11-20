@@ -9,5 +9,5 @@
               @if($isRequired)
                   required
               @endif
-              class="font-nunito rounded-4xl border-primary border-3 p-4 resize-none" rows="8"></textarea>
+              class="rounded-4xl border-primary border-3 p-4 resize-none" rows="8"></textarea>
 </div>
