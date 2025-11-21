@@ -1,6 +1,6 @@
 @props(['number', 'image_src', 'image_alt', 'status', 'name', 'arg_1', 'arg_2', 'isAnimal' => true])
 
-<ul class="w-2/3 mx-auto flex flex-col gap-4 md:w-auto  md:grid md:grid-cols-3 md:gap-6 mb-6">
+<ul class="mx-auto flex flex-col gap-4 md:w-auto sx:grid sx:grid-cols-2 md:grid-cols-3 md:gap-6 mb-6">
     @for($i = 0; $i < $number; $i++)
         <li>
             <x-client.global.item_card
