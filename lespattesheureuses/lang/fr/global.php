@@ -25,5 +25,7 @@ return [
     'all' => 'Tous',
     'dog' => 'Chien',
     'cat' => 'Chat',
-    'close_modal' => 'Fermer la modale'
+    'close_modal' => 'Fermer la modale',
+    'previous' => 'Précédent',
+    'next' => 'Suivant',
 ];

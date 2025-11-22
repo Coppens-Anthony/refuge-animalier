@@ -5,7 +5,7 @@
             route=""
             title=""
         >
-            Précédent
+            {!! __('global.previous') !!}
         </x-client.global.button>
     </li>
 
@@ -68,7 +68,7 @@
             route=""
             title=""
         >
-            Suivant
+            {!! __('global.next') !!}
         </x-client.global.button>
     </li>
 
