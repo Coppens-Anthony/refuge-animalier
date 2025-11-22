@@ -2,7 +2,10 @@ const buttonFilters = document.getElementById('button_filters');
 const template = document.getElementById('template');
 const content = template.content.cloneNode(true);
 let templateInjected = false;
+const search_specie = document.getElementById('no_js_search_specie');
 
+
+search_specie.classList.remove('hidden');
 buttonFilters.classList.remove('hidden');
 buttonFilters.classList.add('button_filters');
 
@@ -60,5 +63,3 @@ dialog_element.addEventListener('click', (e) => {
 dialog_element.addEventListener('close', () => {
     document.body.classList.remove('no-scroll');
 });
-
-

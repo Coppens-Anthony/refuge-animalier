@@ -21,7 +21,7 @@
     <p class="basic__title">Filtres</p>
     <form>
         <fieldset class="basic__fieldset">
-            <x-client.global.filters_bar.search_and_specie/>
+                <x-client.global.filters_bar.search_and_specie/>
             <x-client.form.select
                 name="sexe"
                 :options="[
