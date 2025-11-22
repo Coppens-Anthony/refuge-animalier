@@ -10,4 +10,5 @@
         arg_1="3 ans"
         arg_2="Berger allemand"
     />
+    <x-client.global.pagination/>
 </section>
