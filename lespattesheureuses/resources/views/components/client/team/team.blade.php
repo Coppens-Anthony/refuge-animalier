@@ -11,11 +11,11 @@
         is-animal="{{false}}"
     />
     <div class="mx-auto mt-8">
-        <x-client.global.button
+        <x-client.global.cta
             route="{{route('client_contact')}}"
             title="{!! __('client/team.join_us_title') !!}">
             {!! __('client/team.join_us') !!}
-        </x-client.global.button>
+        </x-client.global.cta>
     </div>
 
 </section>

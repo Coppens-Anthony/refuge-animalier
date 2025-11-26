@@ -64,13 +64,11 @@
         </fieldset>
         <div class="basic__buttons_container">
             <x-client.global.button
-                route=""
                 title=""
                 reverse="{{true}}">
                 Réinitialiser
             </x-client.global.button>
             <x-client.global.button
-                route=""
                 title="">
                 Enregistrer
             </x-client.global.button>

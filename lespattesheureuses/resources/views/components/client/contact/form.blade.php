@@ -41,7 +41,6 @@
     </x-client.form.textarea>
     <div class="mx-auto mt-8">
         <x-client.global.button
-            route=""
             title="{{$button_title}}">
             {{$slot}}
         </x-client.global.button>

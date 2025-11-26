@@ -44,10 +44,10 @@
         </div>
     </div>
     <div class="mx-auto w-fit">
-        <x-client.global.button
+        <x-client.global.cta
             route="{{route('client_animal_request')}}"
             title="{!! __('client/animals.request_button_title', ['name' => 'Max']) !!}">
             {!! __('client/animals.request_button', ['name' => 'Max']) !!}
-        </x-client.global.button>
+        </x-client.global.cta>
     </div>
 </section>

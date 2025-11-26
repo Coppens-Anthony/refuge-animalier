@@ -18,6 +18,6 @@
         <img src="{{asset('assets/icons/organic_2.svg')}}" alt="{!! __('global.organic_1_alt') !!}" class="w-full h-full">
     </div>
     <div class="w-fit mx-auto">
-        <x-client.global.button route="{{route('client_animals')}}" title="{!! __('client/home.to_animals') !!}">{!! __('client/home.all_animals') !!}</x-client.global.button>
+        <x-client.global.cta route="{{route('client_animals')}}" title="{!! __('client/home.to_animals') !!}">{!! __('client/home.all_animals') !!}</x-client.global.cta>
     </div>
 </section>

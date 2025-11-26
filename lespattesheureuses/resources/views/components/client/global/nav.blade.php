@@ -33,7 +33,7 @@
                 <a href="{!!route('client_team')!!}" title="{!! __('client/home.to_team') !!}" class="{{ request()->routeIs('client_team') ? 'active' : 'link' }}">{!! __('client/header.our_team') !!}</a>
             </li>
             <li>
-                <x-client.global.button route="{!!route('client_contact')!!}" title="{!! __('client/header.to_contact') !!}">{!! __('client/header.contact') !!}</x-client.global.button>
+                <x-client.global.cta route="{!!route('client_contact')!!}" title="{!! __('client/header.to_contact') !!}">{!! __('client/header.contact') !!}</x-client.global.cta>
             </li>
         </ul>
     </nav>

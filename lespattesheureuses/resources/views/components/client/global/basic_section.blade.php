@@ -6,8 +6,8 @@
         <p>{{$desc}}</p>
         @if($links)
             <div class="mt-6 flex flex-col sx:flex-row gap-8 justify-start">
-                <x-client.global.button route="{{route('client_animals')}}" title="{!! __('client/home.to_animals') !!}">{!! __('global.adopt') !!}</x-client.global.button>
-                <x-client.global.button route="{{route('client_team')}}" reverse="{{true}}" title="{!! __('client/home.to_team') !!}">{!! __('client/header.our_team') !!}</x-client.global.button>
+                <x-client.global.cta route="{{route('client_animals')}}" title="{!! __('client/home.to_animals') !!}">{!! __('global.adopt') !!}</x-client.global.cta>
+                <x-client.global.cta route="{{route('client_team')}}" reverse="{{true}}" title="{!! __('client/home.to_team') !!}">{!! __('client/header.our_team') !!}</x-client.global.cta>
             </div>
         @endif
     </div>

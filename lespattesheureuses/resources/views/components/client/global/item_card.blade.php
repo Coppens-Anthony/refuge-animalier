@@ -10,7 +10,7 @@
     </div>
     <div class="w-auto mx-auto {{$isAnimal ? 'mb-6' : ''}}">
         @if($isAnimal)
-            <x-client.global.button route="{{route('client_animal')}}" title="{!! __('client/animals.see_me', ['name' => $name]) !!}">{!! __('global.see_me') !!}</x-client.global.button>
+            <x-client.global.cta route="{{route('client_animal')}}" title="{!! __('client/animals.see_me', ['name' => $name]) !!}">{!! __('global.see_me') !!}</x-client.global.cta>
         @endif
     </div>
 </article>
