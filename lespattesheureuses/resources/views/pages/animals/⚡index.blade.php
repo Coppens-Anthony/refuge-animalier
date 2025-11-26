@@ -9,5 +9,5 @@ new class extends Component
 ?>
 
 <div>
-    test
+
 </div>

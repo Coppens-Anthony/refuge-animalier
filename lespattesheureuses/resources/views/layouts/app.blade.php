@@ -15,7 +15,8 @@
     @livewireScripts
 </head>
 <body class="overflow-x-hidden max-w-[1400px] mx-auto font-poppins">
-<main class="w-[calc(100%-32px*2)] md:w-[calc(100%-48*2)] lg:w-[calc(100%-64px*2)] mx-auto mt-8">
+<livewire:admin.global.nav />
+<main class="w-[calc(100%-32px*2)] md:w-[calc(100%-24*2)] lg:w-[calc(100%-16px*2)] mx-auto mt-8">
     {{$slot}}
 </main>
 @livewireScripts
