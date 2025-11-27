@@ -19,7 +19,7 @@ new class extends Component {
             <img src="{{asset('assets/icons/' . $image . '.svg')}}" alt="{{$image_alt}}">
             <p>{{$text}}</p>
             @if(request()->routeIs($route))
-                <img src="{{asset('assets/icons/arrow.svg')}}" alt="{!! __('admin/nav.arrow_icon') !!}" class="ml-2">
+                <img src="{{asset('assets/icons/arrow.svg')}}" alt="{!! __('admin/nav.arrow_icon') !!}">
             @endif
         </div>
     </li>

@@ -14,11 +14,17 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireScripts
 </head>
-<body class="overflow-x-hidden max-w-[1400px] mx-auto font-poppins">
-<livewire:admin.global.nav />
-<main class="w-[calc(100%-32px*2)] md:w-[calc(100%-24*2)] lg:w-[calc(100%-16px*2)] mx-auto mt-8">
-    {{$slot}}
-</main>
+<body class="overflow-x-hidden max-w-[1400px] mx-auto font-poppins flex gap-4">
+<h1 class="sr-only">Administration des pattes heureuses</h1>
+<livewire:admin.global.nav/>
+<div class="mr-4 w-full mt-8 gap-16">
+    <livewire:admin.global.header
+        {{--:title="$title"--}}
+    />
+    <main>
+        {{$slot}}
+    </main>
+</div>
 @livewireScripts
 </body>
 </html>
