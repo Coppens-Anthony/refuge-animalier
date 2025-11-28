@@ -19,7 +19,7 @@
     <livewire:admin.global.header
         title="{{$title}}"
     />
-    <main class="grid grid-cols-10 gap-4">
+    <main>
         {{$slot}}
     </main>
 </div>

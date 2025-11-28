@@ -27,5 +27,5 @@ return [
     'member_icon' => 'Icône de membres',
     'members' => 'Membres',
 
-    ''
+    'alert_icon' => 'Icône de cloche'
 ];
