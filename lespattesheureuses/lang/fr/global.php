@@ -28,4 +28,5 @@ return [
     'close_modal' => 'Fermer la modale',
     'previous' => 'Précédent',
     'next' => 'Suivant',
+    'admin' => 'Administration des pattes heureuses',
 ];

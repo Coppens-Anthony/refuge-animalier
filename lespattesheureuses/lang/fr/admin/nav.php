@@ -26,4 +26,6 @@ return [
     'to_members' => 'Vers les membres',
     'member_icon' => 'Icône de membres',
     'members' => 'Membres',
+
+    ''
 ];

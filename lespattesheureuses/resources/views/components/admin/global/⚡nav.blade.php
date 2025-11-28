@@ -15,7 +15,7 @@ new class extends Component {
             <x-client.global.logo/>
         </div>
         <nav class="w-fit ml-4">
-            <h3 class="sr-only">Navigation</h3>
+            <h3 class="sr-only">{{__('global.navigation')}}</h3>
             <ul class="flex flex-col gap-6">
                 <livewire:admin.global.item_nav
                     route="dashboard"

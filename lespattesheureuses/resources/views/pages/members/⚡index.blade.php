@@ -1,9 +1,10 @@
 <?php
 
+use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new class extends Component
-{
+new #[Title('Tous les membres')]
+class extends Component {
     //
 };
 ?>
