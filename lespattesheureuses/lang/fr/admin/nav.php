@@ -27,5 +27,6 @@ return [
     'member_icon' => 'Icône de membres',
     'members' => 'Membres',
 
-    'alert_icon' => 'Icône de cloche'
+    'alert_icon' => 'Icône de cloche',
+    'to_profile' => 'Vers votre profil',
 ];

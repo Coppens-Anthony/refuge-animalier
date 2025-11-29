@@ -21,7 +21,7 @@ new class extends Component {
         </thead>
         <tbody class="border-primary border-1">
         @foreach($datas as $data)
-            <tr class="border-b-primary border-b-1 hover:bg-primary-opacity">
+            <tr class="border-b-primary border-b-1 hover:bg-primary-opacity cursor-pointer">
                 @foreach($data as $key => $value)
                     <td class="py-2">
                         @if (is_string($value) && preg_match('/\.(jpg|jpeg|png|webp|svg)$/i', $value))
