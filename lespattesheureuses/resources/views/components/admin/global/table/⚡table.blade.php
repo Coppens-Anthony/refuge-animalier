@@ -25,7 +25,7 @@ new class extends Component {
                 @foreach($data as $key => $value)
                     <td class="py-2">
                         @if (is_string($value) && preg_match('/\.(jpg|jpeg|png|webp|svg)$/i', $value))
-                            <img src="{{ asset($value) }}" alt="" class="w-12 h-12 rounded-full object-cover mx-auto">
+                            <img src="{{ asset($value) }}" alt="{!! __('admin/table.image_alt') !!}" class="w-12 h-12 rounded-full object-cover mx-auto">
                         @else
                             <span>
                                 {{ $value }}

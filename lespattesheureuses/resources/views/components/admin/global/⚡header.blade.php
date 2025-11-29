@@ -10,7 +10,7 @@ new class extends Component
 
 <div class="h-fit w-full mb-8">
     <header class="flex justify-between items-center">
-        <h2>{{$title}}</h2>
+        <h2 class="text-2xl">{{$title}}</h2>
         <div class="flex items-center gap-2 relative">
             <a href="" title="" class="absolute top-0 left-0 h-full w-full"></a>
             <p class="leading-tight">John Doe</p>

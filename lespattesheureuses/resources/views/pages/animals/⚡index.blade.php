@@ -9,6 +9,6 @@ class extends Component {
 };
 ?>
 
-<div>
-
+<div class="grid grid-cols-10 gap-4">
+    <livewire:admin.animals.animals_table/>
 </div>

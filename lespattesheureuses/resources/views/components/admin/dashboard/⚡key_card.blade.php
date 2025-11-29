@@ -19,7 +19,7 @@ new class extends Component {
             <img src="{{asset('assets/icons/' . $image . '.svg')}}" alt="{{$image_alt}}">
             <div>
                 <p class="text-3xl/6">{{$number}}</p>
-                <h3>{{$title}}</h3>
+                <h4>{{$title}}</h4>
             </div>
         </article>
     </li>

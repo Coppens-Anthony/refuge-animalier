@@ -44,18 +44,18 @@ $animals = [
 
 <div class="col-span-7 border-1 border-primary px-4 rounded-2xl">
     <section class="mb-4 flex flex-col gap-4">
-        <div class="flex justify-between my-4">
-            <h2>{!! __('admin/dashboard.animals') !!}</h2>
+        <div class="flex justify-between mt-4">
+            <h3>{!! __('admin/global.animals') !!}</h3>
             <x-client.global.cta
                 route=""
-                title="{!! __('admin/dashboard.create_animal_title') !!}"
+                title="{!! __('admin/global.create_animal_title') !!}"
             >
-                {!! __('admin/dashboard.create_animal') !!}
+                {!! __('admin/global.create_animal') !!}
             </x-client.global.cta>
         </div>
         <x-client.global.filters_bar.filters/>
         <livewire:admin.global.table.table
-            :titles="[__('admin/dashboard.avatar'), __('admin/dashboard.name'),__('admin/dashboard.specie'),__('admin/dashboard.status')]"
+            :titles="[__('admin/global.avatar'), __('admin/global.name'),__('admin/global.specie'),__('admin/global.status')]"
             :datas="$animals"
         />
     </section>

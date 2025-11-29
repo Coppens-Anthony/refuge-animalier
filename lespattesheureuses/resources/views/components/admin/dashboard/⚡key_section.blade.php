@@ -10,7 +10,7 @@ new class extends Component
 
 <div class="col-span-full">
     <section>
-        <h2 class="sr-only">{!! __('admin/dashboard.key_numbers') !!}</h2>
+        <h3 class="sr-only">{!! __('admin/dashboard.key_numbers') !!}</h3>
         <ul class="flex gap-4">
             <livewire:admin.dashboard.key_card
                 title="{!! __('admin/nav.requests') !!}"
