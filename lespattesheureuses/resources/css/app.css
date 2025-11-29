@@ -16,6 +16,7 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
     --color-primary: #C6CCF8;
+    --color-primary-opacity: rgba(198, 204, 248, 0.5);
     --color-secondary: #FBE6A2;
 
     --color-accent: var(--color-neutral-800);

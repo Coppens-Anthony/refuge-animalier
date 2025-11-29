@@ -8,7 +8,7 @@ new class extends Component {
 ?>
 
 <div class="w-1/6">
-    <aside class="bg-primary w-full h-[100vh] shadow-2xl">
+    <aside class="bg-primary w-fit h-full fixed top-0 shadow-2xl">
         <h2 class="sr-only">Menu</h2>
         <div class="relative w-fit mb-8 pt-4 mx-auto">
             <a href="{{route('dashboard')}}" class="absolute top-0 left-0 h-full w-full" title="{!! __('admin/dashboard.to_dashboard') !!}"></a>

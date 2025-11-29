@@ -12,7 +12,7 @@ new class extends Component {
 };
 ?>
 
-<div class="w-1/5 bg-primary rounded-xl border-primary border-4 hover:bg-white hover:border-primary">
+<div class="w-1/5 bg-primary rounded-xl border-primary border-4 hover:bg-white hover:border-primary duration-300 hover:duration-300">
     <li class="relative">
         <a href="{{route($route)}}" title="{{$link_title}}" class="absolute top-0 left-0 w-full h-full"></a>
         <article class="flex items-center gap-2 py-4 w-fit mx-auto">
