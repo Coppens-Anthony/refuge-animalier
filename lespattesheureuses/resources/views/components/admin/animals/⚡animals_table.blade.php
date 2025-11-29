@@ -30,7 +30,7 @@ for ($i = 1; $i <= 10; $i++) {
             <h3 class="sr-only">
                 {!!__('admin/global.animals') !!}</h3>
             <x-client.global.cta
-                route=""
+                route="{{route('create.animals')}}"
                 title="{!! __('admin/global.create_animal_title') !!}"
             >
                 {!!__('admin/global.create_animal') !!}

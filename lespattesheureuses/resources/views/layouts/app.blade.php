@@ -19,7 +19,7 @@
     <livewire:admin.global.header
         title="{{$title}}"
     />
-    <main>
+    <main class="mb-8">
         {{$slot}}
     </main>
 </div>

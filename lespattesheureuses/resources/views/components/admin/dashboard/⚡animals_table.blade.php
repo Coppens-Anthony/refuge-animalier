@@ -7,38 +7,16 @@ new class extends Component {
 };
 ?>
 <?php
-$animals = [
-    [
-        'assets/images/max.jpg',
-        'Tom',
+$animals = [];
+
+for ($i = 1; $i <= 10; $i++) {
+    $animals[] = [
+        "assets/images/max.jpg",
+        "Tom",
         'Chien',
         'Adoptable',
-    ],
-    [
-        'assets/images/max.jpg',
-        'Tom',
-        'Chien',
-        'Adoptable',
-    ],
-    [
-        'assets/images/max.jpg',
-        'Tom',
-        'Chien',
-        'Adoptable',
-    ],
-    [
-        'assets/images/max.jpg',
-        'Tom',
-        'Chien',
-        'Adoptable',
-    ],
-    [
-        'assets/images/max.jpg',
-        'Tom',
-        'Chien',
-        'Adoptable',
-    ],
-]
+    ];
+}
 ?>
 
 
@@ -47,7 +25,7 @@ $animals = [
         <div class="flex justify-between mt-4">
             <h3>{!! __('admin/global.animals') !!}</h3>
             <x-client.global.cta
-                route=""
+                route="{{route('create.animals')}}"
                 title="{!! __('admin/global.create_animal_title') !!}"
             >
                 {!! __('admin/global.create_animal') !!}
