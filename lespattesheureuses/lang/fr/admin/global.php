@@ -9,4 +9,10 @@ return [
     'create_animal_title' => 'Vers le formulaire d\'ajout d\' un animal',
     'breed' => 'Race',
     'sex' => 'Sexe',
+    'age' => 'Âge',
+    'animal_name' => 'Nom de l\'animal',
+    'adopter_name' => 'Nom de l\'adoptant',
+    'email' => 'Email',
+    'telephone' => 'Téléphone',
+    'date' => 'Date de la demande',
 ];

@@ -9,6 +9,6 @@ class extends Component {
 };
 ?>
 
-<div>
-    {{-- Happiness is not something readymade. It comes from your own actions. - Dalai Lama --}}
+<div class="grid grid-cols-10 gap-4">
+    <livewire:admin.validations.validations_table/>
 </div>

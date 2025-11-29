@@ -9,6 +9,6 @@ class extends Component {
 };
 ?>
 
-<div>
-    {{-- Knowing is not enough; we must apply. Being willing is not enough; we must do. - Leonardo da Vinci --}}
+<div class="grid grid-cols-10 gap-4">
+    <livewire:admin.requests.requests_table/>
 </div>

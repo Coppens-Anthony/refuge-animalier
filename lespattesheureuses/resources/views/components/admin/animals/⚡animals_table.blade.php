@@ -13,12 +13,12 @@ $animals = [];
 
 for ($i = 1; $i <= 10; $i++) {
     $animals[] = [
-        'avatar' => "assets/images/max.jpg",
-        'name' => "Tom",
-        'specie' => 'Chien',
-        'breed' => 'Berger allemand',
-        'sex' => 'Mâle',
-        'status' => 'Adopté',
+        "assets/images/max.jpg",
+        "Tom",
+        'Chien',
+        'Berger allemand',
+        'Mâle',
+        'Adoptable',
     ];
 }
 ?>
