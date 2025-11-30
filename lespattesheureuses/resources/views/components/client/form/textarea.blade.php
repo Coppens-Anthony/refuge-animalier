@@ -4,10 +4,17 @@
     <label for="{{$name}}" class="font-bold">{{$slot}}
         @if($isRequired)
             <span class="text-secondary">*</span>
-        @endif</label>
-    <textarea id="{{$name}}" name="{{$name}}" placeholder="{{$placeholder}}"
+        @endif
+    </label>
+    @error($name)
+    <small class="text-red-500">
+        {{ $message }}
+    </small>
+    @enderror
+    <textarea id="{{$name}}" name="{{$name}}" placeholder="{{$placeholder}}" value="{{@old($name)}}"
               @if($isRequired)
                   required
               @endif
-              class="rounded-xl border-primary border-3 p-4 resize-none" rows="8"></textarea>
+              class="rounded-xl border-primary border-3 p-4 resize-none" rows="8">
+    </textarea>
 </div>

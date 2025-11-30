@@ -4,7 +4,13 @@
     <label for="{{$name}}" class="font-bold">{{$slot}}
         @if($isRequired)
             <span class="text-secondary">*</span>
-        @endif</label>
+        @endif
+    </label>
+    @error($name)
+    <small class="text-red-500">
+        {{ $message }}
+    </small>
+    @enderror
     <select id="{{$name}}" name="{{$name}}" class="rounded-xl border-primary border-3 p-2 cursor-pointer">
         @foreach($options as $option)
             <option value="{{ $option['value'] }}">
