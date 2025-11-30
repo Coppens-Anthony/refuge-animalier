@@ -19,4 +19,5 @@ return [
     'telephone' => 'Téléphone',
     'date' => 'Date de la demande',
     'volunteer' => 'Bénévole',
+    'admin' => 'Administrateur(e)'
 ];

@@ -9,6 +9,6 @@ class extends Component {
 };
 ?>
 
-<div>
-    {{-- Because you are alive, everything is possible. - Thich Nhat Hanh --}}
+<div class="grid grid-cols-10 gap-4">
+    <livewire:admin.members.members_table/>
 </div>

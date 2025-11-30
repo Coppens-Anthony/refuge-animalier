@@ -12,6 +12,7 @@
         <x-client.form.select
             name="specie"
             class="w-full"
+            isRequired="{{false}}"
             :options="[
     ['value' => 'all', 'trad' => __('global.all')],
     ['value' => 'dog', 'trad' => __('global.dog')],
