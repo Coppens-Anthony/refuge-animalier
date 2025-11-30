@@ -25,16 +25,8 @@ for ($i = 1; $i <= 10; $i++) {
 
 <div class="col-span-full">
     <section class="mb-4 flex flex-col gap-4">
-        <div class="flex justify-end mt-4">
-            <h3 class="sr-only">
-                {!!__('admin/members.members') !!}</h3>
-            <x-client.global.cta
-                route="{{route('create.members')}}"
-                title="{!! __('admin/members.create_member_title') !!}"
-            >
-                {!!__('admin/members.create_member') !!}
-            </x-client.global.cta>
-        </div>
+        <h3 class="sr-only">
+            {!!__('admin/members.members') !!}</h3>
         <livewire:admin.global.members_filters/>
         <livewire:admin.global.table.table
             :titles="[__('admin/global.avatar'), __('admin/global.name'),__('admin/global.email'),__('admin/global.telephone'), __('admin/global.status')]"
