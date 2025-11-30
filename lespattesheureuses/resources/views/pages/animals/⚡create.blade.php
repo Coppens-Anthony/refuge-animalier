@@ -79,7 +79,7 @@ class extends Component {
         </div>
         <div class="mx-auto w-fit">
             <x-client.global.button
-                title=""
+                title="{!! __('admin/forms.add_animal_title') !!}"
             >
                 {!! __('admin/forms.add') !!}
             </x-client.global.button>
