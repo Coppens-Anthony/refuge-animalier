@@ -9,7 +9,7 @@ new class extends Component {
 <?php
 $animals = [];
 
-for ($i = 1; $i <= 10; $i++) {
+for ($i = 1; $i <= 5; $i++) {
     $animals[] = [
         "assets/images/max.jpg",
         "Tom",

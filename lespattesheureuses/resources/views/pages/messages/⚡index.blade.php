@@ -10,5 +10,6 @@ class extends Component {
 ?>
 
 <div>
-    {{-- Simplicity is the ultimate sophistication. - Leonardo da Vinci --}}
+    <livewire:admin.messages.list/>
+
 </div>
