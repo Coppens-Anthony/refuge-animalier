@@ -6,11 +6,11 @@
     <div class="flex flex-col gap-2">
         <div class="flex gap-2 items-center">
             <img src="{{asset('assets/icons/email.svg')}}" alt="{!! __('global.email_icon') !!}">
-            <a href="mailto:lespattesheureuse@gmail.com" class="link">lespattesheureuse@gmail.com</a>
+            <a href="mailto:lespattesheureuse@gmail.com" {!! __('global.email_title') !!} class="link">lespattesheureuse@gmail.com</a>
         </div>
         <div class="flex gap-2 items-center">
             <img src="{{asset('assets/icons/telephone.svg')}}" alt="{!! __('global.telephone_icon') !!}">
-            <a href="tel:0123.45.67.89" class="link">0123.45.67.89</a>
+            <a href="tel:0123.45.67.89" {!! __('global.telephone_title') !!} class="link">0123.45.67.89</a>
         </div>
     </div>
 </section>

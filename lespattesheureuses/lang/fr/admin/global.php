@@ -18,4 +18,5 @@ return [
     'email' => 'Email',
     'telephone' => 'Téléphone',
     'date' => 'Date de la demande',
+    'volunteer' => 'Bénévole',
 ];

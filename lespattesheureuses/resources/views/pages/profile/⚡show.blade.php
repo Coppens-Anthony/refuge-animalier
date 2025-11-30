@@ -8,6 +8,7 @@ class extends Component {
 };
 ?>
 
-<div>
-
+<div class="flex flex-col gap-8">
+    <livewire:admin.profile.hero/>
+    <livewire:admin.profile.dispo/>
 </div>
