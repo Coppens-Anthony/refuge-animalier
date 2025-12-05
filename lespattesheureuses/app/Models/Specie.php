@@ -6,20 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class Breed extends Model
+class Specie extends Model
 {
     use HasFactory;
 
-    protected $table = 'breeds';
-
     protected $fillable = [
         'name',
-        'specie_id',
     ];
 
-    public function specie(): BelongsTo
+    public function breed(): HasMany
     {
-        return $this->belongsTo(Specie::class, 'specie_id');
+        return $this->hasMany(Breed::class, 'specie_id');
     }
 }

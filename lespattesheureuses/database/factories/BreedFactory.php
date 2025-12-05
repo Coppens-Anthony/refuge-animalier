@@ -14,7 +14,7 @@ class BreedFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'species_id' => $this->faker->randomNumber(),
+            'specie_id' => $this->faker->randomNumber(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
