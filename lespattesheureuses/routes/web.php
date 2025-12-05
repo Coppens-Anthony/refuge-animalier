@@ -14,6 +14,8 @@ Route::domain('admin.lespattesheureuses.test')->group(function () {
 
     Route::livewire('/animals', 'pages::animals.⚡index')
         ->name('index.animals')->middleware('auth');
+    Route::livewire('/animals/{animal}', 'pages::animals.⚡show')
+        ->name('show.animals')->middleware('auth');
     Route::livewire('/animals/create', 'pages::animals.⚡create')
         ->name('create.animals')->middleware('auth');
 

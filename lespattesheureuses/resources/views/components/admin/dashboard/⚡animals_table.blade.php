@@ -12,11 +12,13 @@ new class extends Component {
 
 <?php
 $rows = $datas->map(fn($data) => [
-    $data->avatar,
-    $data->name,
-    $data->specie->name,
-    $data->status,
-]);
+    'id' => $data->id,
+    'cols' => [
+        $data->avatar,
+        $data->name,
+        $data->specie->name,
+        $data->status,
+    ]]);
 
 ?>
 
@@ -36,6 +38,7 @@ $rows = $datas->map(fn($data) => [
         <livewire:admin.global.table.table
             :titles="[__('admin/global.avatar'), __('admin/global.name'),__('admin/global.specie'),__('admin/global.status')]"
             :rows="$rows"
+            :route="'show.animals'"
         />
     </section>
 

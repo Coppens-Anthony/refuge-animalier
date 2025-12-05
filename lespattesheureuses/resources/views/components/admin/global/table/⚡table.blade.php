@@ -1,11 +1,19 @@
 <?php
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 use Livewire\Component;
 
 new class extends Component {
     public array $titles;
+    public string $route;
     public $rows;
+
+    public function goTo($id): Redirector|RedirectResponse
+    {
+        return redirect()->route($this->route, $id);
+    }
 };
 ?>
 
@@ -23,8 +31,9 @@ new class extends Component {
         </thead>
         <tbody class="border-primary border-1">
         @foreach($rows as $row)
-            <tr class="hover:bg-primary-opacity cursor-pointer">
-                @foreach($row as $cell)
+            <tr class="hover:bg-primary-opacity cursor-pointer" wire:click="goTo({{ $row['id'] }})"
+                wire:key="{{ $row['id'] }}" title="Vers la fiche de {{$row['cols'][1]}}">
+                @foreach($row['cols'] as $cell)
                     <td class="py-2">
                         @if (is_string($cell) && preg_match('/\.(jpg|jpeg|png|webp|svg)$/i', $cell))
                             <img src="{{ asset($cell) }}" class="w-12 h-12 rounded-full object-cover mx-auto" alt="">

@@ -12,7 +12,7 @@ new class extends Component {
 <div>
     <li class="relative">
         <a href="" title="{{__('admin/messages.see_message')}}"
-           class="absolute top-0 left-0 h-full w-full hover:bg-primary-opacity rounded-xl p-2 cursor-pointer"></a>
+           class="absolute top-0 left-0 h-full w-full hover:bg-primary-opacity rounded-xl p-2 cursor-pointer z-10"></a>
         <article class="p-2">
             <div class="flex justify-between items-center mb-2">
                 <h3 class="relative pl-8 before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0
