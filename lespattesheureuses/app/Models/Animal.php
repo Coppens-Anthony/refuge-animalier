@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
@@ -23,12 +24,13 @@ class Animal extends Model
         //'vaccine_id',
     ];
 
-    public function breed(): HasMany
+    public function breed(): BelongsTo
     {
-        return $this->hasMany(Breed::class);
+        return $this->belongsTo(Breed::class);
     }
+
     public function specie(): HasOneThrough
     {
-        return $this->hasOneThrough(Specie::class,Breed::class);
+        return $this->hasOneThrough(Specie::class, Breed::class, 'id', 'id', 'breed_id', 'specie_id');
     }
 }

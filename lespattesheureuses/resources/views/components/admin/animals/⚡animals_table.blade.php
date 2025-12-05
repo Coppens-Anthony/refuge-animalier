@@ -1,28 +1,24 @@
 <?php
 
+use App\Models\Animal;
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 new class extends Component {
-    //
+    public Collection $datas;
 };
 ?>
+
 <?php
-
-
-$animals = [];
-
-for ($i = 1; $i <= 10; $i++) {
-    $animals[] = [
-        "assets/images/max.jpg",
-        "Tom",
-        'Chien',
-        'Berger allemand',
-        'Mâle',
-        'Adoptable',
-    ];
-}
+$rows = $datas->map(fn($data) => [
+    $data->avatar,
+    $data->name,
+    $data->specie->name,
+    $data->breed->name,
+    $data->sex,
+    $data->status,
+]);
 ?>
-
 
 <div class="col-span-full">
     <section class="mb-4 flex flex-col gap-4">
@@ -39,7 +35,7 @@ for ($i = 1; $i <= 10; $i++) {
         <x-client.global.filters_bar.filters/>
         <livewire:admin.global.table.table
             :titles="[__('admin/global.avatar'), __('admin/global.name'),__('admin/global.specie'),__('admin/global.breed'), __('admin/global.sex'),__('admin/global.status')]"
-            :datas="$animals"
+            :rows="$rows"
         />
     </section>
 </div>

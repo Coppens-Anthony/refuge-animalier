@@ -1,22 +1,23 @@
 <?php
 
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 new class extends Component {
-    //
+
+    public Collection $datas;
+
 };
 ?>
-<?php
-$animals = [];
 
-for ($i = 1; $i <= 5; $i++) {
-    $animals[] = [
-        "assets/images/max.jpg",
-        "Tom",
-        'Chien',
-        'Adoptable',
-    ];
-}
+<?php
+$rows = $datas->map(fn($data) => [
+    $data->avatar,
+    $data->name,
+    $data->specie->name,
+    $data->status,
+]);
+
 ?>
 
 
@@ -34,7 +35,7 @@ for ($i = 1; $i <= 5; $i++) {
         <x-client.global.filters_bar.filters/>
         <livewire:admin.global.table.table
             :titles="[__('admin/global.avatar'), __('admin/global.name'),__('admin/global.specie'),__('admin/global.status')]"
-            :datas="$animals"
+            :rows="$rows"
         />
     </section>
 

@@ -18,8 +18,8 @@ class Breed extends Model
         'specie_id',
     ];
 
-    public function specie(): BelongsTo
+    public function specie(): HasMany
     {
-        return $this->belongsTo(Specie::class, 'specie_id');
+        return $this->hasMany(Specie::class, 'specie_id');
     }
 }
