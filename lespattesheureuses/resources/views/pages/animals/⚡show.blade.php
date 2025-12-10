@@ -48,27 +48,27 @@ $args = [
                         </x-client.global.status>
                         <img src="{{asset('assets/icons/edit.svg')}}" alt="" class="h-5.8 w-5.8 cursor-pointer"
                              @click="open = !open">
-                        <div x-show="open">
-                            <div class="p-6 w-[80%] md:w-1/2 lg:w-1/3 fixed z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform origin-center bg-white border-primary border-2 rounded-2xl shadow-2xl backdrop:bg-black backdrop:opacity-50">
-                                <form action="">
-                                    <div class="flex flex-col gap-2">
-                                        <label for="status">Changer le statut de {{$this->animal->name}}</label>
-                                        <select name="status" id="status" class="rounded-xl border-primary border-3 p-2 cursor-pointer">
-                                            @foreach(Status::values() as $status)
-                                                <option value="{{$this->animal->$status}}" @if($this->animal->status == $status) selected @endif>{{$status}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                    <div class="ml-auto mt-4 w-fit">
-                                        <x-client.global.button
-                                            title=""
-                                        >
-                                            Modifier
-                                        </x-client.global.button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+                        <livewire:admin.global.modal>
+                            <form action="">
+                                <div class="flex flex-col gap-2">
+                                    <label for="status">Changer le statut de {{$this->animal->name}}</label>
+                                    <select name="status" id="status"
+                                            class="rounded-xl border-primary border-3 p-2 cursor-pointer">
+                                        @foreach(Status::values() as $status)
+                                            <option value="{{$this->animal->$status}}"
+                                                    @if($this->animal->status == $status) selected @endif>{{$status}}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="ml-auto mt-4 w-fit">
+                                    <x-client.global.button
+                                        title=""
+                                    >
+                                        Modifier
+                                    </x-client.global.button>
+                                </div>
+                            </form>
+                        </livewire:admin.global.modal>
                     </div>
                 </div>
                 <ul class="flex flex-col gap-4">
