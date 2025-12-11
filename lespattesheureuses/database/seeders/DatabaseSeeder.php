@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Enums\Members;
 use App\Models\Animal;
 use App\Models\Breed;
 use App\Models\Specie;
@@ -55,9 +56,10 @@ class DatabaseSeeder extends Seeder
         }
 
         User::factory()->create([
-            'name' => 'Test User',
+            'name' => 'John Doe',
             'email' => 'john@doe.com',
-            'password' => 'password'
+            'password' => 'password',
+            'status' => Members::ADMINISTRATOR,
         ]);
 
         User::factory(10)->create();
