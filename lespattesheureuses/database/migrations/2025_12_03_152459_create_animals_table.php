@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Sex;
 use App\Enums\Status;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,7 +14,7 @@ return new class extends Migration {
             $table->string('avatar');
             $table->string('name');
             $table->dateTime('age');
-            $table->enum('sex', ['male', 'female']);
+            $table->enum('sex', Sex::values());
             $table->string('coat');
             $table->text('temperament');
             $table->enum('status', Status::cases());

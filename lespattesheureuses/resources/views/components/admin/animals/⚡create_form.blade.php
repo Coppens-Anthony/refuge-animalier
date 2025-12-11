@@ -1,19 +1,39 @@
 <?php
 
+use App\Models\Specie;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component {
-    //
+    #[Computed]
+    public function species()
+    {
+        return Specie::all();
+    }
+
+    #[Computed]
+    public function specieOptions()
+    {
+        return $this->species->map(fn($specie) => [
+            'value' => $specie->name,
+            'trad' => $specie->name
+        ])->toArray();
+    }
 };
 ?>
 
 <div class="col-span-full">
     <form action="" method="post" class="col-span-full flex flex-col gap-8">
         <div class="flex flex-col gap-2 w-fit mx-auto text-center mb-6 font-bold">
-            <input id="avatar" name="avatar" type="file" class="invisible absolute top-0 left-0 h-0 w-0" accept="image/*">
-            <label for="avatar" class="w-[175px] h-[175px] bg-gray-200 hover:bg-gray-300 duration-300 hover:duration-300 relative rounded-2xl cursor-pointer border-dashed border-1 border-black">
-                <img src="{{asset('assets/icons/file_input_paw.svg')}}" alt="{!! __('admin/forms.add_animal_image_alt') !!}" class="absolute top-1/2 left-1/2 -translate-1/2 origin-center">
-                <p class="absolute -bottom-12 w-full -translate-1/2 origin-center left-1/2">{!! __('admin/forms.add_image') !!}<span class="text-secondary"> *</span></p>
+            <input id="avatar" name="avatar" type="file" class="invisible absolute top-0 left-0 h-0 w-0"
+                   accept="image/*">
+            <label for="avatar"
+                   class="w-[175px] h-[175px] bg-gray-200 hover:bg-gray-300 duration-300 hover:duration-300 relative rounded-2xl cursor-pointer border-dashed border-1 border-black">
+                <img src="{{asset('assets/icons/file_input_paw.svg')}}"
+                     alt="{!! __('admin/forms.add_animal_image_alt') !!}"
+                     class="absolute top-1/2 left-1/2 -translate-1/2 origin-center">
+                <p class="absolute -bottom-12 w-full -translate-1/2 origin-center left-1/2">{!! __('admin/forms.add_image') !!}
+                    <span class="text-secondary"> *</span></p>
             </label>
         </div>
         <div class="flex justify-between gap-4">
@@ -25,11 +45,7 @@ new class extends Component {
                 </x-client.form.input>
                 <x-client.form.select
                     name="specie"
-                    :options="[
-    ['value' => 'dog', 'trad' => __('global.dog')],
-    ['value' => 'cat', 'trad' => __('global.cat')],
-]"
-                >
+                    :options="$this->specieOptions()">
                     {!! __('admin/global.specie') !!}
                 </x-client.form.select>
                 <x-client.form.select

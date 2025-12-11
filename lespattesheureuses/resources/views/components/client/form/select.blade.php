@@ -5,12 +5,13 @@
         @if($isRequired)
             <span class="text-secondary">*</span>
         @endif
+        @error($name)
+        <small class="text-red-500">
+            {{ $message }}
+        </small>
+        @enderror
     </label>
-    @error($name)
-    <small class="text-red-500">
-        {{ $message }}
-    </small>
-    @enderror
+
     <select id="{{$name}}" name="{{$name}}" class="rounded-xl border-primary border-3 p-2 cursor-pointer">
         @foreach($options as $option)
             <option value="{{ $option['value'] }}">

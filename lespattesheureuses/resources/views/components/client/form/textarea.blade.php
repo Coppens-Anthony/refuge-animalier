@@ -5,12 +5,13 @@
         @if($isRequired)
             <span class="text-secondary">*</span>
         @endif
+        @error($name)
+        <small class="text-red-500">
+            {{ $message }}
+        </small>
+        @enderror
     </label>
-    @error($name)
-    <small class="text-red-500">
-        {{ $message }}
-    </small>
-    @enderror
+
     <textarea id="{{$name}}" name="{{$name}}" placeholder="{{$placeholder}}" value="{{@old($name)}}"
               @if($isRequired)
                   required
