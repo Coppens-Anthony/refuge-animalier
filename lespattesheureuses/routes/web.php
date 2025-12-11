@@ -33,7 +33,7 @@ Route::domain('admin.lespattesheureuses.test')->group(function () {
     Route::livewire('/members/create', 'pages::members.⚡create')
         ->name('create.members')->middleware('auth');
     Route::livewire('/members/{member}', 'pages::members.⚡show')
-        ->name('show.member')->middleware('auth');
+        ->name('show.members')->middleware('auth');
 
     Route::livewire('/profile', 'pages::profile.⚡show')
         ->name('show.profile')->middleware('auth');

@@ -1,25 +1,26 @@
 <?php
 
+use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 
 new class extends Component {
-    //
+    public Collection $datas;
+
 };
 ?>
 <?php
 
 
-$members = [];
-
-for ($i = 1; $i <= 10; $i++) {
-    $members[] = [
-        "assets/images/johndoe.jpg",
-        "John Doe",
-        'john@doe.com',
-        '0123.45.67.89',
-        'Bénévole',
-    ];
-}
+$rows = $datas->map(fn($data) => [
+    'id' => $data->id,
+    'cols' => [
+        $data->avatar,
+        $data->name,
+        $data->email,
+        $data->telephone,
+        $data->status,
+    ]
+])
 ?>
 
 
@@ -30,7 +31,8 @@ for ($i = 1; $i <= 10; $i++) {
         <livewire:admin.global.members_filters/>
         <livewire:admin.global.table.table
             :titles="[__('admin/global.avatar'), __('admin/global.name'),__('admin/global.email'),__('admin/global.telephone'), __('admin/global.status')]"
-            :datas="$members"
+            :rows="$rows"
+            :route="'show.members'"
         />
     </section>
 </div>
