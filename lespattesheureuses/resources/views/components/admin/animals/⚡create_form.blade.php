@@ -1,23 +1,38 @@
 <?php
 
+use App\Models\Breed;
 use App\Models\Specie;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component {
+    public $specie_id = null;
+    public $breed_id = null;
+
     #[Computed]
-    public function species()
+    public function speciesOptions()
     {
-        return Specie::all();
+        return Specie::all()->map(fn($specie) => [
+            'value' => $specie->id,
+            'trad' => $specie->name,
+        ])->toArray();
     }
 
     #[Computed]
-    public function specieOptions()
+    public function breedsOptions()
     {
-        return $this->species->map(fn($specie) => [
-            'value' => $specie->name,
-            'trad' => $specie->name
-        ])->toArray();
+        return Breed::where('specie_id', $this->specie_id)
+            ->get()
+            ->map(fn($breed) => [
+                'value' => $breed->id,
+                'trad' => $breed->name,
+            ])
+            ->toArray();
+    }
+
+    public function updatedSpecieId()
+    {
+        $this->breed_id = 0;
     }
 };
 ?>
@@ -45,16 +60,14 @@ new class extends Component {
                 </x-client.form.input>
                 <x-client.form.select
                     name="specie"
-                    :options="$this->specieOptions()">
+                    wire:model.live="specie_id"
+                    :options="$this->speciesOptions()">
                     {!! __('admin/global.specie') !!}
                 </x-client.form.select>
                 <x-client.form.select
                     name="breed"
-                    :options="[
-    ['value' => 'dog', 'trad' => __('global.dog')],
-    ['value' => 'cat', 'trad' => __('global.cat')],
-]"
-                >
+                    wire:model="breed_id"
+                    :options="$this->breedsOptions()">
                     {!! __('admin/global.breed') !!}
                 </x-client.form.select>
                 <x-client.form.input
@@ -85,7 +98,7 @@ new class extends Component {
                 </x-client.form.input>
                 <x-client.form.textarea
                     name="temperament"
-                    placeholder="C’est un chien très affectueux qui adore la compagnie des humains. Il aime les balades et s’entend bien avec les autres chiens. Un peu méfiant au début, mais il devient vite un vrai pot de colle une fois en confiance."
+                    placeholder="C'est un chien très affectueux qui adore la compagnie des humains. Il aime les balades et s'entend bien avec les autres chiens. Un peu méfiant au début, mais il devient vite un vrai pot de colle une fois en confiance."
                 >
                     {!! __('admin/global.temperament') !!}
                 </x-client.form.textarea>

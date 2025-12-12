@@ -12,7 +12,8 @@
         @enderror
     </label>
 
-    <select id="{{$name}}" name="{{$name}}" class="rounded-xl border-primary border-3 p-2 cursor-pointer">
+    <select id="{{$name}}" name="{{$name}}" class="rounded-xl border-primary border-3 p-2 cursor-pointer" {{$attributes}}>
+        <option value="">-- Sélectionner --</option>
         @foreach($options as $option)
             <option value="{{ $option['value'] }}">
                 {{ $option['trad'] }}
