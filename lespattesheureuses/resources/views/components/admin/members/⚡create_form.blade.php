@@ -17,7 +17,7 @@ new class extends Component {
         $validated = $this->validate([
             'lastname' => 'required',
             'firstname' => 'required',
-            'email' => 'email|required',
+            'email' => 'email|required|unique:users,email',
             'telephone' => 'regex:/^0[1-9](?:[\s\.]?[0-9]{2}){4}$/|required',
             'password' => 'required|min:8',
         ]);

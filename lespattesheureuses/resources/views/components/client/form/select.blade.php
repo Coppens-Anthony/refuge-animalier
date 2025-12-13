@@ -13,7 +13,7 @@
     </label>
 
     <select id="{{$name}}" name="{{$name}}" class="rounded-xl border-primary border-3 p-2 cursor-pointer" {{$attributes}}>
-        <option value="">-- Sélectionner --</option>
+        <option value="">{{__('global.to_select')}}</option>
         @foreach($options as $option)
             <option value="{{ $option['value'] }}">
                 {{ $option['trad'] }}
