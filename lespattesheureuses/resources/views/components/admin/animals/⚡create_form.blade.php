@@ -3,8 +3,10 @@
 use App\Enums\Sex;
 use App\Enums\Status;
 use App\Models\Animal;
+use App\Models\AnimalVaccine;
 use App\Models\Breed;
 use App\Models\Specie;
+use App\Models\Vaccine;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -12,10 +14,10 @@ use Livewire\Component;
 new class extends Component {
     public $specie_id = null;
     public $breed_id = null;
+    public $vaccine_id = null;
     public string $name = '';
     public string $coat = '';
     public string $temperament = '';
-    public string $vaccines = '';
     public App\Enums\Sex $sex;
     public DateTime $age;
 
@@ -40,6 +42,18 @@ new class extends Component {
             ->toArray();
     }
 
+    #[Computed]
+    public function vaccinesOptions()
+    {
+        return Vaccine::where('specie_id', $this->specie_id)
+            ->get()
+            ->map(fn($vaccine) => [
+                'value' => $vaccine->id,
+                'trad' => $vaccine->name,
+            ])
+            ->toArray();
+    }
+
     public function updatedSpecieId()
     {
         $this->breed_id = 0;
@@ -53,13 +67,16 @@ new class extends Component {
             'age' => 'required|date|before:today',
             'sex' => ['required', Rule::enum(Sex::class)],
             'coat' => 'required',
-            'vaccines' => 'required',
             'temperament' => 'required|max:255',
+            'vaccine_id' => 'exists:vaccines,id'
         ]);
         $validated['status'] = Status::ADOPTABLE;
         $validated['avatar'] = '';
 
         $animal = Animal::create($validated);
+
+        $animal->vaccine()->attach($this->vaccine_id);
+
         return redirect(route('show.animals', $animal->id));
     }
 };
@@ -121,13 +138,12 @@ new class extends Component {
                 >
                     {!! __('admin/global.coat') !!}
                 </x-client.form.input>
-                <x-client.form.input
-                    wire:model="vaccines"
-                    name="vaccines"
-                    placeholder="Aucun"
-                >
+                <x-client.form.select
+                    name="vaccine"
+                    wire:model.live="vaccine_id"
+                    :options="$this->vaccinesOptions()">
                     {!! __('admin/global.vaccines') !!}
-                </x-client.form.input>
+                </x-client.form.select>
                 <x-client.form.textarea
                     wire:model="temperament"
                     name="temperament"
