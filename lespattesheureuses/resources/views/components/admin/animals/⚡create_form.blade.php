@@ -5,6 +5,7 @@ use App\Enums\Status;
 use App\Models\Animal;
 use App\Models\AnimalVaccine;
 use App\Models\Breed;
+use App\Models\Coat;
 use App\Models\Specie;
 use App\Models\Vaccine;
 use Illuminate\Validation\Rule;
@@ -15,6 +16,7 @@ new class extends Component {
     public $specie_id = null;
     public $breed_id = null;
     public $vaccine_id = null;
+    public $coat_id = null;
     public string $name = '';
     public string $coat = '';
     public string $temperament = '';
@@ -54,6 +56,17 @@ new class extends Component {
             ->toArray();
     }
 
+    #[Computed]
+    public function coatsOptions()
+    {
+        return Coat::all()
+            ->map(fn($coat) => [
+                'value' => $coat->id,
+                'trad' => $coat->name,
+            ])
+            ->toArray();
+    }
+
     public function updatedSpecieId()
     {
         $this->breed_id = 0;
@@ -68,7 +81,9 @@ new class extends Component {
             'sex' => ['required', Rule::enum(Sex::class)],
             'coat' => 'required',
             'temperament' => 'required|max:255',
-            'vaccine_id' => 'exists:vaccines,id'
+            'vaccine_id' => 'exists:vaccines,id',
+            'specie_id' => 'exists:species,id',
+            'coat_id' => 'exists:coats,id',
         ]);
         $validated['status'] = Status::ADOPTABLE;
         $validated['avatar'] = '';
@@ -76,6 +91,7 @@ new class extends Component {
         $animal = Animal::create($validated);
 
         $animal->vaccine()->attach($this->vaccine_id);
+        $animal->coat()->attach($this->coat_id);
 
         return redirect(route('show.animals', $animal->id));
     }
@@ -131,13 +147,12 @@ new class extends Component {
                 </x-client.form.select>
             </fieldset>
             <fieldset class="w-1/2 flex flex-col gap-4">
-                <x-client.form.input
-                    wire:model="coat"
+                <x-client.form.select
                     name="coat"
-                    placeholder="Feu"
-                >
+                    wire:model.live="coat_id"
+                    :options="$this->coatsOptions()">
                     {!! __('admin/global.coat') !!}
-                </x-client.form.input>
+                </x-client.form.select>
                 <x-client.form.select
                     name="vaccine"
                     wire:model.live="vaccine_id"
