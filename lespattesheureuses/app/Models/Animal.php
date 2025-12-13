@@ -37,4 +37,9 @@ class Animal extends Model
     {
         return $this->belongsToMany(Vaccine::class, 'animal_vaccines', 'animal_id', 'vaccine_id');
     }
+
+    public function coat(): BelongsToMany
+    {
+        return $this->belongsToMany(Coat::class, 'animal_coats', 'animal_id', 'coat_id');
+    }
 }

@@ -5,10 +5,9 @@ namespace Database\Seeders;
 use App\Enums\Members;
 use App\Models\Animal;
 use App\Models\Breed;
+use App\Models\Coat;
 use App\Models\Specie;
 use App\Models\User;
-
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Vaccine;
 use Illuminate\Database\Seeder;
 
@@ -48,6 +47,25 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
+        $coatNames = [
+            'Blanc',
+            'Beige',
+            'Gris',
+            'Noir',
+            'Feu',
+            'Roux',
+            'Tricolore',
+            'Tâcheté',
+            'Tigré',
+        ];
+
+        $coats = collect();
+        foreach ($coatNames as $coatName) {
+            $coats->push(Coat::create([
+                'name' => $coatName,
+            ]));
+        }
+
         $seeding_breeds = [];
         foreach ($species as $specie => $breeds) {
 
@@ -82,8 +100,11 @@ class DatabaseSeeder extends Seeder
                 'breed_id' => $seeding_breeds[array_rand($seeding_breeds)]
             ]);
 
-            $compatibleVaccines = $animal->breed->specie->vaccine;
+            $animal->coat()->attach(
+                $coats->random(rand(1, 2))->pluck('id')->toArray()
+            );
 
+            $compatibleVaccines = $animal->breed->specie->vaccine;
 
             $animal->vaccine()->attach(
                 $compatibleVaccines
