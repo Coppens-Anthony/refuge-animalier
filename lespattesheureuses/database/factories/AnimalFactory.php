@@ -20,7 +20,6 @@ class AnimalFactory extends Factory
             'name' => $this->faker->name(),
             'age' => Carbon::now(),
             'sex' => $this->faker->randomElement(Sex::values()),
-            'coat' => $this->faker->word(),
             'temperament' => $this->faker->word(),
             'status' => $this->faker->randomElement(Status::values()),
             'breed_id' => Breed::factory(),

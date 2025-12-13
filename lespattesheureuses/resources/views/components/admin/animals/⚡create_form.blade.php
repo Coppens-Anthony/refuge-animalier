@@ -18,7 +18,6 @@ new class extends Component {
     public $vaccine_id = null;
     public $coat_id = null;
     public string $name = '';
-    public string $coat = '';
     public string $temperament = '';
     public App\Enums\Sex $sex;
     public DateTime $age;
@@ -79,7 +78,6 @@ new class extends Component {
             'breed_id' => 'required|exists:breeds,id',
             'age' => 'required|date|before:today',
             'sex' => ['required', Rule::enum(Sex::class)],
-            'coat' => 'required',
             'temperament' => 'required|max:255',
             'vaccine_id' => 'exists:vaccines,id',
             'specie_id' => 'exists:species,id',

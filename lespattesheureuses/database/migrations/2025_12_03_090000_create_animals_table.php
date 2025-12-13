@@ -15,7 +15,6 @@ return new class extends Migration {
             $table->string('name');
             $table->dateTime('age');
             $table->enum('sex', Sex::values());
-            $table->string('coat');
             $table->text('temperament');
             $table->enum('status', Status::cases());
             $table->foreignId('breed_id')->constrained()->cascadeOnDelete();
