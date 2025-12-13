@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 
 class Animal extends Model
@@ -21,7 +21,6 @@ class Animal extends Model
         'temperament',
         'status',
         'breed_id',
-        //'vaccine_id',
     ];
 
     public function breed(): BelongsTo
@@ -32,5 +31,10 @@ class Animal extends Model
     public function specie(): HasOneThrough
     {
         return $this->hasOneThrough(Specie::class, Breed::class, 'id', 'id', 'breed_id', 'specie_id');
+    }
+
+    public function vaccine(): BelongsToMany
+    {
+        return $this->belongsToMany(Vaccine::class, 'animal_vaccines', 'animal_id', 'vaccine_id');
     }
 }

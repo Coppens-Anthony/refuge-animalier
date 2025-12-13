@@ -9,6 +9,7 @@ use App\Models\Specie;
 use App\Models\User;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Vaccine;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -32,7 +33,22 @@ class DatabaseSeeder extends Seeder
             ],
         ];
 
-        $seedingBreeds = [];
+        $species_vaccines = [
+            'Chien' => [
+                'DHPP',
+                'Rage',
+                'Parvovirose',
+                'Piroplasmose',
+            ],
+            'Chat' => [
+                'Typhus',
+                'Coryza',
+                'Leucose féline',
+                'Rage',
+            ],
+        ];
+
+        $seeding_breeds = [];
         foreach ($species as $specie => $breeds) {
 
             $specie = Specie::create(['name' => $specie]);
@@ -43,17 +59,40 @@ class DatabaseSeeder extends Seeder
                     'specie_id' => $specie->id
                 ]);
 
-                $seedingBreeds[] = $breed->id;
+                $seeding_breeds[] = $breed->id;
+            }
+        }
+
+        $seedingVaccines = [];
+        foreach ($species_vaccines as $species_vaccine => $vaccines) {
+            $specie = Specie::where('name', '=', $species_vaccine)->first();
+
+            foreach ($vaccines as $vaccine) {
+                $vaccine = Vaccine::create([
+                    'name' => $vaccine,
+                    'specie_id' => $specie->id,
+                ]);
             }
         }
 
 
         /* Animals seeding */
         for ($i = 0; $i < 20; $i++) {
-            Animal::factory()->create([
-                'breed_id' => $seedingBreeds[array_rand($seedingBreeds)]
+            $animal = Animal::factory()->create([
+                'breed_id' => $seeding_breeds[array_rand($seeding_breeds)]
             ]);
+
+            $compatibleVaccines = $animal->breed->specie->vaccine;
+
+
+            $animal->vaccine()->attach(
+                $compatibleVaccines
+                    ->random(rand(0, $compatibleVaccines->count()))
+                    ->pluck('id')
+                    ->toArray()
+            );
         }
+
 
         User::factory()->create([
             'name' => 'John Doe',

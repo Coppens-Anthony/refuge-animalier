@@ -19,7 +19,6 @@ return new class extends Migration {
             $table->text('temperament');
             $table->enum('status', Status::cases());
             $table->foreignId('breed_id')->constrained()->cascadeOnDelete();
-            //$table->foreignId('vaccine_id')->constrained();
             $table->timestamps();
         });
     }
