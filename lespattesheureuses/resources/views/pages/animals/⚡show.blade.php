@@ -18,7 +18,6 @@ class extends Component {
             'age' => $this->animal->age,
             'breed' => $this->animal->breed,
             'sex' => $this->animal->sex,
-            'coat' => $this->animal->coat,
             'temperament' => $this->animal->temperament,
             'status' => $this->animal->status,
         ];
@@ -26,14 +25,6 @@ class extends Component {
 
     public $showModal = false;
 };
-?>
-
-<?php
-$args = [
-    $this->animal->age,
-    $this->animal->sex,
-    $this->animal->coat,
-]
 ?>
 
 <div>
@@ -55,7 +46,7 @@ $args = [
                                     <select name="status" id="status"
                                             class="rounded-xl border-primary border-3 p-2 cursor-pointer">
                                         @foreach(Status::values() as $status)
-                                            <option value="{{$this->animal->$status}}"
+                                            <option value="{{$this->animal->status}}"
                                                     @if($this->animal->status == $status) selected @endif>{{$status}}</option>
                                         @endforeach
                                     </select>
@@ -97,7 +88,18 @@ $args = [
                         <x-client.global.icon_text
                             image_src="{{asset('assets/icons/paw.svg')}}"
                             image_alt="{!! __('global.paw_icon') !!}">
-                            {{$this->animal->coat}}
+                            @foreach($this->animal->coat as $coat)
+                                {{$coat->name}},
+                            @endforeach
+                        </x-client.global.icon_text>
+                    </li>
+                    <li class="flex items-center gap-2">
+                        <x-client.global.icon_text
+                            image_src="{{asset('assets/icons/paw.svg')}}"
+                            image_alt="{!! __('global.paw_icon') !!}">
+                            @foreach($this->animal->vaccine as $vaccine)
+                                {{$vaccine->name}},
+                            @endforeach
                         </x-client.global.icon_text>
                     </li>
                 </ul>
