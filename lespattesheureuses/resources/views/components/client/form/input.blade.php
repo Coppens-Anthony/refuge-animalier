@@ -1,4 +1,4 @@
-@props(['name', 'type' => 'text', 'placeholder' , 'isRequired' => true, 'class' => '', 'isSearch' => false])
+@props(['name', 'type' => 'text', 'placeholder' => '' , 'isRequired' => true, 'class' => '', 'isSearch' => false])
 
 <div class="flex flex-col gap-2 {{$class}} relative">
     <label for="{{$name}}" class="font-bold">{{$slot}}

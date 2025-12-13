@@ -12,7 +12,7 @@
         @enderror
     </label>
 
-    <textarea id="{{$name}}" name="{{$name}}" placeholder="{{$placeholder}}" value="{{@old($name)}}"
+    <textarea id="{{$name}}" name="{{$name}}" placeholder="{{$placeholder}}" value="{{@old($name)}}" {{$attributes}}
               @if($isRequired)
                   required
               @endif

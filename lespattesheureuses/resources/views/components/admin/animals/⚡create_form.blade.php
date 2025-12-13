@@ -1,13 +1,23 @@
 <?php
 
+use App\Enums\Sex;
+use App\Enums\Status;
+use App\Models\Animal;
 use App\Models\Breed;
 use App\Models\Specie;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component {
     public $specie_id = null;
     public $breed_id = null;
+    public string $name = '';
+    public string $coat = '';
+    public string $temperament = '';
+    public string $vaccines = '';
+    public App\Enums\Sex $sex;
+    public DateTime $age;
 
     #[Computed]
     public function speciesOptions()
@@ -34,11 +44,29 @@ new class extends Component {
     {
         $this->breed_id = 0;
     }
+
+    public function store()
+    {
+        $validated = $this->validate([
+            'name' => 'required',
+            'breed_id' => 'required|exists:breeds,id',
+            'age' => 'required|date|before:today',
+            'sex' => ['required', Rule::enum(Sex::class)],
+            'coat' => 'required',
+            'vaccines' => 'required',
+            'temperament' => 'required|max:255',
+        ]);
+        $validated['status'] = Status::ADOPTABLE;
+        $validated['avatar'] = '';
+
+        $animal = Animal::create($validated);
+        return redirect(route('show.animals', $animal->id));
+    }
 };
 ?>
 
 <div class="col-span-full">
-    <form action="" method="post" class="col-span-full flex flex-col gap-8">
+    <form wire:submit="store" class="col-span-full flex flex-col gap-8">
         <div class="flex flex-col gap-2 w-fit mx-auto text-center mb-6 font-bold">
             <input id="avatar" name="avatar" type="file" class="invisible absolute top-0 left-0 h-0 w-0"
                    accept="image/*">
@@ -54,6 +82,7 @@ new class extends Component {
         <div class="flex justify-between gap-4">
             <fieldset class="w-1/2 flex flex-col gap-4">
                 <x-client.form.input
+                    wire:model="name"
                     name="name"
                     placeholder="Max">
                     {!! __('admin/global.name') !!}
@@ -66,37 +95,41 @@ new class extends Component {
                 </x-client.form.select>
                 <x-client.form.select
                     name="breed"
-                    wire:model="breed_id"
+                    wire:model.live="breed_id"
                     :options="$this->breedsOptions()">
                     {!! __('admin/global.breed') !!}
                 </x-client.form.select>
                 <x-client.form.input
+                    wire:model="age"
                     name="age"
-                    placeholder="2 ans"
+                    type="date"
                 >
                     {!! __('admin/global.age') !!}
                 </x-client.form.input>
-                <x-client.form.input
+                <x-client.form.select
                     name="sex"
-                    placeholder="Mâle"
-                >
+                    wire:model="sex"
+                    :options="Sex::options()">
                     {!! __('admin/global.sex') !!}
-                </x-client.form.input>
+                </x-client.form.select>
             </fieldset>
             <fieldset class="w-1/2 flex flex-col gap-4">
                 <x-client.form.input
+                    wire:model="coat"
                     name="coat"
                     placeholder="Feu"
                 >
                     {!! __('admin/global.coat') !!}
                 </x-client.form.input>
                 <x-client.form.input
+                    wire:model="vaccines"
                     name="vaccines"
                     placeholder="Aucun"
                 >
                     {!! __('admin/global.vaccines') !!}
                 </x-client.form.input>
                 <x-client.form.textarea
+                    wire:model="temperament"
                     name="temperament"
                     placeholder="C'est un chien très affectueux qui adore la compagnie des humains. Il aime les balades et s'entend bien avec les autres chiens. Un peu méfiant au début, mais il devient vite un vrai pot de colle une fois en confiance."
                 >
