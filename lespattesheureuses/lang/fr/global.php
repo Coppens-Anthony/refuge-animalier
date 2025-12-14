@@ -33,5 +33,5 @@ return [
     'admin' => 'Administration des pattes heureuses',
     'edit' => 'Modifier',
     'edit_title' => 'Vers le formulaire de modification',
-    'to_select' => '-- Sélectionner --'
+    'to_select' => '-- Sélectionner --',
 ];

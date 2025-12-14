@@ -135,7 +135,7 @@ new class extends Component {
                     name="age"
                     type="date"
                 >
-                    {!! __('admin/global.age') !!}
+                    {!! __('admin/global.birthdate') !!}
                 </x-client.form.input>
                 <x-client.form.select
                     name="sex"

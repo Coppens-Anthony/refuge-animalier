@@ -2,25 +2,28 @@
 
 use App\Enums\Status;
 use App\Models\Animal;
+use Illuminate\Validation\Rule;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
 new #[Title('Fiche de ')]
-class extends Component {
+class extends Component
+{
     public Animal $animal;
-    public array $animal_datas;
+    public string $status;
 
-    public function mount(Animal $animal): void
+    public function mount()
     {
-        $this->animal_datas = [
-            'avatar' => $this->animal->avatar,
-            'name' => $this->animal->name,
-            'age' => $this->animal->age,
-            'breed' => $this->animal->breed,
-            'sex' => $this->animal->sex,
-            'temperament' => $this->animal->temperament,
-            'status' => $this->animal->status,
-        ];
+        $this->status = $this->animal->status;
+    }
+
+    public function update()
+    {
+        $validated = $this->validate([
+            'status' => Rule::enum(Status::class)
+        ]);
+
+        $this->animal->update($validated);
     }
 
     public $showModal = false;
@@ -40,13 +43,13 @@ class extends Component {
                         <img src="{{asset('assets/icons/edit.svg')}}" alt="" class="h-5.8 w-5.8 cursor-pointer"
                              @click="open = !open">
                         <livewire:admin.global.modal>
-                            <form action="">
+                            <form wire:submit="update" @submit="open = false">
                                 <div class="flex flex-col gap-2">
                                     <label for="status">Changer le statut de {{$this->animal->name}}</label>
-                                    <select name="status" id="status"
+                                    <select name="status" id="status" wire:model="status"
                                             class="rounded-xl border-primary border-3 p-2 cursor-pointer">
                                         @foreach(Status::values() as $status)
-                                            <option value="{{$this->animal->status}}"
+                                            <option value="{{$status}}"
                                                     @if($this->animal->status == $status) selected @endif>{{$status}}</option>
                                         @endforeach
                                     </select>
