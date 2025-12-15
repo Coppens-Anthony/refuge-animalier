@@ -4,18 +4,23 @@ use Livewire\Component;
 
 new class extends Component {
     public bool $isSeen = false;
+    public bool $isAlert = false;
     public string $title;
     public string $desc;
 };
 ?>
 
 <div x-data="{open: false}">
-    <li class="relative hover:bg-primary-opacity rounded-xl p-2 cursor-pointer" @click="open = !open">
+    <li class="relative {{$isAlert ? 'hover:bg-red-300' : 'hover:bg-primary-opacity'}} rounded-xl p-2 cursor-pointer"
+        @click="open = !open">
         <article class="p-2">
             <div class="flex justify-between items-center mb-2">
-                <h3 class="relative pl-8 before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0
-           before:w-4 before:h-4 before:rounded-full {{$isSeen ? '' : 'before:bg-primary font-bold'}}">
+                <h3 class="relative flex items-center gap-2 pl-8 before:absolute before:top-1/2 before:-translate-y-1/2 before:left-0
+           before:w-4 before:h-4 before:rounded-full {{$isSeen ? '' : ($isAlert ? 'before:bg-red-500 font-bold' : 'before:bg-primary font-bold')}}">
                     {{$title}}
+                    @if($isAlert)
+                        <img src="{{asset('assets/icons/alert.svg')}}"  alt="" class="h-8 w-8">
+                    @endif
                 </h3>
                 <small class="opacity-50">Il y a 4 heures</small>
             </div>

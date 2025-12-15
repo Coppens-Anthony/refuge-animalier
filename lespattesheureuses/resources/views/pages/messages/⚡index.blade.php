@@ -11,5 +11,4 @@ class extends Component {
 
 <div>
     <livewire:admin.messages.list/>
-
 </div>

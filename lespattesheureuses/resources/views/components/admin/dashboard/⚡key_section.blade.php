@@ -41,8 +41,8 @@ new class extends Component
                 number="4"
                 image="dashboard_alerts"
                 image_alt="alert_icon"
-                link_title=""
-                route="dashboard"
+                link_title="{!! __('admin/nav.to_messages') !!}"
+                route="index.messages"
             />
             <livewire:admin.dashboard.key_card
                 title="{!! __('admin/nav.members') !!}"
