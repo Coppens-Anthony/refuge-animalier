@@ -34,4 +34,5 @@ return [
     'edit' => 'Modifier',
     'edit_title' => 'Vers le formulaire de modification',
     'to_select' => '-- Sélectionner --',
+    'select_first_specie' => '-- Veuillez d\'abord choisir une espèce --'
 ];

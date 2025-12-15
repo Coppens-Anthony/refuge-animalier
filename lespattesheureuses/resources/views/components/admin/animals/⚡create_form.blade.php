@@ -23,7 +23,7 @@ new class extends Component {
     public DateTime $age;
 
     #[Computed]
-    public function speciesOptions()
+    public function speciesOptions(): array
     {
         return Specie::all()->map(fn($specie) => [
             'value' => $specie->id,
@@ -32,7 +32,7 @@ new class extends Component {
     }
 
     #[Computed]
-    public function breedsOptions()
+    public function breedsOptions(): array
     {
         return Breed::where('specie_id', $this->specie_id)
             ->get()
@@ -44,7 +44,7 @@ new class extends Component {
     }
 
     #[Computed]
-    public function vaccinesOptions()
+    public function vaccinesOptions(): array
     {
         return Vaccine::where('specie_id', $this->specie_id)
             ->get()
@@ -56,7 +56,7 @@ new class extends Component {
     }
 
     #[Computed]
-    public function coatsOptions()
+    public function coatsOptions(): array
     {
         return Coat::all()
             ->map(fn($coat) => [
@@ -64,11 +64,6 @@ new class extends Component {
                 'trad' => $coat->name,
             ])
             ->toArray();
-    }
-
-    public function updatedSpecieId()
-    {
-        $this->breed_id = 0;
     }
 
     public function store()
@@ -124,12 +119,12 @@ new class extends Component {
                     :options="$this->speciesOptions()">
                     {!! __('admin/global.specie') !!}
                 </x-client.form.select>
-                <x-client.form.select
-                    name="breed"
+                <livewire:admin.global.modal_checkbox
                     wire:model.live="breed_id"
+                    :key="'breeds-'.$specie_id"
                     :options="$this->breedsOptions()">
                     {!! __('admin/global.breed') !!}
-                </x-client.form.select>
+                </livewire:admin.global.modal_checkbox>
                 <x-client.form.input
                     wire:model="age"
                     name="age"
@@ -144,23 +139,22 @@ new class extends Component {
                     {!! __('admin/global.sex') !!}
                 </x-client.form.select>
             </fieldset>
-            <fieldset class="w-1/2 flex flex-col gap-4">
-                <x-client.form.select
-                    name="coat"
+            <fieldset class="w-1/2 flex flex-col gap-4" x-data="{open: false}">
+                <livewire:admin.global.modal_checkbox
                     wire:model.live="coat_id"
                     :options="$this->coatsOptions()">
                     {!! __('admin/global.coat') !!}
-                </x-client.form.select>
-                <x-client.form.select
-                    name="vaccine"
+                </livewire:admin.global.modal_checkbox>
+                <livewire:admin.global.modal_checkbox
                     wire:model.live="vaccine_id"
+                    :key="'vaccines-'.$specie_id"
                     :options="$this->vaccinesOptions()">
                     {!! __('admin/global.vaccines') !!}
-                </x-client.form.select>
+                </livewire:admin.global.modal_checkbox>
                 <x-client.form.textarea
                     wire:model="temperament"
                     name="temperament"
-                    placeholder="C'est un chien très affectueux qui adore la compagnie des humains. Il aime les balades et s'entend bien avec les autres chiens. Un peu méfiant au début, mais il devient vite un vrai pot de colle une fois en confiance."
+                    placeholder="C'est un animal..."
                 >
                     {!! __('admin/global.temperament') !!}
                 </x-client.form.textarea>

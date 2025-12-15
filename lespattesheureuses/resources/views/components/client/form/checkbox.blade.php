@@ -8,5 +8,6 @@
             <label for="{{ $day}}[{{$key}}]" class="cursor-pointer">
                 {{ $label }}
             </label>
-        </div>@endforeach
+        </div>
+    @endforeach
 </div>
