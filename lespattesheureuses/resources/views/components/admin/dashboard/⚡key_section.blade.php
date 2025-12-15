@@ -37,7 +37,7 @@ new class extends Component
                 route="index.messages"
             />
             <livewire:admin.dashboard.key_card
-                title="Alertes"
+                title="{!! __('admin/nav.alerts') !!}"
                 number="4"
                 image="dashboard_alerts"
                 image_alt="alert_icon"

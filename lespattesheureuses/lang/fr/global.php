@@ -32,6 +32,8 @@ return [
     'next' => 'Suivant',
     'admin' => 'Administration des pattes heureuses',
     'edit' => 'Modifier',
+    'edit_icon' => 'Icône d\'un crayon',
+    'delete_icon' => 'Icône d\'une poubelle',
     'edit_title' => 'Vers le formulaire de modification',
     'to_select' => '-- Sélectionner --',
     'select_first_specie' => '-- Veuillez d\'abord choisir une espèce --'

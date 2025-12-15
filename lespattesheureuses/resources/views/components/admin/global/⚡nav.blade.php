@@ -59,6 +59,13 @@ new class extends Component {
                     image_alt="{!! __('admin/nav.member_icon') !!}"
                     text="{!! __('admin/nav.members') !!}"
                 />
+                <livewire:admin.global.item_nav
+                    route="index.database"
+                    title="{!! __('admin/nav.to_db') !!}"
+                    image="db"
+                    image_alt="{!! __('admin/nav.db_icon') !!}"
+                    text="{!! __('admin/nav.db') !!}"
+                />
             </ul>
         </nav>
     </aside>

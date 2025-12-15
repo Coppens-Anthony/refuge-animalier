@@ -27,6 +27,11 @@ return [
     'member_icon' => 'Icône de membres',
     'members' => 'Membres',
 
+    'to_db' => 'Vers la base de données',
+    'db_icon' => 'Icône de base de données',
+    'db' => 'Données',
+
     'alert_icon' => 'Icône de cloche',
+    'alerts' => 'Alertes',
     'to_profile' => 'Vers votre profil',
 ];
