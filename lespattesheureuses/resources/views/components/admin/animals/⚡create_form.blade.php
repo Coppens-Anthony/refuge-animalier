@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\Members;
 use App\Enums\Sex;
 use App\Enums\Status;
 use App\Models\Animal;
@@ -14,12 +15,13 @@ use Livewire\Component;
 
 new class extends Component {
     public $specie_id = null;
-    public $breed_id = null;
-    public $vaccine_id = null;
-    public $coat_id = null;
+    public $breed_id = [];
+    public $vaccine_id = [];
+    public $coat_id = [];
     public string $name = '';
     public string $temperament = '';
     public App\Enums\Sex $sex;
+    public App\Enums\Status $status;
     public DateTime $age;
 
     #[Computed]
@@ -70,15 +72,23 @@ new class extends Component {
     {
         $validated = $this->validate([
             'name' => 'required',
-            'breed_id' => 'required|exists:breeds,id',
+            'breed_id' => 'required|array',
+            'breed_id.*' => 'exists:breeds,id',
             'age' => 'required|date|before:today',
             'sex' => ['required', Rule::enum(Sex::class)],
             'temperament' => 'required|max:255',
-            'vaccine_id' => 'exists:vaccines,id',
-            'specie_id' => 'exists:species,id',
-            'coat_id' => 'exists:coats,id',
+            'status' => ['required', Rule::enum(Status::class)],
+            'vaccine_id' => 'array',
+            'vaccine_id.*' => 'exists:vaccines,id',
+            'specie_id' => 'required|exists:species,id',
+            'coat_id' => 'required|array',
+            'coat_id.*' => 'exists:coats,id',
         ]);
-        $validated['status'] = Status::ADOPTABLE;
+        if (auth()->user()->status === Members::VOLUNTEER->value) {
+            $validated['status'] = Status::PENDING;
+        } else {
+            $validated['status'];
+        }
         $validated['avatar'] = '';
 
         $animal = Animal::create($validated);
@@ -92,7 +102,7 @@ new class extends Component {
 ?>
 
 <div class="col-span-full">
-    <form wire:submit="store" class="col-span-full flex flex-col gap-8">
+    <form wire:submit.prevent="store" class="col-span-full flex flex-col gap-8">
         <div class="flex flex-col gap-2 w-fit mx-auto text-center mb-6 font-bold">
             <input id="avatar" name="avatar" type="file" class="invisible absolute top-0 left-0 h-0 w-0"
                    accept="image/*">
@@ -114,14 +124,15 @@ new class extends Component {
                     {!! __('admin/global.name') !!}
                 </x-client.form.input>
                 <x-client.form.select
-                    name="specie"
+                    name="specie_id"
                     wire:model.live="specie_id"
                     :options="$this->speciesOptions()">
                     {!! __('admin/global.specie') !!}
                 </x-client.form.select>
                 <livewire:admin.global.modal_checkbox
-                    wire:model.live="breed_id"
+                    wire:model="breed_id"
                     :key="'breeds-'.$specie_id"
+                    :fieldName="'breed'"
                     :options="$this->breedsOptions()">
                     {!! __('admin/global.breed') !!}
                 </livewire:admin.global.modal_checkbox>
@@ -141,16 +152,26 @@ new class extends Component {
             </fieldset>
             <fieldset class="w-1/2 flex flex-col gap-4" x-data="{open: false}">
                 <livewire:admin.global.modal_checkbox
-                    wire:model.live="coat_id"
+                    wire:model="coat_id"
+                    :fieldName="'coat'"
                     :options="$this->coatsOptions()">
                     {!! __('admin/global.coat') !!}
                 </livewire:admin.global.modal_checkbox>
                 <livewire:admin.global.modal_checkbox
-                    wire:model.live="vaccine_id"
+                    wire:model="vaccine_id"
                     :key="'vaccines-'.$specie_id"
+                    :fieldName="'vaccine'"
                     :options="$this->vaccinesOptions()">
                     {!! __('admin/global.vaccines') !!}
                 </livewire:admin.global.modal_checkbox>
+                @if(auth()->user()->status === Members::ADMINISTRATOR->value)
+                    <x-client.form.select
+                        name="status"
+                        wire:model="status_id"
+                        :options="Status::options()">
+                        {!! __('admin/global.status') !!}
+                    </x-client.form.select>
+                @endif
                 <x-client.form.textarea
                     wire:model="temperament"
                     name="temperament"
