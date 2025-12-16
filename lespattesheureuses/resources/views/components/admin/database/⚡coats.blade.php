@@ -42,6 +42,12 @@ new class extends Component {
 
         $this->dispatch('coat-edited');
     }
+
+    public function delete($id)
+    {
+        $coat = Coat::findOrFail($id);
+        $coat->delete();
+    }
 };
 ?>
 <div>
@@ -73,12 +79,17 @@ new class extends Component {
                                  class="cursor-pointer"
                                  wire:click="edit({{$coat}})"
                                  @click="edit = true">
-                            <img src="{{asset('assets/icons/delete.svg')}}"
-                                 alt="{{__('global.delete_icon')}}"
-                                 class="cursor-pointer">
+                            <form wire:submit="delete({{$coat->id}})">
+                                <button type="submit" class="cursor-pointer">
+                                    <img src="{{asset('assets/icons/delete.svg')}}"
+                                         alt="{{__('global.delete_icon')}}"
+                                         >
+                                </button>
+                            </form>
                         </div>
                         <div class="inset-0 fixed z-40 bg-black opacity-50 w-full h-full" x-show="edit"></div>
-                        <div x-show="edit" x-on:coat-edited.window="edit = false" @click.outside="edit = false" @keydown.escape.window="edit = false"
+                        <div x-show="edit" x-on:coat-edited.window="edit = false" @click.outside="edit = false"
+                             @keydown.escape.window="edit = false"
                              class="p-6 fixed w-[50vw] z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform origin-center bg-white border-primary border-2 rounded-2xl shadow-2xl backdrop:bg-black backdrop:opacity-50">
                             <form wire:submit="update">
                                 <x-client.form.input
@@ -106,7 +117,8 @@ new class extends Component {
         </div>
 
         <div class="inset-0 fixed z-40 bg-black opacity-50 w-full h-full" x-show="add"></div>
-        <div x-show="add" x-on:coat-added.window="add = false" @click.outside="add = false" @keydown.escape.window="add = false"
+        <div x-show="add" x-on:coat-added.window="add = false" @click.outside="add = false"
+             @keydown.escape.window="add = false"
              class="p-6 fixed w-[50vw] z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform origin-center bg-white border-primary border-2 rounded-2xl shadow-2xl backdrop:bg-black backdrop:opacity-50">
             <form wire:submit="store">
                 <x-client.form.input
