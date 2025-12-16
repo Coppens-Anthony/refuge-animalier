@@ -10,7 +10,7 @@ new class extends Component {
 };
 ?>
 
-<div x-data="{open: false}">
+<div x-data="{open: false}" x-cloak>
     <li class="relative {{$isAlert ? 'hover:bg-red-300' : 'hover:bg-primary-opacity'}} rounded-xl p-2 cursor-pointer"
         @click="open = !open">
         <article class="p-2">

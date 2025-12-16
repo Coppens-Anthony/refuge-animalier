@@ -26,7 +26,6 @@ class extends Component
         $this->animal->update($validated);
     }
 
-    public $showModal = false;
 };
 ?>
 
@@ -36,7 +35,7 @@ class extends Component
             <div class="flex flex-col gap-8 md:w-1/2">
                 <div class="flex items-center gap-6">
                     <h3 class="text-[2rem]">{{$this->animal->name}}</h3>
-                    <div class="flex gap-2 items-center" x-data="{open: false}">
+                    <div class="flex gap-2 items-center" x-data="{open: false}" x-cloak>
                         <x-client.global.status isInCard="{{false}}">
                             {{$this->animal->status}}
                         </x-client.global.status>
@@ -54,9 +53,13 @@ class extends Component
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="ml-auto mt-4 w-fit">
+                                <div class="flex gap-6 w-fit mt-5.5 ml-auto">
+                                    <p @click="open = false"
+                                       class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0    bg-white border-primary hover:bg-primary">
+                                        Fermer
+                                    </p>
                                     <x-client.global.button
-                                        title=""
+                                        title="{{__('admin/forms.edit_title')}}"
                                     >
                                         Modifier
                                     </x-client.global.button>

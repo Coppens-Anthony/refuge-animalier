@@ -122,37 +122,5 @@ class extends Component {
             </ul>
         </div>
     </section>
-    <section x-data="{expanded: false}">
-        <div class="w-fit mb-2 ml-auto cursor-pointer">
-            <small class="underline">Ajouter un élément</small>
-        </div>
-        <h3 type="button" x-on:click="expanded = ! expanded"
-            class="bg-primary cursor-pointer p-4 w-full rounded-xl flex items-center justify-between">
-            {{__('admin/global.coats')}}
-            <svg
-                class="w-5 h-5 transition-transform duration-300"
-                :class="{'rotate-180': expanded}"
-                fill="none"
-                stroke="black"
-                viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-            </svg>
-        </h3>
-        <div x-show="expanded" class="border-primary border-1 rounded-xl border-t-0 p-4">
-            <ul class="grid grid-cols-2 gap-8">
-                @foreach($this->coats as $coat)
-                    <li class="flex items-center gap-4">
-                        <p>
-                            {{$coat->name}}
-                        </p>
-                        <div class="flex gap-2">
-                            <img src="{{asset('assets/icons/edit.svg')}}" alt="{{__('global.edit_icon')}}">
-                            <img src="{{asset('assets/icons/delete.svg')}}" alt="{{__('global.delete_icon')}}">
-                        </div>
-                    </li>
-                @endforeach
-            </ul>
-        </div>
-    </section>
-
+    <livewire:admin.database.coats/>
 </div>

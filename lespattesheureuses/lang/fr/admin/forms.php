@@ -5,4 +5,5 @@ return [
     'add_image' => 'Ajouter une photo',
     'add' => 'Ajouter',
     'add_animal_title' => 'Ajouter l\'animal',
+    'edit_title' => 'Modifier l\'élement'
 ];
