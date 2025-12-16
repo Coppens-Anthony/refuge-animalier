@@ -22,15 +22,13 @@ new class extends Component {
         ]);
 
         Coat::create(['name' => $validated['coat']]);
-        $this->coat = '';
         $this->dispatch('coat-added');
     }
 
-    public function edit(int $id)
+    public function edit(Coat $coat)
     {
-        $coat = Coat::findOrFail($id);
         $this->editCoat = $coat->name;
-        $this->editingId = $id;
+        $this->editingId = $coat->id;
     }
 
     public function update()
@@ -41,8 +39,6 @@ new class extends Component {
 
         $coat = Coat::findOrFail($this->editingId);
         $coat->update(['name' => $validated['editCoat']]);
-        $this->editCoat = '';
-        $this->editingId = null;
 
         $this->dispatch('coat-edited');
     }
@@ -75,7 +71,7 @@ new class extends Component {
                             <img src="{{asset('assets/icons/edit.svg')}}"
                                  alt="{{__('global.edit_icon')}}"
                                  class="cursor-pointer"
-                                 wire:click="edit({{$coat->id}})"
+                                 wire:click="edit({{$coat}})"
                                  @click="edit = true">
                             <img src="{{asset('assets/icons/delete.svg')}}"
                                  alt="{{__('global.delete_icon')}}"
