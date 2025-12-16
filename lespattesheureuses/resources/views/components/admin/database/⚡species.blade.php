@@ -1,52 +1,52 @@
 <?php
 
-use App\Models\Coat;
+use App\Models\Specie;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component {
-    public string $coat = '';
-    public string $editCoat = '';
+    public string $specie = '';
+    public string $editSpecie = '';
     public ?int $editingId = null;
 
     #[Computed]
-    public function coats()
+    public function species()
     {
-        return Coat::all();
+        return Specie::all();
     }
 
     public function store()
     {
         $validated = $this->validate([
-            'coat' => 'required|string|unique:coats,name',
+            'specie' => 'required|string|unique:species,name',
         ]);
 
-        Coat::create(['name' => $validated['coat']]);
-        $this->dispatch('coat-added');
+        Specie::create(['name' => $validated['specie']]);
+        $this->dispatch('specie-added');
     }
 
-    public function edit(Coat $coat)
+    public function edit(Specie $specie)
     {
-        $this->editCoat = $coat->name;
-        $this->editingId = $coat->id;
+        $this->editSpecie = $specie->name;
+        $this->editingId = $specie->id;
     }
 
     public function update()
     {
         $validated = $this->validate([
-            'editCoat' => 'required|string|unique:coats,name',
+            'editSpecie' => 'required|string|unique:species,name',
         ]);
 
-        $coat = Coat::findOrFail($this->editingId);
-        $coat->update(['name' => $validated['editCoat']]);
+        $specie = Specie::findOrFail($this->editingId);
+        $specie->update(['name' => $validated['editSpecie']]);
 
-        $this->dispatch('coat-edited');
+        $this->dispatch('specie-edited');
     }
 
     public function delete($id)
     {
-        $coat = Coat::findOrFail($id);
-        $coat->delete();
+        $specie = Specie::findOrFail($id);
+        $specie->delete();
     }
 };
 ?>
@@ -57,7 +57,7 @@ new class extends Component {
         </div>
         <h3 type="button" x-on:click="expanded = !expanded"
             class="bg-primary cursor-pointer p-4 w-full rounded-xl flex items-center justify-between">
-            {{__('admin/global.coats')}}
+            {{__('admin/global.species')}}
             <svg class="w-5 h-5 transition-transform duration-300"
                  :class="{'rotate-180': expanded}"
                  fill="none"
@@ -70,16 +70,16 @@ new class extends Component {
 
         <div x-show="expanded" class="border-primary border-1 rounded-xl border-t-0 p-4">
             <ul class="grid grid-cols-2 gap-8">
-                @foreach($this->coats as $coat)
+                @foreach($this->species as $specie)
                     <li class="flex items-center gap-4" x-data="{edit: false}">
-                        <p>{{$coat->name}}</p>
+                        <p>{{$specie->name}}</p>
                         <div class="flex gap-2">
                             <img src="{{asset('assets/icons/edit.svg')}}"
                                  alt="{{__('global.edit_icon')}}"
                                  class="cursor-pointer"
-                                 wire:click="edit({{$coat}})"
+                                 wire:click="edit({{$specie}})"
                                  @click="edit = true">
-                            <form wire:submit="delete({{$coat->id}})">
+                            <form wire:submit="delete({{$specie->id}})">
                                 <button type="submit" class="cursor-pointer">
                                     <img src="{{asset('assets/icons/delete.svg')}}"
                                          alt="{{__('global.delete_icon')}}"
@@ -88,16 +88,16 @@ new class extends Component {
                             </form>
                         </div>
                         <div class="inset-0 fixed z-40 bg-black opacity-50 w-full h-full" x-show="edit"></div>
-                        <div x-show="edit" x-on:coat-edited.window="edit = false" @click.outside="edit = false"
+                        <div x-show="edit" x-on:specie-edited.window="edit = false" @click.outside="edit = false"
                              @keydown.escape.window="edit = false"
                              class="p-6 fixed w-[50vw] z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform origin-center bg-white border-primary border-2 rounded-2xl shadow-2xl backdrop:bg-black backdrop:opacity-50">
                             <form wire:submit="update">
                                 <x-client.form.input
-                                    wire:model.live="editCoat"
-                                    name="editCoat"
-                                    placeholder="{{$coat->name}}"
+                                    wire:model.live="editSpecie"
+                                    name="editSpecie"
+                                    placeholder="{{$specie->name}}"
                                 >
-                                    {{__('admin/forms.coat_edit')}}
+                                    {{__('admin/forms.specie_edit')}}
                                 </x-client.form.input>
                                 <div class="flex gap-6 w-fit mt-5.5 ml-auto">
                                     <p @click="edit = false"
@@ -117,16 +117,16 @@ new class extends Component {
         </div>
 
         <div class="inset-0 fixed z-40 bg-black opacity-50 w-full h-full" x-show="add"></div>
-        <div x-show="add" x-on:coat-added.window="add = false" @click.outside="add = false"
+        <div x-show="add" x-on:specie-added.window="add = false" @click.outside="add = false"
              @keydown.escape.window="add = false"
              class="p-6 fixed w-[50vw] z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform origin-center bg-white border-primary border-2 rounded-2xl shadow-2xl backdrop:bg-black backdrop:opacity-50">
             <form wire:submit="store">
                 <x-client.form.input
-                    wire:model.live="coat"
-                    name="coat"
-                    placeholder="{{__('admin/forms.fire')}}"
+                    wire:model.live="specie"
+                    name="specie"
+                    placeholder="{{__('admin/global.dog')}}"
                 >
-                    {{__('admin/forms.add_coat')}}
+                    {{__('admin/forms.add_specie')}}
                 </x-client.form.input>
                 <div class="flex gap-6 w-fit mt-5.5 ml-auto">
                     <p @click="add = false"

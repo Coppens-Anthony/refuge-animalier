@@ -1,52 +1,81 @@
 <?php
 
-use App\Models\Coat;
+use App\Models\Breed;
+use App\Models\Specie;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component {
-    public string $coat = '';
-    public string $editCoat = '';
+    public string $breed = '';
+    public ?int $specieId = null;
+
+    public string $editBreed = '';
+    public ?int $editSpecieId = null;
     public ?int $editingId = null;
 
     #[Computed]
-    public function coats()
+    public function breeds()
     {
-        return Coat::all();
+        return Breed::with('specie')->get();
+    }
+
+    #[Computed]
+    public function speciesOptions(): array
+    {
+        return Specie::all()->map(fn($specie) => [
+            'value' => $specie->id,
+            'trad' => $specie->name,
+        ])->toArray();
     }
 
     public function store()
     {
         $validated = $this->validate([
-            'coat' => 'required|string|unique:coats,name',
+            'breed' => 'required|string|unique:breeds,name',
+            'specieId' => 'required|exists:species,id',
         ]);
 
-        Coat::create(['name' => $validated['coat']]);
-        $this->dispatch('coat-added');
+        Breed::create([
+            'name' => $validated['breed'],
+            'specie_id' => $validated['specieId']
+        ]);
+
+        $this->reset(['breed', 'specieId']);
+        $this->resetValidation();
+        $this->dispatch('breed-added');
     }
 
-    public function edit(Coat $coat)
+    public function edit(Breed $breed)
     {
-        $this->editCoat = $coat->name;
-        $this->editingId = $coat->id;
+        $this->editBreed = $breed->name;
+        $this->editSpecieId = $breed->specie_id;
+        $this->editingId = $breed->id;
     }
 
     public function update()
     {
         $validated = $this->validate([
-            'editCoat' => 'required|string|unique:coats,name',
+            'editBreed' => 'string|unique:breeds,name,' . $this->editingId,
+            'editSpecieId' => 'exists:species,id',
         ]);
 
-        $coat = Coat::findOrFail($this->editingId);
-        $coat->update(['name' => $validated['editCoat']]);
+        $breed = Breed::findOrFail($this->editingId);
+        $breed->update([
+            'name' => $validated['editBreed'],
+            'specie_id' => $validated['editSpecieId']
+        ]);
 
-        $this->dispatch('coat-edited');
+        $this->reset(['editBreed', 'editSpecieId', 'editingId']);
+        $this->resetValidation();
+        $this->dispatch('breed-edited');
     }
 
     public function delete($id)
     {
-        $coat = Coat::findOrFail($id);
-        $coat->delete();
+        $breed = Breed::findOrFail($id);
+        $breed->delete();
+
+        $this->dispatch('breed-deleted');
     }
 };
 ?>
@@ -57,7 +86,7 @@ new class extends Component {
         </div>
         <h3 type="button" x-on:click="expanded = !expanded"
             class="bg-primary cursor-pointer p-4 w-full rounded-xl flex items-center justify-between">
-            {{__('admin/global.coats')}}
+            {{__('admin/global.breeds')}}
             <svg class="w-5 h-5 transition-transform duration-300"
                  :class="{'rotate-180': expanded}"
                  fill="none"
@@ -70,35 +99,41 @@ new class extends Component {
 
         <div x-show="expanded" class="border-primary border-1 rounded-xl border-t-0 p-4">
             <ul class="grid grid-cols-2 gap-8">
-                @foreach($this->coats as $coat)
+                @foreach($this->breeds as $breed)
                     <li class="flex items-center gap-4" x-data="{edit: false}">
-                        <p>{{$coat->name}}</p>
+                        <p>{{$breed->name}} - {{$breed->specie->name}}</p>
                         <div class="flex gap-2">
                             <img src="{{asset('assets/icons/edit.svg')}}"
                                  alt="{{__('global.edit_icon')}}"
                                  class="cursor-pointer"
-                                 wire:click="edit({{$coat}})"
+                                 wire:click="edit({{$breed}})"
                                  @click="edit = true">
-                            <form wire:submit="delete({{$coat->id}})">
+                            <form wire:submit="delete({{$breed->id}})">
                                 <button type="submit" class="cursor-pointer">
                                     <img src="{{asset('assets/icons/delete.svg')}}"
-                                         alt="{{__('global.delete_icon')}}"
-                                         >
+                                         alt="{{__('global.delete_icon')}}">
                                 </button>
                             </form>
                         </div>
                         <div class="inset-0 fixed z-40 bg-black opacity-50 w-full h-full" x-show="edit"></div>
-                        <div x-show="edit" x-on:coat-edited.window="edit = false" @click.outside="edit = false"
+                        <div x-show="edit" x-on:breed-edited.window="edit = false" @click.outside="edit = false"
                              @keydown.escape.window="edit = false"
                              class="p-6 fixed w-[50vw] z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform origin-center bg-white border-primary border-2 rounded-2xl shadow-2xl backdrop:bg-black backdrop:opacity-50">
-                            <form wire:submit="update">
+                            <form wire:submit="update" class="flex flex-col gap-4">
                                 <x-client.form.input
-                                    wire:model.live="editCoat"
-                                    name="editCoat"
-                                    placeholder="{{$coat->name}}"
+                                    wire:model="editBreed"
+                                    name="editBreed"
+                                    placeholder="{{$breed->name}}"
                                 >
-                                    {{__('admin/forms.coat_edit')}}
+                                    {{__('admin/forms.breed_edit')}}
                                 </x-client.form.input>
+                                <x-client.form.select
+                                    wire:model="editSpecieId"
+                                    name="editSpecieId"
+                                    :options="$this->speciesOptions"
+                                >
+                                    Associer à une espèce
+                                </x-client.form.select>
                                 <div class="flex gap-6 w-fit mt-5.5 ml-auto">
                                     <p @click="edit = false"
                                        class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">
@@ -117,17 +152,24 @@ new class extends Component {
         </div>
 
         <div class="inset-0 fixed z-40 bg-black opacity-50 w-full h-full" x-show="add"></div>
-        <div x-show="add" x-on:coat-added.window="add = false" @click.outside="add = false"
+        <div x-show="add" x-on:breed-added.window="add = false" @click.outside="add = false"
              @keydown.escape.window="add = false"
              class="p-6 fixed w-[50vw] z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform origin-center bg-white border-primary border-2 rounded-2xl shadow-2xl backdrop:bg-black backdrop:opacity-50">
-            <form wire:submit="store">
+            <form wire:submit="store" class="flex flex-col gap-4">
                 <x-client.form.input
-                    wire:model.live="coat"
-                    name="coat"
-                    placeholder="{{__('admin/forms.fire')}}"
+                    wire:model="breed"
+                    name="breed"
+                    placeholder="{{__('admin/global.dog')}}"
                 >
-                    {{__('admin/forms.add_coat')}}
+                    {{__('admin/forms.add_breed')}}
                 </x-client.form.input>
+                <x-client.form.select
+                    wire:model="specieId"
+                    name="specieId"
+                    :options="$this->speciesOptions"
+                >
+                    {{__('admin/forms.match_specie')}}
+                </x-client.form.select>
                 <div class="flex gap-6 w-fit mt-5.5 ml-auto">
                     <p @click="add = false"
                        class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">

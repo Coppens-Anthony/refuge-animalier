@@ -5,5 +5,17 @@ return [
     'add_image' => 'Ajouter une photo',
     'add' => 'Ajouter',
     'add_animal_title' => 'Ajouter l\'animal',
-    'edit_title' => 'Modifier l\'élement'
+    'edit_title' => 'Modifier l\'élement',
+    'add_element' => 'Ajouter un élément',
+    'add_coat' => 'Ajouter un pelage',
+    'add_specie' => 'Ajouter une espèce',
+    'add_breed' => 'Ajouter une race',
+    'add_vaccine' => 'Ajouter un vaccin',
+    'match_specie' => 'Associer à une espèce',
+    'coat_edit' => 'Modifier le pelage',
+    'specie_edit' => 'Modifier l\'espèce',
+    'breed_edit' => 'Modifier la race',
+    'vaccine_edit' => 'Modifier le vaccin',
+    'edit' => 'Modifier',
+    'fire' => 'Feu'
 ];

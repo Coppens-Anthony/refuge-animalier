@@ -23,5 +23,7 @@ return [
     'date' => 'Date de la demande',
     'volunteer' => 'Bénévole',
     'admin' => 'Administrateur(e)',
-    'birthdate' => 'Date de naissance'
+    'birthdate' => 'Date de naissance',
+    'close' => 'Fermer',
+    'dog' => 'Chien',
 ];
