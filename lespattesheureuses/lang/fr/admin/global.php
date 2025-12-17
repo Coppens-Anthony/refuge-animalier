@@ -26,4 +26,5 @@ return [
     'birthdate' => 'Date de naissance',
     'close' => 'Fermer',
     'dog' => 'Chien',
+    'change_status' => 'Changez le statut de'
 ];

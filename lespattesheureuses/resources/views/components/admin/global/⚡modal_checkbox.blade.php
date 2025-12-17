@@ -4,11 +4,18 @@ use Livewire\Attributes\Modelable;
 use Livewire\Component;
 
 new class extends Component {
-    public array $options = [];
 
     #[Modelable]
     public array $selected = [];
+
+    public array $options = [];
+
     public string $fieldName = '';
+
+    public function mount($options)
+    {
+        $this->options = $options;
+    }
 };
 ?>
 
@@ -55,6 +62,7 @@ new class extends Component {
                         wire:model.live="selected"
                         name="{{$fieldName . '_' . $option['value']}}"
                         value="{{$option['value']}}"
+                        wire:key="{{$option['value']}}"
                         id="{{$fieldName . '_' . $option['value']}}"
                         class="rounded border-primary">
                     <label for="{{$fieldName . '_' . $option['value']}}" class="cursor-pointer flex-1">
