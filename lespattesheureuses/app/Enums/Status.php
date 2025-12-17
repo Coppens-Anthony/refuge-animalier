@@ -22,4 +22,15 @@ enum Status: string
             'trad' => ucfirst($option->value)
         ], self::cases());
     }
+
+    public function label()
+    {
+        return match ($this) {
+            self::ADOPTABLE => 'Adoptable',
+            self::ADOPTED => 'Adopté',
+            self::IN_CARE => 'En soins',
+            self::UNAVAILABLE => 'Indisponible',
+            self::PENDING => 'En attente',
+        };
+    }
 }

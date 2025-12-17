@@ -25,12 +25,11 @@ class extends Component
 
         $this->animal->update($validated);
     }
-
 };
 ?>
 
 <div>
-    <section class="mb-32">
+    <section>
         <div class="flex flex-col md:flex-row md:gap-30 md:items-center mb-8">
             <div class="flex flex-col gap-8 md:w-1/2">
                 <div class="flex items-center gap-6">
@@ -39,12 +38,12 @@ class extends Component
                         <x-client.global.status isInCard="{{false}}">
                             {{$this->animal->status}}
                         </x-client.global.status>
-                        <img src="{{asset('assets/icons/edit.svg')}}" alt="" class="h-5.8 w-5.8 cursor-pointer"
+                        <img src="{{asset('assets/icons/edit.svg')}}" alt="{{__('global.edit_icon')}}" class="h-5.8 w-5.8 cursor-pointer"
                              @click="open = !open">
                         <livewire:admin.global.modal>
                             <form wire:submit="update" @submit="open = false">
                                 <div class="flex flex-col gap-2">
-                                    <label for="status">Changer le statut de {{$this->animal->name}}</label>
+                                    <label for="status">{{__('admin/global.change_status')}} {{$this->animal->name}}</label>
                                     <select name="status" id="status" wire:model="status"
                                             class="rounded-xl border-primary border-3 p-2 cursor-pointer">
                                         @foreach(Status::values() as $status)
@@ -56,12 +55,12 @@ class extends Component
                                 <div class="flex gap-6 w-fit mt-5.5 ml-auto">
                                     <p @click="open = false"
                                        class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0    bg-white border-primary hover:bg-primary">
-                                        Fermer
+                                        {{__('admin/global.close')}}
                                     </p>
                                     <x-client.global.button
                                         title="{{__('admin/forms.edit_title')}}"
                                     >
-                                        Modifier
+                                        {{__('admin/forms.edit')}}
                                     </x-client.global.button>
                                 </div>
                             </form>
@@ -123,8 +122,8 @@ class extends Component
         <div class="w-fit mx-auto">
             <x-client.global.cta
                 route=""
-                title="">
-                Modifier
+                title="{{__('global.edit_title')}}">
+                {{__('admin/forms.edit')}}
             </x-client.global.cta>
         </div>
     </section>

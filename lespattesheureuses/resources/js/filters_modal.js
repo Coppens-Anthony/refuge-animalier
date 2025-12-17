@@ -11,7 +11,7 @@ buttonFilters.classList.add('button_filters');
 
 buttonFilters.addEventListener('click', (e) => {
     e.preventDefault();
-})
+});
 
 const basic_div = document.getElementById('filters');
 const dialog_element = document.createElement('dialog');

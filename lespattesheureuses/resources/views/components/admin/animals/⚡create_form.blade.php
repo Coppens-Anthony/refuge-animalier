@@ -3,6 +3,7 @@
 use App\Enums\Members;
 use App\Enums\Sex;
 use App\Enums\Status;
+use App\Jobs\ProcessUploadedContactAvatar;
 use App\Models\Animal;
 use App\Models\AnimalVaccine;
 use App\Models\Breed;
@@ -12,13 +13,17 @@ use App\Models\Vaccine;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 
 new class extends Component {
+    use WithFileUploads;
+
     public $specie_id = null;
     public $breed_ids = [];
-    public $vaccine_id = [];
-    public $coat_id = [];
+    public $vaccine_ids = [];
+    public $coat_ids = [];
     public string $name = '';
+    public $avatar;
     public string $temperament = '';
     public App\Enums\Sex $sex;
     public App\Enums\Status $status;
@@ -69,27 +74,10 @@ new class extends Component {
             ->toArray();
     }
 
-
-
-    public function updated($prop): void
-    {
-        if(str_contains($prop,'breed_ids')){
-            unset($this->breedsOptions);
-        }
-        if(str_contains($prop,'coat_id')){
-            unset($this->coatsOptions);
-        }
-        if(str_contains($prop,'vaccine_id')){
-            unset($this->vaccinesOptions);
-        }
-        debug('oui');
-        debug($prop);
-    }
-
     public function store()
     {
-
         $validated = $this->validate([
+            'avatar' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
             'name' => 'required',
             'breed_ids' => 'required|array',
             'breed_ids.*' => 'exists:breeds,id',
@@ -97,20 +85,35 @@ new class extends Component {
             'sex' => ['required', Rule::enum(Sex::class)],
             'temperament' => 'required|max:255',
             'status' => ['required', Rule::enum(Status::class)],
-            'vaccine_id' => 'array',
-            'vaccine_id.*' => 'exists:vaccines,id',
+            'vaccine_ids' => 'array',
+            'vaccine_ids.*' => 'exists:vaccines,id',
             'specie_id' => 'required|exists:species,id',
-            'coat_id' => 'required|array',
-            'coat_id.*' => 'exists:coats,id',
+            'coat_ids' => 'required|array',
+            'coat_ids.*' => 'exists:coats,id',
         ]);
+
+        dd($validated);
+
         if (auth()->user()->status === Members::VOLUNTEER->value) {
             $validated['status'] = Status::PENDING;
         } else {
             $validated['status'];
         }
-        $validated['avatar'] = '';
-        dd($validated);
 
+        if ($validated['avatar']) {
+            $new_original_file_name = uniqid() . '.' . config('contactsavatars.image_type');
+            $full_path_to_original = Storage::disk('public')
+                ->putFileAs(config('contactsavatars.original_path'),
+                    $validated['avatar'],
+                    $new_original_file_name
+                );
+            if ($full_path_to_original) {
+                $validated['avatar'] = $new_original_file_name;
+                ProcessUploadedContactAvatar::dispatch($full_path_to_original, $new_original_file_name);
+            } else {
+                $validated['avatar'] = '';
+            }
+        }
         $animal = Animal::create($validated);
 
         foreach ($vaccine_id as $vaccine) {
@@ -121,13 +124,16 @@ new class extends Component {
         }
         return redirect(route('show.animals', $animal->id));
     }
+
+
 };
 ?>
 
 <div class="col-span-full">
     <form wire:submit.prevent="store" class="col-span-full flex flex-col gap-8">
-        <div class="flex flex-col gap-2 w-fit mx-auto text-center mb-6 font-bold">
-            <input id="avatar" name="avatar" type="file" class="invisible absolute top-0 left-0 h-0 w-0"
+        <div class="flex flex-col gap-2 w-fit mx-auto text-center mb-12 font-bold">
+            <input id="avatar" name="avatar" type="file" wire:model="avatar"
+                   class="invisible absolute top-0 left-0 h-0 w-0"
                    accept="image/*">
             <label for="avatar"
                    class="w-[175px] h-[175px] bg-gray-200 hover:bg-gray-300 duration-300 hover:duration-300 relative rounded-2xl cursor-pointer border-dashed border-1 border-black">
@@ -135,7 +141,16 @@ new class extends Component {
                      alt="{!! __('admin/forms.add_animal_image_alt') !!}"
                      class="absolute top-1/2 left-1/2 -translate-1/2 origin-center">
                 <p class="absolute -bottom-12 w-full -translate-1/2 origin-center left-1/2">{!! __('admin/forms.add_image') !!}
-                    <span class="text-secondary"> *</span></p>
+                    <span class="text-secondary"> *</span>
+                    @error('avatar')
+                    <small class="text-red-500 absolute -bottom-10 left-0">
+                        {{ $message }}
+                    </small>
+                    @enderror</p>
+                @if($this->avatar)
+                    <img src="{{$this->avatar->temporaryUrl()}}" alt="{{__('admin/table.image_alt')}}"
+                         class="object-cover absolute w-[175px] h-[175px] rounded-2xl">
+                @endif
             </label>
         </div>
         <div class="flex justify-between gap-4">
@@ -153,7 +168,7 @@ new class extends Component {
                     {!! __('admin/global.specie') !!}
                 </x-client.form.select>
                 <livewire:admin.global.modal_checkbox
-                    wire:model.live="breed_ids"
+                    wire:model="breed_ids"
                     :key="'breeds-'.microtime()"
                     :fieldName="'breed'"
                     :options="$this->breedsOptions">
@@ -175,14 +190,14 @@ new class extends Component {
             </fieldset>
             <fieldset class="w-1/2 flex flex-col gap-4" x-data="{open: false}">
                 <livewire:admin.global.modal_checkbox
-                    wire:model.live="coat_id"
+                    wire:model="coat_ids"
                     :key="'coats-'.microtime()"
                     :fieldName="'coat'"
                     :options="$this->coatsOptions">
                     {!! __('admin/global.coat') !!}
                 </livewire:admin.global.modal_checkbox>
                 <livewire:admin.global.modal_checkbox
-                    wire:model.live="vaccine_id"
+                    wire:model="vaccine_ids"
                     :key="'vaccines-'.microtime()"
                     :fieldName="'vaccine'"
                     :options="$this->vaccinesOptions">
