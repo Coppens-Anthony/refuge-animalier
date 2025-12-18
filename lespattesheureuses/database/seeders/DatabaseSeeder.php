@@ -2,13 +2,17 @@
 
 namespace Database\Seeders;
 
+use App\Enums\Adoptions;
 use App\Enums\Members;
+use App\Models\Adopter;
+use App\Models\Adoption;
 use App\Models\Animal;
 use App\Models\Breed;
 use App\Models\Coat;
 use App\Models\Specie;
 use App\Models\User;
 use App\Models\Vaccine;
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -95,6 +99,7 @@ class DatabaseSeeder extends Seeder
 
 
         /* Animals seeding */
+        $animals = collect();
         for ($i = 0; $i < 20; $i++) {
             $animal = Animal::factory()->create([
                 'breed_id' => $seeding_breeds[array_rand($seeding_breeds)]
@@ -112,8 +117,22 @@ class DatabaseSeeder extends Seeder
                     ->pluck('id')
                     ->toArray()
             );
+
+            $animals->push($animal);
         }
 
+        $adopters = Adopter::factory(20)->create();
+
+        for ($i = 0; $i < 20; $i++) {
+            $status = fake()->randomElement([Adoptions::FINISHED, Adoptions::PENDING, Adoptions::IN_PROGRESS]);
+
+            Adoption::factory()->create([
+                'status' => $status,
+                'date' => ($status == Adoptions::FINISHED ? Carbon::now() : null),
+                'animal_id' => $animals->random()->id,
+                'adopter_id' => $adopters->random()->id,
+            ]);
+        }
 
         User::factory()->create([
             'name' => 'John Doe',
