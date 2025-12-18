@@ -1,20 +1,23 @@
 <?php
 
+use App\Enums\Adoptions;
 use App\Enums\Status;
+use App\Models\Adoption;
 use App\Models\Animal;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
 new #[Title('Fiche de ')]
-class extends Component
-{
+class extends Component {
     public Animal $animal;
+    public ?Adoption $animalAdoption = null;
     public string $status;
 
     public function mount()
     {
         $this->status = $this->animal->status;
+        $this->animalAdoption = $this->animal->adoption->first();
     }
 
     public function update()
@@ -38,12 +41,14 @@ class extends Component
                         <x-client.global.status isInCard="{{false}}">
                             {{$this->animal->status}}
                         </x-client.global.status>
-                        <img src="{{asset('assets/icons/edit.svg')}}" alt="{{__('global.edit_icon')}}" class="h-5.8 w-5.8 cursor-pointer"
+                        <img src="{{asset('assets/icons/edit.svg')}}" alt="{{__('global.edit_icon')}}"
+                             class="h-5.8 w-5.8 cursor-pointer"
                              @click="open = !open">
                         <livewire:admin.global.modal>
                             <form wire:submit="update" @submit="open = false">
                                 <div class="flex flex-col gap-2">
-                                    <label for="status">{{__('admin/global.change_status')}} {{$this->animal->name}}</label>
+                                    <label
+                                        for="status">{{__('admin/global.change_status')}} {{$this->animal->name}}</label>
                                     <select name="status" id="status" wire:model="status"
                                             class="rounded-xl border-primary border-3 p-2 cursor-pointer">
                                         @foreach(Status::values() as $status)
@@ -93,6 +98,7 @@ class extends Component
                         <x-client.global.icon_text
                             image_src="{{asset('assets/icons/paw.svg')}}"
                             image_alt="{!! __('global.paw_icon') !!}">
+                            {{__('admin/global.coats')}} :
                             @foreach($this->animal->coat as $coat)
                                 {{$coat->name}},
                             @endforeach
@@ -102,6 +108,7 @@ class extends Component
                         <x-client.global.icon_text
                             image_src="{{asset('assets/icons/paw.svg')}}"
                             image_alt="{!! __('global.paw_icon') !!}">
+                            {{__('admin/global.vaccines')}} :
                             @foreach($this->animal->vaccine as $vaccine)
                                 {{$vaccine->name}},
                             @endforeach
@@ -119,12 +126,31 @@ class extends Component
                      class="w-full h-full rounded-4xl">
             </div>
         </div>
-        <div class="w-fit mx-auto">
-            <x-client.global.cta
-                route=""
-                title="{{__('global.edit_title')}}">
-                {{__('admin/forms.edit')}}
-            </x-client.global.cta>
-        </div>
     </section>
+    @if($this->animalAdoption && $this->animalAdoption->status == Adoptions::PENDING->value)
+        <section>
+            <div class="flex flex-col gap-8">
+                <h3 class="text-[2rem]">{{$this->animalAdoption->adopter->name}}</h3>
+                <div class="flex flex-col gap-2">
+                    <div class="flex gap-2 items-center">
+                        <img src="{{asset('assets/icons/email.svg')}}" alt="{!! __('global.email_icon') !!}">
+                        <a href="mailto:{{$this->animalAdoption->adopter->email}}"
+                           {!! __('global.email_title') !!} class="link">{{$this->animalAdoption->adopter->email}}</a>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <img src="{{asset('assets/icons/telephone.svg')}}" alt="{!! __('global.telephone_icon') !!}">
+                        <a href="tel:{{$this->animalAdoption->adopter->telephone}}"
+                           {!! __('global.telephone_title') !!} class="link">{{$this->animalAdoption->adopter->telephone}}</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    @endif
+    <div class="w-fit mx-auto">
+        <x-client.global.cta
+            route=""
+            title="{{__('global.edit_title')}}">
+            {{__('admin/forms.edit')}}
+        </x-client.global.cta>
+    </div>
 </div>
