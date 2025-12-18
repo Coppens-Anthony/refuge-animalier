@@ -40,7 +40,7 @@ return [
     | address of the users but you are free to change this value here.
     |
     | Out of the box, Fortify expects forgot password and reset password
-    | requests to have a field named 'email'. If the application uses
+    | adoptions to have a field named 'email'. If the application uses
     | another name for the field you may define it below as needed.
     |
     */
@@ -107,7 +107,7 @@ return [
     | Rate Limiting
     |--------------------------------------------------------------------------
     |
-    | By default, Fortify will throttle logins to five requests per minute for
+    | By default, Fortify will throttle logins to five adoptions per minute for
     | every email and IP address combination. However, if you would like to
     | specify a custom rate limiter to call then you may specify it here.
     |

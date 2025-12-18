@@ -13,7 +13,7 @@ return [
 
     'to_requests' => 'Vers les demandes d\'adoption',
     'request_icon' => 'Icône de dossier',
-    'requests' => 'Demandes',
+    'adoptions' => 'Demandes',
 
     'to_validations' => 'Vers les fiches à valider',
     'validation_icon' => 'Icône de horloge',

@@ -32,11 +32,11 @@ new class extends Component {
                     text="{!! __('admin/nav.animals') !!}"
                 />
                 <livewire:admin.global.item_nav
-                    route="index.requests"
+                    route="index.adoptions"
                     title="{!! __('admin/nav.to_requests') !!}"
                     image="folder"
                     image_alt="{!! __('admin/nav.request_icon') !!}"
-                    text="{!! __('admin/nav.requests') !!}"
+                    text="{!! __('admin/nav.adoptions') !!}"
                 />
                 <livewire:admin.global.item_nav
                     route="index.validations"

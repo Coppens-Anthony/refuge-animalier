@@ -19,7 +19,6 @@ $rows = $datas->map(fn($data) => [
         $data->specie->name,
         $data->status,
     ]]);
-
 ?>
 
 

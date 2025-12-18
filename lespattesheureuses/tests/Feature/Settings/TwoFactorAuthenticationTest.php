@@ -47,7 +47,7 @@ test('two factor settings page returns forbidden response when two factor is dis
     $response->assertForbidden();
 });
 
-test('two factor authentication disabled when confirmation abandoned between requests', function () {
+test('two factor authentication disabled when confirmation abandoned between adoptions', function () {
     $user = User::factory()->create();
 
     $user->forceFill([

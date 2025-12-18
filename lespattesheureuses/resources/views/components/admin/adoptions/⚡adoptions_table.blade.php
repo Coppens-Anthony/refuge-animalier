@@ -1,26 +1,23 @@
 <?php
 
+use Illuminate\Support\Collection;
 use Livewire\Component;
 
 new class extends Component {
-    //
+    public Collection $datas;
 };
 ?>
 <?php
-
-
-$requests = [];
-
-for ($i = 1; $i <= 10; $i++) {
-    $requests[] = [
-        'assets/images/max.jpg',
-        'Tom',
-        'John Doe',
-        'john@doe.com',
-        '0123.45.67.89',
-        '25-02-25',
-    ];
-}
+$rows = $datas->map(fn($data) => [
+    'id' => $data->animal->id,
+    'cols' => [
+        $data->animal->avatar,
+        $data->animal->name,
+        $data->adopter->name,
+        $data->adopter->email,
+        $data->adopter->telephone,
+        $data->adopter->created_at,
+    ]]);
 ?>
 
 
@@ -29,7 +26,8 @@ for ($i = 1; $i <= 10; $i++) {
         <x-client.global.filters_bar.filters/>
         <livewire:admin.global.table.table
             :titles="[__('admin/global.avatar'), __('admin/global.animal_name'),__('admin/global.adopter_name'),__('admin/global.email'), __('admin/global.telephone'),__('admin/global.date')]"
-            :datas="$requests"
+            :rows="$rows"
+            :route="'show.animals'"
         />
     </section>
 </div>
