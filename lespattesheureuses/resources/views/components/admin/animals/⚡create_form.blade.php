@@ -25,9 +25,9 @@ new class extends Component {
     public string $name = '';
     public $avatar;
     public string $temperament = '';
-    public App\Enums\Sex $sex;
-    public App\Enums\Status $status;
-    public DateTime $age;
+    public $sex;
+    public $status;
+    public $birthdate;
 
 
     #[Computed]
@@ -81,23 +81,21 @@ new class extends Component {
             'name' => 'required',
             'breed_ids' => 'required|array',
             'breed_ids.*' => 'exists:breeds,id',
-            'age' => 'required|date|before:today',
+            'birthdate' => 'required|date|before:today',
             'sex' => ['required', Rule::enum(Sex::class)],
             'temperament' => 'required|max:255',
-            'status' => ['required', Rule::enum(Status::class)],
-            'vaccine_ids' => 'array',
+            'status' => ['nullable', Rule::enum(Status::class)],
+            'vaccine_ids' => 'required|array',
             'vaccine_ids.*' => 'exists:vaccines,id',
             'specie_id' => 'required|exists:species,id',
             'coat_ids' => 'required|array',
             'coat_ids.*' => 'exists:coats,id',
         ]);
 
-        dd($validated);
-
         if (auth()->user()->status === Members::VOLUNTEER->value) {
             $validated['status'] = Status::PENDING;
         } else {
-            $validated['status'];
+            $validated['status'] = Status::PENDING;
         }
 
         if ($validated['avatar']) {
@@ -116,10 +114,10 @@ new class extends Component {
         }
         $animal = Animal::create($validated);
 
-        foreach ($vaccine_id as $vaccine) {
+        foreach ($this->vaccine_ids as $vaccine) {
             $animal->vaccine()->attach($vaccine);
         }
-        foreach ($coat_id as $coat) {
+        foreach ($this->coat_ids as $coat) {
             $animal->coat()->attach($coat);
         }
         return redirect(route('show.animals', $animal->id));
@@ -144,7 +142,7 @@ new class extends Component {
                     <span class="text-secondary"> *</span>
                     @error('avatar')
                     <small class="text-red-500 absolute -bottom-10 left-0">
-                        {{ $message }}
+                        {{ $messbirthdate }}
                     </small>
                     @enderror</p>
                 @if($this->avatar)
@@ -175,8 +173,8 @@ new class extends Component {
                     {!! __('admin/global.breed') !!}
                 </livewire:admin.global.modal_checkbox>
                 <x-client.form.input
-                    wire:model="age"
-                    name="age"
+                    wire:model="birthdate"
+                    name="birthdate"
                     type="date"
                 >
                     {!! __('admin/global.birthdate') !!}

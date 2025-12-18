@@ -18,7 +18,7 @@ class AnimalFactory extends Factory
         return [
             'avatar' => $this->faker->word(),
             'name' => $this->faker->name(),
-            'age' => Carbon::now(),
+            'birthdate' => Carbon::now(),
             'sex' => $this->faker->randomElement(Sex::values()),
             'temperament' => $this->faker->word(),
             'status' => $this->faker->randomElement(Status::values()),

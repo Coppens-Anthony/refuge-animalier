@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->id();
             $table->string('avatar');
             $table->string('name');
-            $table->dateTime('age');
+            $table->dateTime('birthdate');
             $table->enum('sex', Sex::values());
             $table->text('temperament');
             $table->enum('status', Status::cases());
