@@ -17,7 +17,9 @@ class extends Component {
     public function mount()
     {
         $this->status = $this->animal->status;
-        $this->animalAdoption = $this->animal->adoption->first();
+        $this->animalAdoption = $this->animal->adoption()
+            ->where('status', Adoptions::PENDING->value)
+            ->first();
     }
 
     public function update()
@@ -128,29 +130,15 @@ class extends Component {
         </div>
     </section>
     @if($this->animalAdoption && $this->animalAdoption->status == Adoptions::PENDING->value)
-        <section>
-            <div class="flex flex-col gap-8">
-                <h3 class="text-[2rem]">{{$this->animalAdoption->adopter->name}}</h3>
-                <div class="flex flex-col gap-2">
-                    <div class="flex gap-2 items-center">
-                        <img src="{{asset('assets/icons/email.svg')}}" alt="{!! __('global.email_icon') !!}">
-                        <a href="mailto:{{$this->animalAdoption->adopter->email}}"
-                           {!! __('global.email_title') !!} class="link">{{$this->animalAdoption->adopter->email}}</a>
-                    </div>
-                    <div class="flex gap-2 items-center">
-                        <img src="{{asset('assets/icons/telephone.svg')}}" alt="{!! __('global.telephone_icon') !!}">
-                        <a href="tel:{{$this->animalAdoption->adopter->telephone}}"
-                           {!! __('global.telephone_title') !!} class="link">{{$this->animalAdoption->adopter->telephone}}</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+        <livewire:admin.animals.pending_section :animalAdoption="$this->animalAdoption"/>
     @endif
-    <div class="w-fit mx-auto">
-        <x-client.global.cta
-            route=""
-            title="{{__('global.edit_title')}}">
-            {{__('admin/forms.edit')}}
-        </x-client.global.cta>
-    </div>
+    @if(!$this->animalAdoption)
+        <div class="w-fit mx-auto">
+            <x-client.global.cta
+                route=""
+                title="{{__('global.edit_title')}}">
+                {{__('admin/forms.edit')}}
+            </x-client.global.cta>
+        </div>
+    @endif
 </div>

@@ -17,5 +17,9 @@ return [
     'breed_edit' => 'Modifier la race',
     'vaccine_edit' => 'Modifier le vaccin',
     'edit' => 'Modifier',
-    'fire' => 'Feu'
+    'fire' => 'Feu',
+    'deny_adoption_request' => 'Refuser la demande d\'adoption',
+    'accept_adoption_request' => 'Accepter la demande d\'adoption',
+    'deny' => 'Refuser',
+    'accept' => 'Accepter',
 ];
