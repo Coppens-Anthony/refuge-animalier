@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\HasOneThrough;
 use Illuminate\Support\Carbon;
 
@@ -45,9 +46,13 @@ class Animal extends Model
         return $this->belongsToMany(Coat::class, 'animal_coats', 'animal_id', 'coat_id');
     }
 
-    //TODO HasOne ou HasMany
-    public function adoption(): HasMany
+    public function adoption(): HasOne
     {
-        return $this->hasMany(Adoption::class);
+        return $this->hasOne(Adoption::class);
+    }
+
+    public function age()
+    {
+        return Carbon::parse($this->attributes['birthdate'])->age;
     }
 }

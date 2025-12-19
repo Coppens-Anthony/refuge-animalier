@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Routing\Redirector;
 use Livewire\Component;
@@ -16,7 +16,6 @@ new class extends Component {
     }
 };
 ?>
-
 
 <div>
     <table class="w-full text-center rounded-t-2xl overflow-hidden">

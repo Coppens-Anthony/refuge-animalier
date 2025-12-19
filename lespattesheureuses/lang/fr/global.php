@@ -36,5 +36,6 @@ return [
     'delete_icon' => 'Icône d\'une poubelle',
     'edit_title' => 'Vers le formulaire de modification',
     'to_select' => '-- Sélectionner --',
-    'select_first_specie' => '-- Veuillez d\'abord choisir une espèce --'
+    'select_first_specie' => '-- Veuillez d\'abord choisir une espèce --',
+    'yo' => 'ans',
 ];

@@ -11,15 +11,11 @@ use Livewire\Component;
 new #[Title('Fiche de ')]
 class extends Component {
     public Animal $animal;
-    public ?Adoption $animalAdoption = null;
     public string $status;
 
     public function mount()
     {
         $this->status = $this->animal->status;
-        $this->animalAdoption = $this->animal->adoption()
-            ->where('status', Adoptions::PENDING->value)
-            ->first();
     }
 
     public function update()
@@ -86,7 +82,7 @@ class extends Component {
                         <x-client.global.icon_text
                             image_src="{{asset('assets/icons/paw.svg')}}"
                             image_alt="{!! __('global.paw_icon') !!}">
-                            {{$this->animal->age}}
+                            {{$this->animal->age()}} {{__('global.yo')}}
                         </x-client.global.icon_text>
                     </li>
                     <li class="flex items-center gap-2">
@@ -129,16 +125,11 @@ class extends Component {
             </div>
         </div>
     </section>
-    @if($this->animalAdoption && $this->animalAdoption->status == Adoptions::PENDING->value)
-        <livewire:admin.animals.pending_section :animalAdoption="$this->animalAdoption"/>
-    @endif
-    @if(!$this->animalAdoption)
-        <div class="w-fit mx-auto">
-            <x-client.global.cta
-                route=""
-                title="{{__('global.edit_title')}}">
-                {{__('admin/forms.edit')}}
-            </x-client.global.cta>
-        </div>
-    @endif
+    <div class="w-fit mx-auto">
+        <x-client.global.cta
+            route=""
+            title="{{__('global.edit_title')}}">
+            {{__('admin/forms.edit')}}
+        </x-client.global.cta>
+    </div>
 </div>

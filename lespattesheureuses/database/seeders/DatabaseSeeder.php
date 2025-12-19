@@ -129,7 +129,7 @@ class DatabaseSeeder extends Seeder
             Adoption::factory()->create([
                 'status' => $status,
                 'date' => ($status == Adoptions::FINISHED ? Carbon::now() : null),
-                'animal_id' => $animals->random()->id,
+                'animal_id' => $animals->unique()->random()->id,
                 'adopter_id' => $adopters->random()->id,
             ]);
         }

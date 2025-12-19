@@ -21,6 +21,8 @@ Route::domain('admin.lespattesheureuses.test')->group(function () {
 
     Route::livewire('/adoptions', 'pages::adoptions.⚡index')
         ->name('index.adoptions')->middleware('auth');
+    Route::livewire('/adoptions/{adoption}', 'pages::adoptions.⚡show')
+        ->name('show.adoptions')->middleware('auth');
 
     Route::livewire('/validations', 'pages::validations.⚡index')
         ->name('index.validations')->middleware('auth');
