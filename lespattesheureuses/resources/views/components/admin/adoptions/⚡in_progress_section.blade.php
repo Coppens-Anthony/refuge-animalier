@@ -50,13 +50,13 @@ new class extends Component {
             <x-client.global.button
                 isDangerous="{{true}}"
                 title="{{__('admin/forms.deny_adoption_request')}}">
-                Arrêter l'adoption de {{$this->adoption->animal->name}}
+                {{__('admin/global.stop_adoption')}} {{$this->adoption->animal->name}}
             </x-client.global.button>
         </form>
         <form wire:submit="update">
             <x-client.global.button
                 title="{{__('admin/forms.accept_adoption_request')}}">
-                {{$this->adoption->adopter->name}} a adopté {{$this->adoption->animal->name}}&nbsp;!
+                {{$this->adoption->adopter->name}} {{__('admin/global.have_adopted')}} {{$this->adoption->animal->name}}&nbsp;!
             </x-client.global.button>
         </form>
     </div>

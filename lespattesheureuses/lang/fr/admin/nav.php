@@ -11,9 +11,9 @@ return [
     'animals_icon' => 'Icône de patte de chien',
     'animals' => 'Animaux',
 
-    'to_requests' => 'Vers les demandes d\'adoption',
+    'to_requests' => 'Vers les adoptions',
     'request_icon' => 'Icône de dossier',
-    'adoptions' => 'Demandes',
+    'adoptions' => 'Adoptions',
 
     'to_validations' => 'Vers les fiches à valider',
     'validation_icon' => 'Icône de horloge',

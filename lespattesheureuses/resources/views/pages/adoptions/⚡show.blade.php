@@ -87,5 +87,7 @@ class extends Component {
         <livewire:admin.adoptions.in_progress_section :adoption="$this->adoption"/>
     @elseif($this->adoption->status === Adoptions::FINISHED->value)
         <livewire:admin.adoptions.finished_section :adoption="$this->adoption"/>
+    @elseif($this->adoption->status === Adoptions::ARCHIVED->value)
+        <livewire:admin.adoptions.archived_section :adoption="$this->adoption"/>
     @endif
 </div>

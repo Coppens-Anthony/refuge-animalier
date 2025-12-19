@@ -21,6 +21,8 @@ return [
     'email_title' => 'Envoyer un mail',
     'telephone_icon' => 'Icône de téléphone',
     'telephone_title' => 'Téléphoner',
+    'back_arrow_icon' => 'Flèche de retour',
+    'calendar_icon' => 'Icône de calendrier',
     'organic_1_alt' => 'Forme organique jaune de décoartion',
     'see_me' => 'Voir ma fiche',
     'search' => 'Recherche',

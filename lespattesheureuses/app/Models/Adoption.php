@@ -31,8 +31,9 @@ class Adoption extends Model
     {
         return $this->belongsTo(Adopter::class);
     }
-    public function formatDate() {
-        return Carbon::parse($this->attributes['date'])
+    public function formatDate($field): string
+    {
+        return Carbon::parse($this->attributes[$field])
             ->isoFormat('D MMMM YYYY');
     }
 }

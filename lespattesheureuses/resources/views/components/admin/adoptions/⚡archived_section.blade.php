@@ -8,19 +8,6 @@ use Livewire\Component;
 
 new class extends Component {
     public Adoption $adoption;
-
-    public function update()
-    {
-        $this->adoption->update([
-            'status' => Adoptions::ARCHIVED,
-        ]);
-
-        $this->adoption->animal->update([
-            'status' => Status::ADOPTABLE
-        ]);
-
-        return redirect(route('index.adoptions'));
-    }
 };
 ?>
 
@@ -43,16 +30,11 @@ new class extends Component {
                     <img src="{{asset('assets/icons/calendar.svg')}}" alt="{!! __('global.calendar_icon') !!}">
                     <p>{{__('admin/global.adopted_at')}} {{$this->adoption->formatDate('date')}}</p>
                 </div>
+                <div class="flex gap-2 items-center">
+                    <img src="{{asset('assets/icons/back_arrow.svg')}}" alt="{!! __('global.back_arrow_icon') !!}">
+                    <p>{{__('admin/global.returned_at')}} {{$this->adoption->formatDate('updated_at')}}</p>
+                </div>
             </div>
         </div>
     </section>
-    <div class="flex gap-4 w-fit mx-auto mt-8">
-        <form wire:submit="update">
-            <x-client.global.button
-                isDangerous="{{true}}"
-                title="{{__('admin/forms.deny_adoption_request')}}">
-                {{__('admin/global.archive_adoption')}}
-            </x-client.global.button>
-        </form>
-    </div>
 </div>

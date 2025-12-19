@@ -26,5 +26,10 @@ return [
     'birthdate' => 'Date de naissance',
     'close' => 'Fermer',
     'dog' => 'Chien',
-    'change_status' => 'Changez le statut de'
+    'change_status' => 'Changez le statut de',
+    'adopted_at' => 'Adopté le',
+    'returned_at' => 'Retourné le',
+    'archived_adoption' => 'Réintégrer au refuge en archivant l\'adoption',
+    'have_adopted' => 'a adopté',
+    'stop_adoption' => 'Arrêter l\'adoption de',
 ];
