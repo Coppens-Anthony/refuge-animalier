@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\Adoptions;
+use App\Enums\Status;
 use App\Models\Adoption;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -8,21 +9,17 @@ use Livewire\Component;
 new class extends Component {
     public Adoption $adoption;
 
-    public function destroy()
-    {
-        $this->adoption->delete();
-
-        return redirect(route('index.animals'));
-    }
-
     public function update()
     {
         $this->adoption->update([
-            'status' => Adoptions::FINISHED,
-            'date' => Carbon::now()
+            'status' => Adoptions::ARCHIVED,
         ]);
 
-        return redirect(route('show.adoptions', $this->adoption));
+        $this->adoption->animal->update([
+            'status' => Status::ADOPTABLE
+        ]);
+
+        return redirect(route('index.adoptions'));
     }
 };
 ?>
@@ -42,21 +39,19 @@ new class extends Component {
                     <a href="tel:{{$this->adoption->adopter->telephone}}"
                        {!! __('global.telephone_title') !!} class="link">{{$this->adoption->adopter->telephone}}</a>
                 </div>
+                <div class="flex gap-2 items-center">
+                    <img src="{{asset('assets/icons/calendar.svg')}}" alt="{!! __('global.telephone_icon') !!}">
+                    <p>Adopté le {{$this->adoption->formatDate()}}</p>
+                </div>
             </div>
         </div>
     </section>
     <div class="flex gap-4 w-fit mx-auto mt-8">
-        <form wire:submit="destroy">
+        <form wire:submit="update">
             <x-client.global.button
                 isDangerous="{{true}}"
                 title="{{__('admin/forms.deny_adoption_request')}}">
-                Arrêter l'adoption de {{$this->adoption->animal->name}}
-            </x-client.global.button>
-        </form>
-        <form wire:submit="update">
-            <x-client.global.button
-                title="{{__('admin/forms.accept_adoption_request')}}">
-                {{$this->adoption->adopter->name}} a adopté {{$this->adoption->animal->name}}&nbsp;!
+                Réintégrer au refuge en archivant l'adoption
             </x-client.global.button>
         </form>
     </div>

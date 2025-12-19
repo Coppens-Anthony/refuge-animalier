@@ -5,8 +5,11 @@ namespace App\Enums;
 enum Adoptions: string
 {
     case PENDING = 'pending';
+
     case IN_PROGRESS = 'in_progress';
     case FINISHED = 'finished';
+
+    case ARCHIVED = 'archived';
 
     public static function values()
     {

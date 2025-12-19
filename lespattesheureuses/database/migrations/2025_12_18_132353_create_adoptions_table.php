@@ -11,7 +11,7 @@ return new class extends Migration {
         Schema::create('adoptions', function (Blueprint $table) {
             $table->id();
             $table->dateTime('date')->nullable();
-            $table->enum('status', Adoptions::cases());
+            $table->enum('status', Adoptions::values());
             $table->foreignId('animal_id')->constrained()->cascadeOnDelete();
             $table->foreignId('adopter_id')->constrained()->cascadeOnDelete();
             //notes

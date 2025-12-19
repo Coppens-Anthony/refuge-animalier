@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Enums\Adoptions;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -16,6 +18,9 @@ class Adoption extends Model
         'animal_id',
         'adopter_id',
     ];
+    protected $casts = [
+        'date' => 'date',
+    ];
 
     public function animal(): BelongsTo
     {
@@ -25,5 +30,9 @@ class Adoption extends Model
     public function adopter(): BelongsTo
     {
         return $this->belongsTo(Adopter::class);
+    }
+    public function formatDate() {
+        return Carbon::parse($this->attributes['date'])
+            ->isoFormat('D MMMM YYYY');
     }
 }

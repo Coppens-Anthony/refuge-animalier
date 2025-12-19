@@ -12,7 +12,7 @@ class extends Component {
     #[Computed]
     public function adoptions()
     {
-        return $adoptions = Adoption::paginate(50)
+        return $adoptions = Adoption::paginate(10)
             ->through(fn($data) => [
             'id' => $data->id,
             'cols' => [

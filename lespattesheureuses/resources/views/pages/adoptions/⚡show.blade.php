@@ -86,6 +86,6 @@ class extends Component {
     @elseif($this->adoption->status === Adoptions::IN_PROGRESS->value)
         <livewire:admin.adoptions.in_progress_section :adoption="$this->adoption"/>
     @elseif($this->adoption->status === Adoptions::FINISHED->value)
-        Salti
+        <livewire:admin.adoptions.finished_section :adoption="$this->adoption"/>
     @endif
 </div>

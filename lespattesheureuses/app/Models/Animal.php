@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Status;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -26,6 +27,7 @@ class Animal extends Model
         'breed_id',
     ];
 
+
     public function breed(): BelongsTo
     {
         return $this->belongsTo(Breed::class);
@@ -46,9 +48,9 @@ class Animal extends Model
         return $this->belongsToMany(Coat::class, 'animal_coats', 'animal_id', 'coat_id');
     }
 
-    public function adoption(): HasOne
+    public function adoption(): HasMany
     {
-        return $this->hasOne(Adoption::class);
+        return $this->hasMany(Adoption::class);
     }
 
     public function age()
