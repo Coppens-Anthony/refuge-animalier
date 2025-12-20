@@ -19,7 +19,7 @@ new class extends Component {
     use WithFileUploads;
 
     public $specie_id = null;
-    public $breed_ids = [];
+    public $breed_id = null;
     public $vaccine_ids = [];
     public $coat_ids = [];
     public string $name = '';
@@ -79,8 +79,7 @@ new class extends Component {
         $validated = $this->validate([
             'avatar' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
             'name' => 'required',
-            'breed_ids' => 'required|array',
-            'breed_ids.*' => 'exists:breeds,id',
+            'breed_id' => 'required|exists:breeds,id',
             'birthdate' => 'required|date|before:today',
             'sex' => ['required', Rule::enum(Sex::class)],
             'temperament' => 'required|max:255',
@@ -165,13 +164,13 @@ new class extends Component {
                     :options="$this->speciesOptions">
                     {!! __('admin/global.specie') !!}
                 </x-client.form.select>
-                <livewire:admin.global.modal_checkbox
-                    wire:model="breed_ids"
-                    :key="'breeds-'.microtime()"
-                    :fieldName="'breed'"
+                <x-client.form.select
+                    name="breed_id"
+                    :isSpecieDependence="true"
+                    wire:model.live="breed_id"
                     :options="$this->breedsOptions">
                     {!! __('admin/global.breed') !!}
-                </livewire:admin.global.modal_checkbox>
+                </x-client.form.select>
                 <x-client.form.input
                     wire:model="birthdate"
                     name="birthdate"
