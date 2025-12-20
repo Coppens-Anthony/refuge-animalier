@@ -106,7 +106,7 @@ new class extends Component {
                 );
             if ($full_path_to_original) {
                 $validated['avatar'] = $new_original_file_name;
-                ProcessUploadedAvatar::dispatch($full_path_to_original, $new_original_file_name);
+                ProcessUploadedAvatar::dispatchSync($full_path_to_original, $new_original_file_name);
             } else {
                 $validated['avatar'] = '';
             }

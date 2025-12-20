@@ -16,7 +16,7 @@ class AnimalFactory extends Factory
     public function definition(): array
     {
         return [
-            'avatar' => $this->faker->word(),
+            'avatar' => 'assets/images/max.jpg',
             'name' => $this->faker->name(),
             'birthdate' => Carbon::now(),
             'sex' => $this->faker->randomElement(Sex::values()),
