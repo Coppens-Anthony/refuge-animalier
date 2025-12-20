@@ -35,7 +35,15 @@ new class extends Component {
                 @foreach($row['cols'] as $cell)
                     <td class="py-2">
                         @if (is_string($cell) && preg_match('/\.(jpg|jpeg|png|webp|svg)$/i', $cell))
-                            <img src="{{ asset($cell) }}" class="w-12 h-12 rounded-full object-cover mx-auto" alt="">
+                            <img src="{{ asset('avatars/animals/originals/'.$cell) }}"
+                                 srcset="
+                        {{asset('avatars/animals/variants/300x300/'.$cell)}} 300w,
+                        {{asset('avatars/animals/variants/600x600/'.$cell)}} 600w,
+                        {{asset('avatars/animals/variants/900x900/'.$cell)}} 900w,
+                        {{asset('avatars/animals/variants/1200x1200/'.$cell)}} 1200w"
+                                 sizes="(max-width: 768px) 100vw, 50vw"
+                                 alt="{!! __('client/animals.animal_image_alt', ['name' => '']) !!}"
+                                 class="w-12 h-12 rounded-full object-cover mx-auto">
                         @else
                             {{ $cell }}
                         @endif

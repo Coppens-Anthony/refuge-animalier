@@ -74,10 +74,16 @@ class extends Component {
                     <p>{{$this->adoption->animal->temperament}}</p>
                 </article>
             </div>
-            <div class="md:w-1/2 relative">
-                <img src="{{asset('assets/images/max.jpg')}}"
+            <div class="md:w-1/2 aspect-square" wire:key="animal-image-{{$this->adoption->animal->id}}">
+                <img src="{{asset('avatars/animals/originals/'.$this->adoption->animal->avatar)}}"
+                     srcset="
+                        {{asset('avatars/animals/variants/300x300/'.$this->adoption->animal->avatar)}} 300w,
+                        {{asset('avatars/animals/variants/600x600/'.$this->adoption->animal->avatar)}} 600w,
+                        {{asset('avatars/animals/variants/900x900/'.$this->adoption->animal->avatar)}} 900w,
+                        {{asset('avatars/animals/variants/1200x1200/'.$this->adoption->animal->avatar)}} 1200w"
+                     sizes="(max-width: 768px) 100vw, 50vw"
                      alt="{!! __('client/animals.animal_image_alt', ['name' => $this->adoption->animal->name]) !!}"
-                     class="w-full h-full rounded-4xl">
+                     class="w-full h-full rounded-4xl object-cover">
             </div>
         </div>
     </section>
