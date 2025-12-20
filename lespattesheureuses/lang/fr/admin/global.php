@@ -32,4 +32,8 @@ return [
     'archived_adoption' => 'Réintégrer au refuge en archivant l\'adoption',
     'have_adopted' => 'a adopté',
     'stop_adoption' => 'Arrêter l\'adoption de',
+    'notes' => 'Notes',
+    'no_notes' => 'Pas encore de note',
+    'add_note' => 'Ajouter une note',
+    'note_placeholder' => ':name possède un grand jardin...'
 ];

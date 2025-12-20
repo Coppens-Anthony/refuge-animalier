@@ -3,7 +3,9 @@
 use App\Enums\Adoptions;
 use App\Enums\Status;
 use App\Models\Adoption;
+use App\Models\AdoptionNote;
 use App\Models\Animal;
+use App\Models\Note;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -87,13 +89,48 @@ class extends Component {
             </div>
         </div>
     </section>
+    <section class="flex gap-30">
+        <div class="flex flex-col gap-8 w-1/2">
+            <h3 class="text-[2rem]">{{$this->adoption->adopter->name}}</h3>
+            <div class="flex flex-col gap-2">
+                <div class="flex gap-2 items-center">
+                    <img src="{{asset('assets/icons/email.svg')}}" alt="{!! __('global.email_icon') !!}">
+                    <a href="mailto:{{$this->adoption->adopter->email}}"
+                       {!! __('global.email_title') !!} class="link">{{$this->adoption->adopter->email}}</a>
+                </div>
+                <div class="flex gap-2 items-center">
+                    <img src="{{asset('assets/icons/telephone.svg')}}" alt="{!! __('global.telephone_icon') !!}">
+                    <a href="tel:{{$this->adoption->adopter->telephone}}"
+                       {!! __('global.telephone_title') !!} class="link">{{$this->adoption->adopter->telephone}}</a>
+                </div>
+                @if($this->adoption->status === Adoptions::FINISHED->value || $this->adoption->status === Adoptions::ARCHIVED->value)
+                    <div class="flex gap-2 items-center">
+                        <img src="{{asset('assets/icons/calendar.svg')}}" alt="{!! __('global.calendar_icon') !!}">
+                        <p>{{__('admin/global.adopted_at')}} {{$this->adoption->formatDate('date')}}</p>
+                    </div>
+                @endif
+                @if($this->adoption->status === Adoptions::ARCHIVED->value)
+                    <div class="flex gap-2 items-center">
+                        <img src="{{asset('assets/icons/back_arrow.svg')}}" alt="{!! __('global.back_arrow_icon') !!}">
+                        <p>{{__('admin/global.returned_at')}} {{$this->adoption->formatDate('updated_at')}}</p>
+                    </div>
+                @endif
+            </div>
+        </div>
+        <div class="w-1/2">
+            <p class="text-2xl mb-2">Son message</p>
+            <p>{{$this->adoption->message}}</p>
+        </div>
+    </section>
+    @if($this->adoption->status != Adoptions::PENDING->value)
+        <livewire:admin.adoptions.notes_section :adoption="$this->adoption"/>
+    @endif
+
     @if($this->adoption->status === Adoptions::PENDING->value)
         <livewire:admin.adoptions.pending_section :adoption="$this->adoption"/>
     @elseif($this->adoption->status === Adoptions::IN_PROGRESS->value)
         <livewire:admin.adoptions.in_progress_section :adoption="$this->adoption"/>
     @elseif($this->adoption->status === Adoptions::FINISHED->value)
         <livewire:admin.adoptions.finished_section :adoption="$this->adoption"/>
-    @elseif($this->adoption->status === Adoptions::ARCHIVED->value)
-        <livewire:admin.adoptions.archived_section :adoption="$this->adoption"/>
     @endif
 </div>
