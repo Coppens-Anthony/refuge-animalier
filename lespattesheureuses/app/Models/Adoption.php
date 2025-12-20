@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Adoption extends Model
 {
@@ -31,9 +32,16 @@ class Adoption extends Model
     {
         return $this->belongsTo(Adopter::class);
     }
+
     public function formatDate($field): string
     {
         return Carbon::parse($this->attributes[$field])
             ->isoFormat('D MMMM YYYY');
     }
+
+    public function notes(): BelongsToMany
+    {
+        return $this->belongsToMany(Note::class, 'adoption_note', 'adoption_id', 'note_id');
+    }
+
 }
