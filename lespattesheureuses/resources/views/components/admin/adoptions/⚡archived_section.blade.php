@@ -12,8 +12,8 @@ new class extends Component {
 ?>
 
 <div>
-    <section>
-        <div class="flex flex-col gap-8">
+    <section class="flex gap-30">
+        <div class="flex flex-col gap-8 w-1/2">
             <h3 class="text-[2rem]">{{$this->adoption->adopter->name}}</h3>
             <div class="flex flex-col gap-2">
                 <div class="flex gap-2 items-center">
@@ -35,6 +35,10 @@ new class extends Component {
                     <p>{{__('admin/global.returned_at')}} {{$this->adoption->formatDate('updated_at')}}</p>
                 </div>
             </div>
+        </div>
+        <div class="w-1/2">
+            <p class="text-2xl mb-2">Son message</p>
+            <p>{{$this->adoption->message}}</p>
         </div>
     </section>
 </div>

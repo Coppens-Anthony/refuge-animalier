@@ -12,6 +12,7 @@ return new class extends Migration {
             $table->id();
             $table->dateTime('date')->nullable();
             $table->enum('status', Adoptions::values());
+            $table->text('message');
             $table->foreignId('animal_id')->constrained()->cascadeOnDelete();
             $table->foreignId('adopter_id')->constrained()->cascadeOnDelete();
             //notes

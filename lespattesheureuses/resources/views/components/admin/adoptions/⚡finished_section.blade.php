@@ -19,14 +19,14 @@ new class extends Component {
             'status' => Status::ADOPTABLE
         ]);
 
-        return redirect(route('index.adoptions'));
+        return redirect(route('show.adoptions', $this->adoption));
     }
 };
 ?>
 
 <div>
-    <section>
-        <div class="flex flex-col gap-8">
+    <section class="flex gap-30">
+        <div class="flex flex-col gap-8 w-1/2">
             <h3 class="text-[2rem]">{{$this->adoption->adopter->name}}</h3>
             <div class="flex flex-col gap-2">
                 <div class="flex gap-2 items-center">
@@ -45,13 +45,17 @@ new class extends Component {
                 </div>
             </div>
         </div>
+        <div class="w-1/2">
+            <p class="text-2xl mb-2">Son message</p>
+            <p>{{$this->adoption->message}}</p>
+        </div>
     </section>
     <div class="flex gap-4 w-fit mx-auto mt-8">
         <form wire:submit="update">
             <x-client.global.button
                 isDangerous="{{true}}"
                 title="{{__('admin/forms.deny_adoption_request')}}">
-                {{__('admin/global.archive_adoption')}}
+                {{__('admin/global.archived_adoption')}}
             </x-client.global.button>
         </form>
     </div>
