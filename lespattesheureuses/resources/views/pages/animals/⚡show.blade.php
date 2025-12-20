@@ -118,10 +118,10 @@ class extends Component {
                     <p>{{$this->animal->temperament}}</p>
                 </article>
             </div>
-            <div class="md:w-1/2 relative">
-                <img src="{{asset('assets/images/max.jpg')}}"
+            <div class="md:w-1/2 aspect-square">
+                <img src="{{asset('avatars/animals/originals/'.$this->animal->avatar)}}"
                      alt="{!! __('client/animals.animal_image_alt', ['name' => $this->animal->name]) !!}"
-                     class="w-full h-full rounded-4xl">
+                     class="w-full h-full rounded-4xl object-cover">
             </div>
         </div>
     </section>

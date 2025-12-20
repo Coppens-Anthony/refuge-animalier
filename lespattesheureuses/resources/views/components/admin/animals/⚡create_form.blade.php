@@ -3,7 +3,7 @@
 use App\Enums\Members;
 use App\Enums\Sex;
 use App\Enums\Status;
-use App\Jobs\ProcessUploadedContactAvatar;
+use App\Jobs\ProcessUploadedAvatar;
 use App\Models\Animal;
 use App\Models\AnimalVaccine;
 use App\Models\Breed;
@@ -98,15 +98,15 @@ new class extends Component {
         }
 
         if ($validated['avatar']) {
-            $new_original_file_name = uniqid() . '.' . config('contactsavatars.image_type');
+            $new_original_file_name = uniqid() . '.' . config('avatars.avatar_type');
             $full_path_to_original = Storage::disk('public')
-                ->putFileAs(config('contactsavatars.original_path'),
+                ->putFileAs(config('avatars.original_path'),
                     $validated['avatar'],
                     $new_original_file_name
                 );
             if ($full_path_to_original) {
                 $validated['avatar'] = $new_original_file_name;
-                ProcessUploadedContactAvatar::dispatch($full_path_to_original, $new_original_file_name);
+                ProcessUploadedAvatar::dispatch($full_path_to_original, $new_original_file_name);
             } else {
                 $validated['avatar'] = '';
             }

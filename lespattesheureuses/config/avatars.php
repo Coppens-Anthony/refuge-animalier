@@ -9,8 +9,8 @@ return [
       'extralarge' => ['width' => '1200', 'height' => '1200'],
     ],
 
-    'image_type' => 'jpg',
+    'avatar_type' => 'jpg',
     'jpeg_compression' => 80,
-    'original_path' => 'images/contacts/originals',
-    'variant_pattern' => 'images/contacts/variants/%sx%s',
+    'original_path' => 'avatars/animals/originals',
+    'variant_pattern' => 'avatars/animals/variants/%sx%s',
 ];

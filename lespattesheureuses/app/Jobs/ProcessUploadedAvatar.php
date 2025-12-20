@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Laravel\Facades\Image;
 
 
-class ProcessUploadedContactAvatar implements ShouldQueue
+class ProcessUploadedAvatar implements ShouldQueue
 {
     use Queueable;
 
@@ -28,10 +28,10 @@ class ProcessUploadedContactAvatar implements ShouldQueue
             Storage::disk('public')->get($this->full_path_to_original)
         );
 
-        $sizes = config('contactsavatars.sizes');
-        $jpg_compression = config('contactsavatars.jpeg_compression');
-        $variant_pattern = config('contactsavatars.variant_pattern');
-        $extension = config('contactsavatars.image_type');
+        $sizes = config('avatars.sizes');
+        $jpg_compression = config('avatars.jpeg_compression');
+        $variant_pattern = config('avatars.variant_pattern');
+        $extension = config('avatars.avatar_type');
 
         foreach ($sizes as $size) {
             $variant = clone $image;
