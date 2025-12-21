@@ -1,10 +1,22 @@
 <?php
 
+use App\Enums\Status;
+use App\Models\Adoption;
+use App\Models\Animal;
+use App\Models\User;
 use Livewire\Component;
 
-new class extends Component
-{
-    //
+new class extends Component {
+    public $animals;
+    public $adoptions;
+    public $members;
+
+    public function mount()
+    {
+        $this->animals = Animal::where('status', Status::PENDING)->get();
+        $this->adoptions = Adoption::all();
+        $this->members = User::all();
+    }
 };
 ?>
 
@@ -14,7 +26,7 @@ new class extends Component
         <ul class="flex gap-4">
             <livewire:admin.dashboard.key_card
                 title="{!! __('admin/nav.adoptions') !!}"
-                number="4"
+                number="{{count($this->adoptions)}}"
                 image="dashboard_requests"
                 image_alt="{!! __('admin/nav.request_icon') !!}"
                 link_title="{!! __('admin/nav.to_requests') !!}"
@@ -22,7 +34,7 @@ new class extends Component
             />
             <livewire:admin.dashboard.key_card
                 title="{!! __('admin/nav.validations') !!}"
-                number="4"
+                number="{{count($this->animals)}}"
                 image="dashboard_validations"
                 image_alt="{!! __('admin/nav.validation_icon') !!}"
                 link_title="{!! __('admin/nav.to_validations') !!}"
@@ -46,7 +58,7 @@ new class extends Component
             />
             <livewire:admin.dashboard.key_card
                 title="{!! __('admin/nav.members') !!}"
-                number="4"
+                number="{{count($this->members)}}"
                 image="dashboard_messages"
                 image_alt="{!! __('admin/nav.member_icon') !!}"
                 link_title="{!! __('admin/nav.to_members') !!}"
