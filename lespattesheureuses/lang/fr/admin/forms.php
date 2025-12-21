@@ -22,4 +22,5 @@ return [
     'accept_adoption_request' => 'Accepter la demande d\'adoption',
     'deny' => 'Refuser',
     'accept' => 'Accepter',
+    'note_edit' => 'Modifier la note',
 ];

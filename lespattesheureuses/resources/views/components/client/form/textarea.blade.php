@@ -1,4 +1,4 @@
-@props(['name', 'type' => 'text', 'placeholder', 'isRequired' => true])
+@props(['name', 'type' => 'text', 'placeholder', 'isRequired' => true, 'rows' => 8])
 
 <div class="flex flex-col gap-2">
     <label for="{{$name}}" class="font-bold">{{$slot}}
@@ -16,6 +16,6 @@
               @if($isRequired)
                   required
               @endif
-              class="rounded-xl border-primary border-3 p-4 resize-none" rows="8">
+              class="rounded-xl border-primary border-3 p-4 resize-none" rows="{{$rows}}">
     </textarea>
 </div>
