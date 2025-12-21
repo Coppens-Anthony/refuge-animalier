@@ -6,7 +6,7 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Title('Valider les demandes d’adoptions')]
+new #[Title('Les adoptions')]
 class extends Component {
 
     #[Computed]

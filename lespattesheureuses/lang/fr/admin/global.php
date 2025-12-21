@@ -7,7 +7,10 @@ return [
     'status' => 'Statut',
     'animals' => 'Les animaux',
     'create_animal' => 'Ajouter un animal',
-    'create_animal_title' => 'Vers le formulaire d\'ajout d\' un animal',
+    'create_adoption' => 'Ajouter une adoption',
+    'add_adoption' => 'Ajouter une adoption manuellement',
+    'create_animal_title' => 'Vers le formulaire d\'ajout d\'un animal',
+    'create_adoption_title' => 'Vers le formulaire d\'ajout d\'une adoption',
     'breed' => 'Race',
     'breeds' => 'Races',
     'sex' => 'Sexe',
@@ -35,5 +38,7 @@ return [
     'notes' => 'Notes',
     'no_notes' => 'Pas encore de note',
     'add_note' => 'Ajouter une note',
-    'note_placeholder' => ':name possède un grand jardin...'
+    'note_placeholder' => ':name possède un grand jardin...',
+    'animal' => 'L\'animal',
+    'message_placeholder' => 'Coup de coeur pour la race...'
 ];

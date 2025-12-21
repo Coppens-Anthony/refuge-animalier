@@ -7,8 +7,8 @@ new class extends Component {
 };
 ?>
 
-<div class="inset-0 fixed z-40 bg-black opacity-50 w-full h-full" x-show="{{$modalName}}"></div>
-<div x-show="{{$modalName}}" @click.outside="{{$modalName}} = false"
+<div class="inset-0 fixed z-40 bg-black opacity-50 w-full h-full" x-show="{{$modalName}}" @keydown.escape.window="{{$modalName}} = false"></div>
+<div x-show="{{$modalName}}" wire:ignore.self @click.outside="{{$modalName}} = false"
      @keydown.escape.window="{{$modalName}} = false"
      class="p-6 fixed w-[50vw] z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform origin-center bg-white border-primary border-2 rounded-2xl shadow-2xl backdrop:bg-black backdrop:opacity-50">
     <div class="absolute z-60 cursor-pointer top-2 right-2" @click="{{$modalName}} = false">

@@ -18,6 +18,7 @@ class Adoption extends Model
         'status',
         'animal_id',
         'adopter_id',
+        'message',
     ];
     protected $casts = [
         'date' => 'date',

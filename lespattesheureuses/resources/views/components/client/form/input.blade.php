@@ -1,4 +1,4 @@
-@props(['name', 'type' => 'text', 'placeholder' => '' , 'isRequired' => true, 'class' => '', 'isSearch' => false])
+@props(['name', 'type' => 'text', 'placeholder' => '' , 'isRequired' => true, 'class' => '', 'isSearch' => false, 'value' => ''])
 
 <div class="flex flex-col gap-2 {{$class}} relative">
     <label for="{{$name}}" class="font-bold">{{$slot}}
@@ -12,7 +12,8 @@
         @enderror
     </label>
 
-    <input type="{{$type}}" id="{{$name}}" name="{{$name}}" placeholder="{{$placeholder}}" value="{{@old($name)}}" {{ $attributes }}
+    <input type="{{$type}}" id="{{$name}}" name="{{$name}}" placeholder="{{$placeholder}}"
+           value="{{@old($name) ?? $value}}" {{ $attributes }}
            @if($isRequired)
                required
            @endif
