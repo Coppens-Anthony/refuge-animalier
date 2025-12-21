@@ -133,7 +133,7 @@ class extends Component {
     </section>
     <div class="w-fit mx-auto">
         <x-client.global.cta
-            route=""
+            route="{{route('edit.animals', $this->animal->id)}}"
             title="{{__('global.edit_title')}}">
             {{__('admin/forms.edit')}}
         </x-client.global.cta>

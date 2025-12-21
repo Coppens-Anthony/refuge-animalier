@@ -18,6 +18,8 @@ Route::domain('admin.lespattesheureuses.test')->group(function () {
         ->name('create.animals')->middleware('auth');
     Route::livewire('/animals/{animal}', 'pages::animals.⚡show')
         ->name('show.animals')->middleware('auth');
+    Route::livewire('/animals/{animal}/edit', 'pages::animals.⚡edit')
+        ->name('edit.animals')->middleware('auth');
 
     Route::livewire('/adoptions', 'pages::adoptions.⚡index')
         ->name('index.adoptions')->middleware('auth');

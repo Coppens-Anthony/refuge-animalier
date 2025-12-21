@@ -27,6 +27,10 @@ class Animal extends Model
         'breed_id',
     ];
 
+    protected $casts = [
+        'birthdate' => 'date'
+    ];
+
 
     public function breed(): BelongsTo
     {
