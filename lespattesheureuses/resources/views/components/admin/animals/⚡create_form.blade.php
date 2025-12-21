@@ -93,8 +93,6 @@ new class extends Component {
 
         if (auth()->user()->status === Members::VOLUNTEER->value) {
             $validated['status'] = Status::PENDING;
-        } else {
-            $validated['status'] = Status::PENDING;
         }
 
         if ($validated['avatar']) {
@@ -200,16 +198,17 @@ new class extends Component {
                     :options="$this->vaccinesOptions">
                     {!! __('admin/global.vaccines') !!}
                 </livewire:admin.global.modal_checkbox>
-                {{--@if(auth()->user()->status === Members::ADMINISTRATOR->value)
+                @if(auth()->user()->status === Members::ADMINISTRATOR->value)
                     <x-client.form.select
                         name="status"
-                        wire:model="status_id"
+                        wire:model="status"
                         :options="Status::options()">
                         {!! __('admin/global.status') !!}
                     </x-client.form.select>
-                @endif--}}
+                @endif
                 <x-client.form.textarea
                     wire:model="temperament"
+                    rows="4"
                     name="temperament"
                     placeholder="C'est un animal..."
                 >

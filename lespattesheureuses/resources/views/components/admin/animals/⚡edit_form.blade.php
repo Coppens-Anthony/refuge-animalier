@@ -17,8 +17,8 @@ use Livewire\WithFileUploads;
 
 new class extends Component {
     use WithFileUploads;
-    public $animalId;
 
+    public $animalId;
     public $specie_id;
     public $breed_id;
     public $vaccine_ids = [];
@@ -110,6 +110,10 @@ new class extends Component {
 
         $animal = Animal::findOrFail($this->animalId);
 
+        if ($validated['status'] === Status::PENDING->value) {
+            $validated['status'] = Status::ADOPTABLE->value;
+        }
+
         if ($this->avatar) {
             $new_original_file_name = uniqid() . '.' . config('avatars.avatar_type');
             $full_path_to_original = Storage::disk('public')
@@ -135,8 +139,6 @@ new class extends Component {
 
         return redirect(route('show.animals', $animal->id));
     }
-
-
 };
 ?>
 
@@ -155,14 +157,15 @@ new class extends Component {
                     <span class="text-secondary"> *</span>
                     @error('avatar')
                     <small class="text-red-500 absolute -bottom-10 left-0">
-                        {{ $messbirthdate }}
+                        {{ $message }}
                     </small>
                     @enderror</p>
                 @if($this->avatar)
                     <img src="{{$this->avatar->temporaryUrl()}}" alt="{{__('admin/table.image_alt')}}"
                          class="object-cover absolute w-[175px] h-[175px] rounded-2xl top-0 left-0">
                 @elseif($this->currentAvatar)
-                    <img src="{{asset('avatars/animals/originals/'.$this->currentAvatar)}}" alt="{{__('admin/table.image_alt')}}"
+                    <img src="{{asset('avatars/animals/originals/'.$this->currentAvatar)}}"
+                         alt="{{__('admin/table.image_alt')}}"
                          class="object-cover absolute w-[175px] h-[175px] rounded-2xl top-0 left-0">
                 @endif
             </label>
@@ -217,24 +220,25 @@ new class extends Component {
                     :options="$this->vaccinesOptions">
                     {!! __('admin/global.vaccines') !!}
                 </livewire:admin.global.modal_checkbox>
-                {{--@if(auth()->user()->status === Members::ADMINISTRATOR->value)
+                @if(auth()->user()->status === Members::ADMINISTRATOR->value)
                     <x-client.form.select
                         name="status"
-                        wire:model="status_id"
+                        wire:model="status"
                         :options="Status::options()">
                         {!! __('admin/global.status') !!}
                     </x-client.form.select>
-                @endif--}}
+                @endif
                 <x-client.form.textarea
                     wire:model="temperament"
                     name="temperament"
+                    rows="4"
                     placeholder="C'est un animal..."
                 >
                     {!! __('admin/global.temperament') !!}
                 </x-client.form.textarea>
             </fieldset>
         </div>
-        <div class="mx-auto w-fit">
+        <div class="mx-auto w-fit flex gap-4">
             <x-client.global.button
                 title="{!! __('admin/forms.edit_title') !!}"
             >
