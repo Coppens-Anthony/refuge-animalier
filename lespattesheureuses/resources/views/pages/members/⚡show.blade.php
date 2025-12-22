@@ -24,6 +24,7 @@ class extends Component {
     />
     <livewire:admin.global.dispo
         dispo_title="{{__('admin/dispo.his_dispo')}}"
+        :member="$this->member"
     />
     @if($this->authUser->id === $this->member->id)
     <div class="mx-auto">

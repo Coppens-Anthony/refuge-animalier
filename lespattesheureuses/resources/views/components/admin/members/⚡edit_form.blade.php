@@ -18,6 +18,7 @@ new class extends Component {
     public $password;
     public $avatar;
     public $currentAvatar;
+    public $availabilities;
 
     public function mount()
     {
@@ -28,6 +29,8 @@ new class extends Component {
         $this->firstname = $member->firstname;
         $this->email = $member->email;
         $this->telephone = $member->telephone;
+
+        $this->availabilities = $member->availabilities;
     }
 
     public function update()
@@ -41,6 +44,8 @@ new class extends Component {
             'telephone' => 'regex:/^0[1-9](?:[\s\.]?[0-9]{2}){4}$/|required',
             'oldPassword' => 'required|min:8',
             'password' => 'nullable|min:8|different:oldPassword',
+            'availabilities' => 'required|array',
+            'avatar' => 'nullable|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         if (!\Illuminate\Support\Facades\Hash::check($validated['oldPassword'], $member->password)) {
@@ -59,17 +64,17 @@ new class extends Component {
                 $validated['avatar'] = $new_original_file_name;
                 ProcessUploadedAvatar::dispatchSync($full_path_to_original, $new_original_file_name);
             }
-        } else {
-            unset($validated['avatar']);
         }
 
         $member->update([
-            'lastname' => $validated['lastname'],
+            'availabilities' => $validated['availabilities'],
             'firstname' => $validated['firstname'],
+            'lastname' => $validated['lastname'],
             'email' => $validated['email'],
             'telephone' => $validated['telephone'],
-            'avatar' => $validated['avatar'],
+            ...(isset($validated['avatar']) ? ['avatar' => $validated['avatar']] : []),
         ]);
+
 
         if ($validated['password'] != null) {
             $member->update([
@@ -164,27 +169,34 @@ new class extends Component {
             <legend class="text-2xl mb-4">Ses disponibilités <span class="text-secondary">*</span></legend>
             <div class="w-1/2 flex flex-col gap-4">
                 <x-client.form.checkbox
-                    day="{{__('admin/dispo.monday')}}"
+                    label="{{__('admin/dispo.monday')}}"
+                    day="monday"
                 />
                 <x-client.form.checkbox
-                    day="{{__('admin/dispo.tuesday')}}"
+                    label="{{__('admin/dispo.tuesday')}}"
+                    day="tuesday"
                 />
                 <x-client.form.checkbox
-                    day="{{__('admin/dispo.wednesday')}}"
+                    label="{{__('admin/dispo.wednesday')}}"
+                    day="wednesday"
                 />
                 <x-client.form.checkbox
-                    day="{{__('admin/dispo.thursday')}}"
+                    label="{{__('admin/dispo.thursday')}}"
+                    day="thursday"
                 />
             </div>
             <div class="w-1/2 flex flex-col gap-4">
                 <x-client.form.checkbox
-                    day="{{__('admin/dispo.friday')}}"
+                    label="{{__('admin/dispo.friday')}}"
+                    day="friday"
                 />
                 <x-client.form.checkbox
-                    day="{{__('admin/dispo.saturday')}}"
+                    label="{{__('admin/dispo.saturday')}}"
+                    day="saturday"
                 />
                 <x-client.form.checkbox
-                    day="{{__('admin/dispo.sunday')}}"
+                    label="{{__('admin/dispo.sunday')}}"
+                    day="sunday"
                 />
             </div>
         </fieldset>

@@ -11,6 +11,20 @@ new class extends Component {
     public string $email = '';
     public string $telephone = '';
     public string $password = '';
+    public array $availabilities;
+
+    public function mount()
+    {
+        $this->availabilities  = [
+            'monday' => ['morning' => false, 'afternoon' => false, 'evening' => false],
+            'tuesday' => ['morning' => false, 'afternoon' => false, 'evening' => false],
+            'wednesday' => ['morning' => false, 'afternoon' => false, 'evening' => false],
+            'thursday' => ['morning' => false, 'afternoon' => false, 'evening' => false],
+            'friday' => ['morning' => false, 'afternoon' => false, 'evening' => false],
+            'saturday' => ['morning' => false, 'afternoon' => false, 'evening' => false],
+            'sunday' => ['morning' => false, 'afternoon' => false, 'evening' => false],
+        ];
+    }
 
     public function store()
     {
@@ -20,10 +34,12 @@ new class extends Component {
             'email' => 'email|required|unique:users,email',
             'telephone' => 'regex:/^0[1-9](?:[\s\.]?[0-9]{2}){4}$/|required',
             'password' => 'required|min:8',
+            'availabilities' => 'required|array'
         ]);
         $validated['password'] = bcrypt($validated['password']);
         $validated['avatar'] = '';
         $validated['status'] = Members::VOLUNTEER;
+        $validated['availabilities'] = $this->availabilities;
 
 
         $user = User::create($validated);
@@ -86,27 +102,34 @@ new class extends Component {
             <legend class="text-2xl mb-4">Ses disponibilités <span class="text-secondary">*</span></legend>
             <div class="w-1/2 flex flex-col gap-4">
                 <x-client.form.checkbox
-                    day="{{__('admin/dispo.monday')}}"
+                    label="{{__('admin/dispo.monday')}}"
+                    day="monday"
                 />
                 <x-client.form.checkbox
-                    day="{{__('admin/dispo.tuesday')}}"
+                    label="{{__('admin/dispo.tuesday')}}"
+                    day="tuesday"
                 />
                 <x-client.form.checkbox
-                    day="{{__('admin/dispo.wednesday')}}"
+                    label="{{__('admin/dispo.wednesday')}}"
+                    day="wednesday"
                 />
                 <x-client.form.checkbox
-                    day="{{__('admin/dispo.thursday')}}"
+                    label="{{__('admin/dispo.thursday')}}"
+                    day="thursday"
                 />
             </div>
             <div class="w-1/2 flex flex-col gap-4">
                 <x-client.form.checkbox
-                    day="{{__('admin/dispo.friday')}}"
+                    label="{{__('admin/dispo.friday')}}"
+                    day="friday"
                 />
                 <x-client.form.checkbox
-                    day="{{__('admin/dispo.saturday')}}"
+                    label="{{__('admin/dispo.saturday')}}"
+                    day="saturday"
                 />
                 <x-client.form.checkbox
-                    day="{{__('admin/dispo.sunday')}}"
+                    label="{{__('admin/dispo.sunday')}}"
+                    day="sunday"
                 />
             </div>
         </fieldset>

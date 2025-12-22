@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('status', Members::cases());
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->json('availabilities')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

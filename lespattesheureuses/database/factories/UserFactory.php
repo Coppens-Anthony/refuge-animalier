@@ -38,6 +38,15 @@ class UserFactory extends Factory
             'two_factor_secret' => Str::random(10),
             'two_factor_recovery_codes' => Str::random(10),
             'two_factor_confirmed_at' => now(),
+            'availabilities' => [
+                'monday' => ['morning' => false, 'afternoon' => false, 'evening' => false],
+                'tuesday' => ['morning' => false, 'afternoon' => false, 'evening' => false],
+                'wednesday' => ['morning' => false, 'afternoon' => false, 'evening' => false],
+                'thursday' => ['morning' => false, 'afternoon' => false, 'evening' => false],
+                'friday' => ['morning' => false, 'afternoon' => false, 'evening' => false],
+                'saturday' => ['morning' => false, 'afternoon' => false, 'evening' => false],
+                'sunday' => ['morning' => false, 'afternoon' => false, 'evening' => false],
+            ],
         ];
     }
 
@@ -46,7 +55,7 @@ class UserFactory extends Factory
      */
     public function unverified(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'email_verified_at' => null,
         ]);
     }
@@ -56,7 +65,7 @@ class UserFactory extends Factory
      */
     public function withoutTwoFactor(): static
     {
-        return $this->state(fn (array $attributes) => [
+        return $this->state(fn(array $attributes) => [
             'two_factor_secret' => null,
             'two_factor_recovery_codes' => null,
             'two_factor_confirmed_at' => null,
