@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\Adoptions;
+use App\Enums\Status;
 use App\Models\Adoption;
 use App\Models\Animal;
 use App\Models\Adopter;
@@ -9,12 +10,14 @@ use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component {
-    public $datas;
-    public $animals;
+    public $adoption;
     public $adopters;
-    public $animalId;
+    public $animals;
+    public $animal;
     public $adopterId;
     public $message;
+    public $adoptionStatus = '';
+    public string $term = '';
 
     public function mount()
     {
@@ -23,11 +26,29 @@ new class extends Component {
     }
 
     #[Computed]
+    public function adoptions()
+    {
+        return Adoption::when($this->term, function ($query) {
+            $query->whereHas('animal', function ($q) {
+                $q->where('name', 'like', '%' . $this->term . '%');
+            })
+                ->orWhereHas('adopter', function ($q) {
+                    $q->where('name', 'like', '%' . $this->term . '%');
+                });
+        })
+            ->when($this->adoptionStatus !== '', function ($query) {
+                $query->where('status', $this->adoptionStatus);
+            })
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+    }
+
+    #[Computed]
     public function animalsOptions(): array
     {
-        return $this->animals->map(fn($animal) => [
-            'value' => $animal->id,
-            'trad' => $animal->name,
+        return $this->animals->map(fn($adoption) => [
+            'value' => $adoption->id,
+            'trad' => $adoption->name,
         ])->toArray();
     }
     #[Computed]
@@ -56,9 +77,13 @@ new class extends Component {
         return redirect(route('show.adoptions', $adoption->id));
     }
 
+    public function goToAdoption($id)
+    {
+        return redirect()->route('show.adoptions', $id);
+    }
+
 };
 ?>
-
 <div class="col-span-full">
     <section class="mb-4 flex flex-col gap-4">
         <div class="flex justify-end mt-4" x-data="{ open: false}" x-cloak>
@@ -109,11 +134,46 @@ new class extends Component {
             </livewire:admin.global.modal>
         </div>
 
-
+        <form action="" class="flex gap-4">
+            <x-client.form.input
+                name="search"
+                type="search"
+                class="w-full"
+                placeholder="{{__('global.search')}}"
+                wire:model.live.debounce="term"
+            >
+                {{__('global.search')}}
+            </x-client.form.input>
+            <x-client.form.select
+                name="adoptionStatus"
+                class="w-full"
+                wire:model.live="adoptionStatus"
+                :options="Adoptions::options()"
+            >
+                {{__('admin/global.status')}}
+            </x-client.form.select>
+        </form>
         <livewire:admin.global.table.table
-            :titles="[__('admin/global.animal_name'), __('admin/global.adopter_name'), __('admin/global.date'), __('admin/global.status')]"
-            :rows="$this->datas"
-            :route="'show.adoptions'"
-        />
+            :titles="[__('admin/global.animal_name'), __('admin/global.adopter_name'), __('admin/global.date'), __('admin/global.status')]">
+            @foreach($this->adoptions as $adoption)
+                <tr class="hover:bg-primary-opacity cursor-pointer"
+                    wire:click="goToAdoption({{ $adoption->id }})"
+                    wire:key="animal-{{ $adoption->id }}"
+                    title="Vers la fiche de {{$adoption->animal->name}}">
+                    <td class="py-2">{{$adoption->animal->name}}</td>
+                    <td class="py-2">{{$adoption->adopter->name}}</td>
+                    <td class="py-2">{{$adoption->created_at}}</td>
+                    <td class="py-2">{{$adoption->status}}</td>
+                </tr>
+            @endforeach
+        </livewire:admin.global.table.table>
+
+        <div class="mt-4">
+            {{ $this->adoptions->links() }}
+        </div>
+
     </section>
 </div>
+
+
+

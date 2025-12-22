@@ -1,38 +1,85 @@
 <?php
 
+use App\Enums\Members;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 new class extends Component {
-    public Collection $datas;
+    public string $term = '';
+    public string $status = '';
 
+    #[Computed]
+    public function members()
+    {
+        return User::when($this->term, function ($query) {
+            $query->where('name', 'like', '%' . $this->term . '%');
+        })
+            ->when($this->status !== '', function ($query) {
+                $query->where('status', $this->status);
+            })
+            ->orderBy('created_at')
+            ->paginate(10);
+    }
+
+    public function goToMember($id)
+    {
+        return redirect()->route('edit.animals', $id);
+    }
 };
 ?>
-<?php
-
-
-$rows = $datas->map(fn($data) => [
-    'id' => $data->id,
-    'cols' => [
-        $data->avatar,
-        $data->name,
-        $data->email,
-        $data->telephone,
-        $data->status,
-    ]
-])
-?>
-
 
 <div class="col-span-full">
     <section class="mb-4 flex flex-col gap-4">
-        <h3 class="sr-only">
-            {!!__('admin/members.members') !!}</h3>
-        <livewire:admin.global.members_filters/>
+        <h3 class="sr-only">{!!__('admin/members.members') !!}</h3>
+        <form action="" class="flex gap-4">
+            <x-client.form.input
+                name="search"
+                type="search"
+                class="w-full"
+                placeholder="{{__('global.search')}}"
+                wire:model.live.debounce="term"
+            >
+                {{__('global.search')}}
+            </x-client.form.input>
+            <x-client.form.select
+                name="status"
+                class="w-full"
+                wire:model.live="status"
+                :options="Members::options()"
+            >
+                {{__('admin/global.status')}}
+            </x-client.form.select>
+        </form>
         <livewire:admin.global.table.table
-            :titles="[__('admin/global.avatar'), __('admin/global.name'),__('admin/global.email'),__('admin/global.telephone'), __('admin/global.status')]"
-            :rows="$rows"
-            :route="'show.members'"
-        />
+            :titles="[__('admin/global.avatar'), __('admin/global.name'),__('admin/global.email'),__('admin/global.telephone'), __('admin/global.status')]">
+            @foreach($this->members as $member)
+                <tr class="hover:bg-primary-opacity cursor-pointer"
+                    wire:click="goToMember({{ $member->id }})"
+                    wire:key="animal-{{ $member->id }}"
+                    title="Vers la fiche de {{$member->name}}">
+                    <td class="py-2">
+                        <img src="{{ asset('avatars/animals/originals/'.$member->avatar) }}"
+                             srcset="
+                            {{asset('avatars/animals/variants/300x300/'.$member->avatar)}} 300w,
+                            {{asset('avatars/animals/variants/600x600/'.$member->avatar)}} 600w,
+                            {{asset('avatars/animals/variants/900x900/'.$member->avatar)}} 900w,
+                            {{asset('avatars/animals/variants/1200x1200/'.$member->avatar)}} 1200w"
+                             sizes="(max-width: 768px) 100vw, 50vw"
+                             alt="{!! __('client/animals.animal_image_alt', ['name' => $member->name]) !!}"
+                             class="w-12 h-12 rounded-full object-cover mx-auto">
+                    </td>
+                    <td class="py-2">{{$member->name}}</td>
+                    <td class="py-2">{{$member->email}}</td>
+                    <td class="py-2">{{$member->telephone}}</td>
+                    <td class="py-2">{{$member->status}}</td>
+                </tr>
+            @endforeach
+        </livewire:admin.global.table.table>
+
+        <div class="mt-4">
+            {{ $this->members->links() }}
+        </div>
     </section>
 </div>

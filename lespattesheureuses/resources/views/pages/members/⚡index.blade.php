@@ -8,11 +8,6 @@ use Livewire\Component;
 new #[Title('Tous les membres')]
 class extends Component {
 
-    #[Computed]
-    public function members()
-    {
-        return User::all();
-    }
 };
 ?>
 
@@ -24,7 +19,5 @@ class extends Component {
             {!!__('admin/members.create_member') !!}
         </x-client.global.cta>
     </div>
-    <livewire:admin.members.members_table
-        :datas="$this->members"
-    />
+    <livewire:admin.members.members_table/>
 </div>

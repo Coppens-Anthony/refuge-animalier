@@ -5,24 +5,12 @@ use App\Models\Animal;
 use App\Models\Specie;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
-use Livewire\WithPagination;
 
 new class extends Component {
-    use WithPagination;
 
     public string $term = '';
     public string $specieId = '';
     public string $status = '';
-
-    public function updatingTerm()
-    {
-        $this->resetPage();
-    }
-
-    public function updatingSpecie()
-    {
-        $this->resetPage();
-    }
 
     #[Computed]
     public function animals()
@@ -78,10 +66,10 @@ new class extends Component {
                 name="search"
                 type="search"
                 class="w-full"
-                placeholder="Recherche..."
+                placeholder="{{__('global.search')}}"
                 wire:model.live.debounce="term"
             >
-                Recherche
+                {{__('global.search')}}
             </x-client.form.input>
             <x-client.form.select
                 name="specieId"
@@ -89,7 +77,7 @@ new class extends Component {
                 wire:model.live="specieId"
                 :options="$this->speciesOptions"
             >
-                Espèce
+                {{__('admin/global.specie')}}
             </x-client.form.select>
             <x-client.form.select
                 name="status"
@@ -97,7 +85,7 @@ new class extends Component {
                 wire:model.live="status"
                 :options="Status::options()"
             >
-                Statut
+                {{__('admin/global.status')}}
             </x-client.form.select>
         </form>
         <livewire:admin.global.table.table
