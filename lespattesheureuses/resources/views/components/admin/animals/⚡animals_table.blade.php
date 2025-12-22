@@ -96,12 +96,12 @@ new class extends Component {
                     wire:key="animal-{{ $animal->id }}"
                     title="Vers la fiche de {{$animal->name}}">
                     <td class="py-2">
-                        <img src="{{ asset('avatars/animals/originals/'.$animal->avatar) }}"
+                        <img src="{{ asset('avatars/originals/'.$animal->avatar) }}"
                              srcset="
-                            {{asset('avatars/animals/variants/300x300/'.$animal->avatar)}} 300w,
-                            {{asset('avatars/animals/variants/600x600/'.$animal->avatar)}} 600w,
-                            {{asset('avatars/animals/variants/900x900/'.$animal->avatar)}} 900w,
-                            {{asset('avatars/animals/variants/1200x1200/'.$animal->avatar)}} 1200w"
+                            {{asset('avatars/variants/300x300/'.$animal->avatar)}} 300w,
+                            {{asset('avatars/variants/600x600/'.$animal->avatar)}} 600w,
+                            {{asset('avatars/variants/900x900/'.$animal->avatar)}} 900w,
+                            {{asset('avatars/variants/1200x1200/'.$animal->avatar)}} 1200w"
                              sizes="(max-width: 768px) 100vw, 50vw"
                              alt="{!! __('client/animals.animal_image_alt', ['name' => $animal->name]) !!}"
                              class="w-12 h-12 rounded-full object-cover mx-auto">

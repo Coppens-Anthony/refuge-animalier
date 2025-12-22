@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\User;
+use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
@@ -8,8 +9,15 @@ new #[Title('Profil de ')]
 class extends Component {
     public User $member;
 
+    #[Computed]
+    public function authUser()
+    {
+        return auth()->user();
+    }
+
 };
 ?>
+
 <div class="flex flex-col gap-8">
     <livewire:admin.global.hero_member
         :member="$this->member"
@@ -17,4 +25,14 @@ class extends Component {
     <livewire:admin.global.dispo
         dispo_title="{{__('admin/dispo.his_dispo')}}"
     />
+    @if($this->authUser->id === $this->member->id)
+    <div class="mx-auto">
+            <x-client.global.cta
+                route="{{route('edit.members', $this->member->id)}}"
+                title="{{__('global.edit_title')}}"
+            >
+                {{__('global.edit')}}
+            </x-client.global.cta>
+        </div>
+    @endif
 </div>

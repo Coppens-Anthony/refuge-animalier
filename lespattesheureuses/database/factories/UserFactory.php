@@ -27,7 +27,8 @@ class UserFactory extends Factory
     {
         return [
             'avatar' => fake()->word(),
-            'name' => fake()->name(),
+            'lastname' => fake()->lastName(),
+            'firstname' => fake()->firstName(),
             'email' => fake()->unique()->safeEmail(),
             'telephone' => fake()->phoneNumber(),
             'status' => Members::VOLUNTEER,

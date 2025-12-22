@@ -14,7 +14,8 @@ new class extends Component {
     public function members()
     {
         return User::when($this->term, function ($query) {
-            $query->where('name', 'like', '%' . $this->term . '%');
+            $query->where('firstname', 'like', '%' . $this->term . '%')
+            ->orWhere('lastname', 'like', '%' . $this->term . '%');
         })
             ->when($this->status !== '', function ($query) {
                 $query->where('status', $this->status);
@@ -25,7 +26,7 @@ new class extends Component {
 
     public function goToMember($id)
     {
-        return redirect()->route('edit.animals', $id);
+        return redirect()->route('show.members', $id);
     }
 };
 ?>
@@ -58,19 +59,19 @@ new class extends Component {
                 <tr class="hover:bg-primary-opacity cursor-pointer"
                     wire:click="goToMember({{ $member->id }})"
                     wire:key="animal-{{ $member->id }}"
-                    title="Vers la fiche de {{$member->name}}">
+                    title="Vers la fiche de {{$member->firstname . ' ' . $member->lastname}}">
                     <td class="py-2">
-                        <img src="{{ asset('avatars/animals/originals/'.$member->avatar) }}"
+                        <img src="{{ asset('avatars/originals/'.$member->avatar) }}"
                              srcset="
-                            {{asset('avatars/animals/variants/300x300/'.$member->avatar)}} 300w,
-                            {{asset('avatars/animals/variants/600x600/'.$member->avatar)}} 600w,
-                            {{asset('avatars/animals/variants/900x900/'.$member->avatar)}} 900w,
-                            {{asset('avatars/animals/variants/1200x1200/'.$member->avatar)}} 1200w"
+                            {{asset('avatars/variants/300x300/'.$member->avatar)}} 300w,
+                            {{asset('avatars/variants/600x600/'.$member->avatar)}} 600w,
+                            {{asset('avatars/variants/900x900/'.$member->avatar)}} 900w,
+                            {{asset('avatars/variants/1200x1200/'.$member->avatar)}} 1200w"
                              sizes="(max-width: 768px) 100vw, 50vw"
-                             alt="{!! __('client/animals.animal_image_alt', ['name' => $member->name]) !!}"
+                             alt="{!! __('client/animals.animal_image_alt', ['name' => $member->firstname . ' ' . $member->lastname]) !!}"
                              class="w-12 h-12 rounded-full object-cover mx-auto">
                     </td>
-                    <td class="py-2">{{$member->name}}</td>
+                    <td class="py-2">{{$member->firstname . ' ' . $member->lastname}}</td>
                     <td class="py-2">{{$member->email}}</td>
                     <td class="py-2">{{$member->telephone}}</td>
                     <td class="py-2">{{$member->status}}</td>

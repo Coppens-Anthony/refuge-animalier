@@ -11,6 +11,6 @@ return [
 
     'avatar_type' => 'jpg',
     'jpeg_compression' => 80,
-    'original_path' => 'avatars/animals/originals',
-    'variant_pattern' => 'avatars/animals/variants/%sx%s',
+    'original_path' => 'avatars/originals',
+    'variant_pattern' => 'avatars/variants/%sx%s',
 ];

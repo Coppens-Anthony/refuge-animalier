@@ -38,12 +38,10 @@ Route::domain('admin.lespattesheureuses.test')->group(function () {
         ->name('create.members')->middleware('auth');
     Route::livewire('/members/{member}', 'pages::members.⚡show')
         ->name('show.members')->middleware('auth');
+    Route::livewire('/members/{member}/edit', 'pages::members.⚡edit')
+        ->name('edit.members')->middleware('auth');
 
     Route::livewire('/database', 'pages::database.⚡index')
         ->name('index.database')->middleware('auth');
-
-    Route::livewire('/profile', 'pages::profile.⚡show')
-        ->name('show.profile')->middleware('auth');
-
 });
 

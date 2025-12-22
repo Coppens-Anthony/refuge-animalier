@@ -12,7 +12,8 @@ new class extends Component {
     {
         $this->member_datas = [
             'avatar' => $this->member->avatar,
-            'name' => $this->member->name,
+            'lastname' => $this->member->lastname,
+            'firstname' => $this->member->firstname,
             'email' => $this->member->email,
             'telephone' => $this->member->telephone,
             'status' => $this->member->status,
@@ -25,7 +26,7 @@ new class extends Component {
     <section class="flex gap-30 items-center">
         <div class="flex flex-col gap-8 w-1/2">
             <div class="flex gap-4 items-center">
-                <h3 class="text-2xl">{{$this->member->name}}</h3>
+                <h3 class="text-2xl">{{$this->member->firstname . ' ' . $this->member->lastname}}</h3>
                 <x-client.global.status
                     isInCard="{{false}}"
                 >
@@ -43,8 +44,16 @@ new class extends Component {
                 </div>
             </div>
         </div>
-        <div class="w-1/2">
-            <img src="{{asset('assets/images/johndoe.jpg')}}" alt="" class="rounded-4xl object-cover">
+        <div class="md:w-1/2 aspect-square">
+            <img src="{{asset('avatars/originals/'.$this->member->avatar)}}"
+                 srcset="
+                        {{asset('avatars/variants/300x300/'.$this->member->avatar)}} 300w,
+                        {{asset('avatars/variants/600x600/'.$this->member->avatar)}} 600w,
+                        {{asset('avatars/variants/900x900/'.$this->member->avatar)}} 900w,
+                        {{asset('avatars/variants/1200x1200/'.$this->member->avatar)}} 1200w"
+                 sizes="(max-width: 768px) 100vw, 50vw"
+                 alt="{!! __('client/animals.animal_image_alt', ['name' => $this->member->firstname . ' ' . $this->member->lastname]) !!}"
+                 class="w-full h-full rounded-4xl object-cover">
         </div>
     </section>
 </div>

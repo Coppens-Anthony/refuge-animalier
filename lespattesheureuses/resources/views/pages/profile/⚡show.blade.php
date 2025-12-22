@@ -25,7 +25,7 @@ class extends Component {
     />
     <div class="mx-auto">
         <x-client.global.cta
-            route=""
+            route="{{route('edit.profile', $this->authUser->id)}}"
             title="{{__('global.edit_title')}}"
         >
             {{__('global.edit')}}

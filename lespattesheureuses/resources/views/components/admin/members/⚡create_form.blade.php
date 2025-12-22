@@ -24,7 +24,7 @@ new class extends Component {
         $validated['password'] = bcrypt($validated['password']);
         $validated['avatar'] = '';
         $validated['status'] = Members::VOLUNTEER;
-        $validated['name'] = $validated['firstname'] . ' ' . $validated['lastname'];
+
 
         $user = User::create($validated);
         return redirect(route('show.members', $user->id));

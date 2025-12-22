@@ -139,7 +139,7 @@ new class extends Component {
                     <span class="text-secondary"> *</span>
                     @error('avatar')
                     <small class="text-red-500 absolute -bottom-10 left-0">
-                        {{ $messbirthdate }}
+                        {{ $message }}
                     </small>
                     @enderror</p>
                 @if($this->avatar)
