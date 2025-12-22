@@ -156,7 +156,7 @@ new class extends Component {
                     placeholder=""
                     is-required="{{false}}"
                 >
-                    Nouveau mot de passe
+                    {!! __('admin/members.new_password') !!}
                 </x-client.form.input>
             </fieldset>
         </div>

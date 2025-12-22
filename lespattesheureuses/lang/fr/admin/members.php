@@ -7,6 +7,7 @@ return [
     'role' => 'Rôle',
     'firstname' => 'Prénom',
     'lastname' => 'Nom',
-    'password_temporary' => 'Mot de passe temporaire',
+    'password_temporary' => 'Mot de passe actuel',
+    'new_password' => 'Nouveau mot de passe',
     'add_title' => 'Ajouter le membre'
 ];
