@@ -61,6 +61,7 @@ new class extends Component {
                     wire:key="animal-{{ $member->id }}"
                     title="Vers la fiche de {{$member->firstname . ' ' . $member->lastname}}">
                     <td class="py-2">
+                        @if($member->avatar)
                         <img src="{{ asset('avatars/originals/'.$member->avatar) }}"
                              srcset="
                             {{asset('avatars/variants/300x300/'.$member->avatar)}} 300w,
@@ -70,6 +71,9 @@ new class extends Component {
                              sizes="(max-width: 768px) 100vw, 50vw"
                              alt="{!! __('client/animals.animal_image_alt', ['name' => $member->firstname . ' ' . $member->lastname]) !!}"
                              class="w-12 h-12 rounded-full object-cover mx-auto">
+                        @else
+                            Avatar
+                        @endif
                     </td>
                     <td class="py-2">{{$member->firstname . ' ' . $member->lastname}}</td>
                     <td class="py-2">{{$member->email}}</td>

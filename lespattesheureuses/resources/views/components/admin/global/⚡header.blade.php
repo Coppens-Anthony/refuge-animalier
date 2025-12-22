@@ -20,16 +20,20 @@ new class extends Component {
         <div class="flex items-center gap-2 relative">
             <a href="{{route('show.members', $this->authUser->id)}}" title="{!! __('admin/nav.to_profile') !!}"
                class="absolute top-0 left-0 h-full w-full"></a>
-            <p class="leading-tight">John Doe</p>
-            <img src="{{ asset('avatars/originals/'.$this->authUser->avatar) }}"
-                 srcset="
+            <p class="leading-tight">{{$this->authUser->firstname . ' ' . $this->authUser->lastname}}</p>
+            @if($this->authUser->avatar)
+                <img src="{{ asset('avatars/originals/'.$this->authUser->avatar) }}"
+                     srcset="
                             {{asset('avatars/variants/300x300/'.$this->authUser->avatar)}} 300w,
                             {{asset('avatars/variants/600x600/'.$this->authUser->avatar)}} 600w,
                             {{asset('avatars/variants/900x900/'.$this->authUser->avatar)}} 900w,
                             {{asset('avatars/variants/1200x1200/'.$this->authUser->avatar)}} 1200w"
-                 sizes="(max-width: 768px) 100vw, 50vw"
-                 alt="{!! __('client/animals.animal_image_alt', ['name' => $this->authUser->firstname . ' ' . $this->authUser->lastname]) !!}"
-                 class="rounded-full object-cover w-12 h-12 border-2 border-primary">
+                     sizes="(max-width: 768px) 100vw, 50vw"
+                     alt="{!! __('client/animals.animal_image_alt', ['name' => $this->authUser->firstname . ' ' . $this->authUser->lastname]) !!}"
+                     class="rounded-full object-cover w-12 h-12 border-2 border-primary">
+            @else
+                Avatar
+            @endif
         </div>
     </header>
 </div>
