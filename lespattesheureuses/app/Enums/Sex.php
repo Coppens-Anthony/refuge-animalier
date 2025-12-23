@@ -16,7 +16,15 @@ enum Sex: string
     {
         return array_map(fn($option) => [
             'value' => $option->value,
-            'trad' => ucfirst($option->value)
+            'trad' => $option->label()
         ], self::cases());
+    }
+
+    public function label()
+    {
+        return match ($this) {
+            self::MALE => __('client/animals.male'),
+            self::FEMALE => __('client/animals.female'),
+        };
     }
 }

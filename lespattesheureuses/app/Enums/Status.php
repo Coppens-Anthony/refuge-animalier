@@ -19,18 +19,18 @@ enum Status: string
     {
         return array_map(fn($option) => [
             'value' => $option->value,
-            'trad' => ucfirst($option->value)
+            'trad' => $option->label()
         ], self::cases());
     }
 
     public function label()
     {
         return match ($this) {
-            self::ADOPTABLE => 'Adoptable',
-            self::ADOPTED => 'Adopté',
-            self::IN_CARE => 'En soins',
-            self::UNAVAILABLE => 'Indisponible',
-            self::PENDING => 'En attente',
+            self::ADOPTABLE => __('animals_status_enum.adoptable'),
+            self::ADOPTED => __('animals_status_enum.adopted'),
+            self::IN_CARE => __('animals_status_enum.in_care'),
+            self::UNAVAILABLE => __('animals_status_enum.unavailable'),
+            self::PENDING => __('animals_status_enum.pending'),
         };
     }
 }

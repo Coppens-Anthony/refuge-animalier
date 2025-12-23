@@ -40,5 +40,8 @@ return [
     'add_note' => 'Ajouter une note',
     'note_placeholder' => ':name possède un grand jardin...',
     'animal' => 'L\'animal',
-    'message_placeholder' => 'Coup de coeur pour la race...'
+    'message_placeholder' => 'Coup de coeur pour la race...',
+    'archived' => 'Archivée',
+    'in_progress' => 'En cours',
+    'finished' => 'Terminée',
 ];

@@ -104,7 +104,7 @@ new class extends Component {
                     </td>
                     <td class="py-2">{{$animal->name}}</td>
                     <td class="py-2">{{$animal->breed->specie->name}}</td>
-                    <td class="py-2">{{$animal->status}}</td>
+                    <td class="py-2">{{$animal->status->label()}}</td>
                 </tr>
             @endforeach
         </livewire:admin.global.table.table>

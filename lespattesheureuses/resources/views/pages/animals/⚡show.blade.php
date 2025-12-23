@@ -15,7 +15,7 @@ class extends Component {
 
     public function mount()
     {
-        $this->status = $this->animal->status;
+        $this->status = $this->animal->status->value;
     }
 
     public function update()
@@ -37,7 +37,7 @@ class extends Component {
                     <h3 class="text-[2rem]">{{$this->animal->name}}</h3>
                     <div class="flex gap-2 items-center" x-data="{open: false}" x-cloak>
                         <x-client.global.status isInCard="{{false}}">
-                            {{$this->animal->status}}
+                            {{$this->animal->status->label()}}
                         </x-client.global.status>
                         <img src="{{asset('assets/icons/edit.svg')}}" alt="{{__('global.edit_icon')}}"
                              class="h-5.8 w-5.8 cursor-pointer"
@@ -49,9 +49,9 @@ class extends Component {
                                         for="status">{{__('admin/global.change_status')}} {{$this->animal->name}}</label>
                                     <select name="status" id="status" wire:model="status"
                                             class="rounded-xl border-primary border-3 p-2 cursor-pointer">
-                                        @foreach(Status::values() as $status)
+                                        @foreach(Status::cases() as $status)
                                             <option value="{{$status}}"
-                                                    @if($this->animal->status == $status) selected @endif>{{$status}}</option>
+                                                    @if($this->animal->status == $status) selected @endif>{{$status->label()}}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -89,7 +89,7 @@ class extends Component {
                         <x-client.global.icon_text
                             image_src="{{asset('assets/icons/paw.svg')}}"
                             image_alt="{!! __('global.paw_icon') !!}">
-                            {{$this->animal->sex}}
+                            {{$this->animal->sex->label()}}
                         </x-client.global.icon_text>
                     </li>
                     <li class="flex items-center gap-2">

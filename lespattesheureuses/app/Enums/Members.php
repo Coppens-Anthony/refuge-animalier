@@ -16,7 +16,15 @@ enum Members: string
     {
         return array_map(fn($option) => [
             'value' => $option->value,
-            'trad' => ucfirst($option->value)
+            'trad' => $option->label()
         ], self::cases());
+    }
+
+    public function label()
+    {
+        return match ($this) {
+            self::VOLUNTEER => __('admin/global.volunteer'),
+            self::ADMINISTRATOR => __('admin/global.admin'),
+        };
     }
 }

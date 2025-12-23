@@ -30,7 +30,7 @@ new class extends Component {
                 <x-client.global.status
                     isInCard="{{false}}"
                 >
-                    {{$this->member->status}}
+                    {{$this->member->status->label()}}
                 </x-client.global.status>
             </div>
             <div class="flex flex-col gap-2">

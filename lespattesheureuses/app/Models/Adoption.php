@@ -22,6 +22,7 @@ class Adoption extends Model
     ];
     protected $casts = [
         'date' => 'date',
+        'status' => Adoptions::class
     ];
 
     public function animal(): BelongsTo

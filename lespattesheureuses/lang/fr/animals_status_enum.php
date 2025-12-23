@@ -5,4 +5,5 @@ return [
   'adopted' => 'Adopté',
   'in_care' => 'En soins',
   'unavailable' => 'Indisponible',
+  'pending' => 'En attente',
 ];

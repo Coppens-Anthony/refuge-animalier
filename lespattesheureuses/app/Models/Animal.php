@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Sex;
 use App\Enums\Status;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -28,6 +29,8 @@ class Animal extends Model
     ];
 
     protected $casts = [
+        'status' => Status::class,
+        'sex' => Sex::class,
         'birthdate' => 'date'
     ];
 

@@ -24,7 +24,7 @@ class extends Component {
                     <h3 class="text-[2rem]">{{$this->adoption->animal->name}}</h3>
                     <div class="flex gap-2 items-center" x-data="{open: false}" x-cloak>
                         <x-client.global.status isInCard="{{false}}">
-                            {{$this->adoption->animal->status}}
+                            {{$this->adoption->animal->status->label()}}
                         </x-client.global.status>
                     </div>
                 </div>
@@ -47,7 +47,7 @@ class extends Component {
                         <x-client.global.icon_text
                             image_src="{{asset('assets/icons/paw.svg')}}"
                             image_alt="{!! __('global.paw_icon') !!}">
-                            {{$this->adoption->animal->sex}}
+                            {{$this->adoption->animal->sex->label()}}
                         </x-client.global.icon_text>
                     </li>
                     <li class="flex items-center gap-2">

@@ -78,7 +78,7 @@ new class extends Component {
                     <td class="py-2">{{$member->firstname . ' ' . $member->lastname}}</td>
                     <td class="py-2">{{$member->email}}</td>
                     <td class="py-2">{{$member->telephone}}</td>
-                    <td class="py-2">{{$member->status}}</td>
+                    <td class="py-2">{{$member->status->label()}}</td>
                 </tr>
             @endforeach
         </livewire:admin.global.table.table>
