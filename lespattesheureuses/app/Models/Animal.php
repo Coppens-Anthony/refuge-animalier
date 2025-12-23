@@ -62,6 +62,21 @@ class Animal extends Model
 
     public function age()
     {
-        return Carbon::parse($this->attributes['birthdate'])->age;
+        $birthdate = Carbon::parse($this->attributes['birthdate']);
+        $now = Carbon::now();
+        $years = $birthdate->age;
+
+        if ($years < 1) {
+            $months = floor($birthdate->diffInMonths($now));
+
+            if ($months < 1) {
+                $days = floor($birthdate->diffInDays($now));
+                return $days . ' ' . ($days > 1 ? __('global.days') : __('global.day'));
+            }
+
+            return $months . ' ' . __('global.months');
+        }
+
+        return $years . ' ' . __('global.years');
     }
 }

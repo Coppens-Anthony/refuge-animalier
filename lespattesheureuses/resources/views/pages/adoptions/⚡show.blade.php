@@ -40,7 +40,7 @@ class extends Component {
                         <x-client.global.icon_text
                             image_src="{{asset('assets/icons/paw.svg')}}"
                             image_alt="{!! __('global.paw_icon') !!}">
-                            {{$this->adoption->animal->age()}} {{__('global.yo')}}
+                            {{$this->adoption->animal->age()}}
                         </x-client.global.icon_text>
                     </li>
                     <li class="flex items-center gap-2">
