@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 require 'client.php';
@@ -35,11 +36,11 @@ Route::domain('admin.lespattesheureuses.test')->group(function () {
     Route::livewire('/members', 'pages::members.⚡index')
         ->name('index.members')->middleware('auth');
     Route::livewire('/members/create', 'pages::members.⚡create')
-        ->name('create.members')->middleware('auth');
+        ->name('create.members')->middleware('auth')->can('create', User::class);
     Route::livewire('/members/{member}', 'pages::members.⚡show')
         ->name('show.members')->middleware('auth');
     Route::livewire('/members/{member}/edit', 'pages::members.⚡edit')
-        ->name('edit.members')->middleware('auth');
+        ->name('edit.members')->middleware('auth')/*->can('edit', 'member')*/;
 
     Route::livewire('/database', 'pages::database.⚡index')
         ->name('index.database')->middleware('auth');

@@ -69,4 +69,13 @@ class User extends Authenticatable
             ->map(fn ($word) => Str::substr($word, 0, 1))
             ->implode('');
     }
+
+    public function isAdmin()
+    {
+        return $this->status === Members::ADMINISTRATOR;
+    }
+    public function isVolunteer()
+    {
+        return $this->status === Members::VOLUNTEER;
+    }
 }

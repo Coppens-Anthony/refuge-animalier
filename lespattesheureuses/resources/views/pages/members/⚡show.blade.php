@@ -26,7 +26,7 @@ class extends Component {
         dispo_title="{{__('admin/dispo.his_dispo')}}"
         :member="$this->member"
     />
-    @if($this->authUser->id === $this->member->id)
+    @can('edit', $this->member)
     <div class="mx-auto">
             <x-client.global.cta
                 route="{{route('edit.members', $this->member->id)}}"
@@ -35,5 +35,5 @@ class extends Component {
                 {{__('global.edit')}}
             </x-client.global.cta>
         </div>
-    @endif
+    @endcan
 </div>

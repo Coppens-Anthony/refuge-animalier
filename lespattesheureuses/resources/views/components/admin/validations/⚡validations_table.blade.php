@@ -23,7 +23,7 @@ new class extends Component {
                 });
             })
             ->orderBy('created_at', 'desc')
-            ->paginate(5);
+            ->paginate(10);
     }
 
     #[Computed]

@@ -7,6 +7,11 @@ use Livewire\Component;
 new #[Title('Modifier mon profil')]
 class extends Component {
     public User $member;
+
+    public function mount()
+    {
+        $this->authorize('edit', $this->member);
+    }
 };
 ?>
 
