@@ -9,7 +9,11 @@
         image_alt="{!! __('client/home.intro_image_alt') !!}"
     />
     <div class="flex flex-col gap-16">
-        <x-client.home.stats_section/>
+        <x-client.home.stats_section
+            :animals="$animals"
+            :adoptions="$adoptions"
+            :animalsAdoptable="$animalsAdoptable"
+        />
         <x-client.home.animals
         title="{!! __('client/home.animals_title') !!}"
         />

@@ -1,9 +1,9 @@
 <?php
 
+use App\Http\Controllers\HomeController;
+
 Route::domain('lespattesheureuses.test')->group(function () {
-    Route::get('/', function () {
-        return view('client.home');
-    })->name('client_home');
+    Route::get('/', [HomeController::class, 'index'])->name('client_home');
 
     Route::get('animals', function () {
         return view('client/animals.animals');
