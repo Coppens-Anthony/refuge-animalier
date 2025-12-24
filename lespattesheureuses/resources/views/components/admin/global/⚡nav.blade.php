@@ -1,6 +1,7 @@
 <?php
 
 use Livewire\Component;
+use App\Models\User;
 
 new class extends Component {
     //
@@ -11,7 +12,8 @@ new class extends Component {
     <aside class="bg-primary w-fit h-full fixed top-0 shadow-2xl">
         <h2 class="sr-only">Menu</h2>
         <div class="relative w-fit mb-8 pt-4 mx-auto">
-            <a href="{{route('dashboard')}}" class="absolute top-0 left-0 h-full w-full" title="{!! __('admin/dashboard.to_dashboard') !!}"></a>
+            <a href="{{route('dashboard')}}" class="absolute top-0 left-0 h-full w-full"
+               title="{!! __('admin/dashboard.to_dashboard') !!}"></a>
             <x-client.global.logo/>
         </div>
         <nav class="w-fit ml-4">
@@ -38,13 +40,15 @@ new class extends Component {
                     image_alt="{!! __('admin/nav.request_icon') !!}"
                     text="{!! __('admin/nav.adoptions') !!}"
                 />
-                <livewire:admin.global.item_nav
-                    route="index.validations"
-                    title="{!! __('admin/nav.to_validations') !!}"
-                    image="clock"
-                    image_alt="{!! __('admin/nav.clock_icon') !!}"
-                    text="{!! __('admin/nav.validations') !!}"
-                />
+                @can('view-any', User::class)
+                    <livewire:admin.global.item_nav
+                        route="index.validations"
+                        title="{!! __('admin/nav.to_validations') !!}"
+                        image="clock"
+                        image_alt="{!! __('admin/nav.clock_icon') !!}"
+                        text="{!! __('admin/nav.validations') !!}"
+                    />
+                @endcan
                 <livewire:admin.global.item_nav
                     route="index.messages"
                     title="{!! __('admin/nav.to_messages') !!}"
@@ -59,13 +63,15 @@ new class extends Component {
                     image_alt="{!! __('admin/nav.member_icon') !!}"
                     text="{!! __('admin/nav.members') !!}"
                 />
-                <livewire:admin.global.item_nav
-                    route="index.database"
-                    title="{!! __('admin/nav.to_db') !!}"
-                    image="db"
-                    image_alt="{!! __('admin/nav.db_icon') !!}"
-                    text="{!! __('admin/nav.db') !!}"
-                />
+                @can('view-any', User::class)
+                    <livewire:admin.global.item_nav
+                        route="index.database"
+                        title="{!! __('admin/nav.to_db') !!}"
+                        image="db"
+                        image_alt="{!! __('admin/nav.db_icon') !!}"
+                        text="{!! __('admin/nav.db') !!}"
+                    />
+                @endcan
             </ul>
         </nav>
     </aside>

@@ -91,7 +91,7 @@ new class extends Component {
                     <td class="py-2">{{$animal->breed->specie->name}}</td>
                     <td class="py-2">{{$animal->breed->name}}</td>
                     <td class="py-2">{{$animal->sex->label()}}</td>
-                    <td class="py-2">{{$animal->age()}} {{__('global.yo')}}</td>
+                    <td class="py-2">{{$animal->age()}}</td>
                 </tr>
             @endforeach
         </livewire:admin.global.table.table>

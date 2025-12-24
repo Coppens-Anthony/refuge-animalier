@@ -3,6 +3,7 @@
 use App\Models\Breed;
 use App\Models\Coat;
 use App\Models\Specie;
+use App\Models\User;
 use App\Models\Vaccine;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
@@ -18,6 +19,8 @@ class extends Component {
     #[Computed]
     public function mount()
     {
+        $this->authorize('view-any', User::class);
+
         $this->species = Specie::all();
         $this->breeds = Breed::with('specie')->get();
         $this->vaccines = Vaccine::all();

@@ -32,6 +32,7 @@ new class extends Component {
                 link_title="{!! __('admin/nav.to_requests') !!}"
                 route="index.adoptions"
             />
+            @can('view-any', User::class)
             <livewire:admin.dashboard.key_card
                 title="{!! __('admin/nav.validations') !!}"
                 number="{{count($this->animals)}}"
@@ -40,6 +41,7 @@ new class extends Component {
                 link_title="{!! __('admin/nav.to_validations') !!}"
                 route="index.validations"
             />
+            @endcan
             <livewire:admin.dashboard.key_card
                 title="{!! __('admin/nav.messages') !!}"
                 number="4"

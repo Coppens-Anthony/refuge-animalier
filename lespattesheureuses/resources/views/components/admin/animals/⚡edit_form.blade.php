@@ -9,6 +9,7 @@ use App\Models\AnimalVaccine;
 use App\Models\Breed;
 use App\Models\Coat;
 use App\Models\Specie;
+use App\Models\User;
 use App\Models\Vaccine;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Computed;
@@ -33,6 +34,7 @@ new class extends Component {
 
     public function mount()
     {
+
         $animal = Animal::with(['breed.specie', 'vaccine', 'coat'])->findOrFail($this->animalId);
 
         $this->name = $animal->name;
@@ -220,14 +222,14 @@ new class extends Component {
                     :options="$this->vaccinesOptions">
                     {!! __('admin/global.vaccines') !!}
                 </livewire:admin.global.modal_checkbox>
-                @if(auth()->user()->status === Members::ADMINISTRATOR->value)
+                @can('view-any', User::class)
                     <x-client.form.select
                         name="status"
                         wire:model="status"
                         :options="Status::options()">
                         {!! __('admin/global.status') !!}
                     </x-client.form.select>
-                @endif
+                @endcan
                 <x-client.form.textarea
                     wire:model="temperament"
                     name="temperament"

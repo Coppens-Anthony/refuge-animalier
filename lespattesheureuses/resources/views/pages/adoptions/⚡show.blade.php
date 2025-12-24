@@ -103,13 +103,13 @@ class extends Component {
                     <a href="tel:{{$this->adoption->adopter->telephone}}"
                        {!! __('global.telephone_title') !!} class="link">{{$this->adoption->adopter->telephone}}</a>
                 </div>
-                @if($this->adoption->status === Adoptions::FINISHED->value || $this->adoption->status === Adoptions::ARCHIVED->value)
+                @if($this->adoption->status === Adoptions::FINISHED || $this->adoption->status === Adoptions::ARCHIVED)
                     <div class="flex gap-2 items-center">
                         <img src="{{asset('assets/icons/calendar.svg')}}" alt="{!! __('global.calendar_icon') !!}">
                         <p>{{__('admin/global.adopted_at')}} {{$this->adoption->formatDate('date')}}</p>
                     </div>
                 @endif
-                @if($this->adoption->status === Adoptions::ARCHIVED->value)
+                @if($this->adoption->status === Adoptions::ARCHIVED)
                     <div class="flex gap-2 items-center">
                         <img src="{{asset('assets/icons/back_arrow.svg')}}" alt="{!! __('global.back_arrow_icon') !!}">
                         <p>{{__('admin/global.returned_at')}} {{$this->adoption->formatDate('updated_at')}}</p>
@@ -122,15 +122,15 @@ class extends Component {
             <p>{{$this->adoption->message}}</p>
         </div>
     </section>
-    @if($this->adoption->status != Adoptions::PENDING->value)
+    @if($this->adoption->status != Adoptions::PENDING)
         <livewire:admin.adoptions.notes_section :adoption="$this->adoption"/>
     @endif
 
-    @if($this->adoption->status === Adoptions::PENDING->value)
+    @if($this->adoption->status === Adoptions::PENDING)
         <livewire:admin.adoptions.pending_section :adoption="$this->adoption"/>
-    @elseif($this->adoption->status === Adoptions::IN_PROGRESS->value)
+    @elseif($this->adoption->status === Adoptions::IN_PROGRESS)
         <livewire:admin.adoptions.in_progress_section :adoption="$this->adoption"/>
-    @elseif($this->adoption->status === Adoptions::FINISHED->value)
+    @elseif($this->adoption->status === Adoptions::FINISHED)
         <livewire:admin.adoptions.finished_section :adoption="$this->adoption"/>
     @endif
 </div>

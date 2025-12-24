@@ -7,6 +7,11 @@ use Livewire\Component;
 new #[Title('Modifier un animal')]
 class extends Component {
     public Animal $animal;
+
+    public function mount()
+    {
+        $this->authorize('view-any', auth()->user());
+    }
 };
 ?>
 

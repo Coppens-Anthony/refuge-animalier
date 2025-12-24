@@ -3,6 +3,7 @@
 use App\Enums\Adoptions;
 use App\Enums\Status;
 use App\Models\Adoption;
+use App\Models\User;
 use App\Models\Animal;
 use Illuminate\Validation\Rule;
 use Livewire\Attributes\Title;
@@ -131,11 +132,13 @@ class extends Component {
             </div>
         </div>
     </section>
-    <div class="w-fit mx-auto">
-        <x-client.global.cta
-            route="{{route('edit.animals', $this->animal->id)}}"
-            title="{{__('global.edit_title')}}">
-            {{__('admin/forms.edit')}}
-        </x-client.global.cta>
-    </div>
+    @can('view-any', User::class)
+        <div class="w-fit mx-auto">
+            <x-client.global.cta
+                route="{{route('edit.animals', $this->animal->id)}}"
+                title="{{__('global.edit_title')}}">
+                {{__('admin/forms.edit')}}
+            </x-client.global.cta>
+        </div>
+    @endcan
 </div>

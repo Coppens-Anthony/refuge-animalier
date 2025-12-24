@@ -1,10 +1,16 @@
 <?php
 
+use App\Models\User;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
 new #[Title('Valider les nouvelles fiches')]
 class extends Component {
+
+    public function mount()
+    {
+        return $this->authorize('view-any', User::class);
+    }
 };
 ?>
 

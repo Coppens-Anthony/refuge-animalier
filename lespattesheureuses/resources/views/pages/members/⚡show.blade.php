@@ -8,13 +8,6 @@ use Livewire\Component;
 new #[Title('Profil de ')]
 class extends Component {
     public User $member;
-
-    #[Computed]
-    public function authUser()
-    {
-        return auth()->user();
-    }
-
 };
 ?>
 
