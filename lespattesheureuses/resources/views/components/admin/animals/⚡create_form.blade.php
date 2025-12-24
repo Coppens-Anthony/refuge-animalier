@@ -5,6 +5,7 @@ use App\Enums\Sex;
 use App\Enums\Status;
 use App\Jobs\ProcessUploadedAvatar;
 use App\Models\Animal;
+use App\Models\User;
 use App\Models\AnimalVaccine;
 use App\Models\Breed;
 use App\Models\Coat;
@@ -198,14 +199,14 @@ new class extends Component {
                     :options="$this->vaccinesOptions">
                     {!! __('admin/global.vaccines') !!}
                 </livewire:admin.global.modal_checkbox>
-                @if(auth()->user()->status === Members::ADMINISTRATOR->value)
+                @can('view-any', User::class)
                     <x-client.form.select
                         name="status"
                         wire:model="status"
                         :options="Status::options()">
                         {!! __('admin/global.status') !!}
                     </x-client.form.select>
-                @endif
+                @endcan
                 <x-client.form.textarea
                     wire:model="temperament"
                     rows="4"
