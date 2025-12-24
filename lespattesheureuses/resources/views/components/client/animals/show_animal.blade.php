@@ -57,7 +57,7 @@
             </article>
         </div>
         <div class="md:w-1/2 aspect-square">
-            <img src="{{asset('avatars/originals/'.$animal->avatar)}}"
+            <img src="{{$animal->avatar ? asset('avatars/originals/'.$animal->avatar) : asset('assets/images/max.jpg')}}"
                  srcset="
                         {{asset('avatars/variants/300x300/'.$animal->avatar)}} 300w,
                         {{asset('avatars/variants/600x600/'.$animal->avatar)}} 600w,
@@ -70,7 +70,7 @@
     </div>
     <div class="mx-auto w-fit">
         <x-client.global.cta
-            route="{{route('client_animal_request')}}"
+            route="{{route('client_animal_request', ['animal' => $animal->id])}}"
             title="{!! __('client/animals.request_button_title', ['name' => $animal->name]) !!}">
             {!! __('client/animals.request_button', ['name' => $animal->name]) !!}
         </x-client.global.cta>
