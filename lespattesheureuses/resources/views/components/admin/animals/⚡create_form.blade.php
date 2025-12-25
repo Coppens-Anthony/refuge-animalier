@@ -118,6 +118,8 @@ new class extends Component {
         foreach ($this->coat_ids as $coat) {
             $animal->coat()->attach($coat);
         }
+
+        session()->flash('success', __('admin/global.animal_created'));
         return redirect(route('show.animals', $animal->id));
     }
 

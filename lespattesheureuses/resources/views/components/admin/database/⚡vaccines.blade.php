@@ -43,6 +43,7 @@ new class extends Component {
         $this->reset(['vaccine', 'specieId']);
         $this->resetValidation();
         $this->dispatch('vaccine-added');
+        session()->flash('success', __('admin/global.vaccine_created'));
     }
 
     public function edit(Vaccine $vaccine)
@@ -68,6 +69,7 @@ new class extends Component {
         $this->reset(['editVaccine', 'editSpecieId', 'editingId']);
         $this->resetValidation();
         $this->dispatch('vaccine-edited');
+        session()->flash('success', __('admin/global.vaccine_edited'));
     }
 
     public function delete($id)
@@ -80,7 +82,12 @@ new class extends Component {
 };
 ?>
 <div>
-    <section x-cloak x-data="{expanded: false, add: false, edit: false}">
+    <section x-cloak x-data="{expanded: false, add: false, edit: false}" class="relative">
+        @if (session('success'))
+            <div class="alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="w-fit mb-2 ml-auto cursor-pointer">
             <small class="underline" @click="add = true">{{__('admin/forms.add_element')}}</small>
         </div>

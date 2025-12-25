@@ -5,10 +5,12 @@ namespace App\Enums;
 enum Status: string
 {
     case ADOPTABLE = 'adoptable';
+
     case ADOPTED = 'adopted';
     case IN_CARE = 'in_care';
     case UNAVAILABLE = 'unavailable';
     case PENDING = 'pending';
+    case IN_ADOPTION = 'in_adoption';
 
     public static function values()
     {
@@ -31,6 +33,7 @@ enum Status: string
             self::IN_CARE => __('animals_status_enum.in_care'),
             self::UNAVAILABLE => __('animals_status_enum.unavailable'),
             self::PENDING => __('animals_status_enum.pending'),
+            self::IN_ADOPTION => __('animals_status_enum.in_adoption'),
         };
     }
 }

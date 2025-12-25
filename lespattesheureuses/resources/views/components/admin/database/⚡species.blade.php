@@ -23,6 +23,8 @@ new class extends Component {
 
         Specie::create(['name' => $validated['specie']]);
         $this->dispatch('specie-added');
+        session()->flash('success', __('admin/global.specie_created'));
+
     }
 
     public function edit(Specie $specie)
@@ -41,6 +43,8 @@ new class extends Component {
         $specie->update(['name' => $validated['editSpecie']]);
 
         $this->dispatch('specie-edited');
+        session()->flash('success', __('admin/global.specie_edited'));
+
     }
 
     public function delete($id)
@@ -51,7 +55,12 @@ new class extends Component {
 };
 ?>
 <div>
-    <section x-cloak x-data="{expanded: false, add: false, edit: false}">
+    <section x-cloak x-data="{expanded: false, add: false, edit: false}" class="relative">
+        @if (session('success'))
+            <div class="alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="w-fit mb-2 ml-auto cursor-pointer">
             <small class="underline" @click="add = true">{{__('admin/forms.add_element')}}</small>
         </div>

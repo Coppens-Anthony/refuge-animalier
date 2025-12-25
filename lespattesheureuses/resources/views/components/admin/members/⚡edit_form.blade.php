@@ -82,6 +82,8 @@ new class extends Component {
             ]);
         }
 
+        session()->flash('success', __('admin/global.member_edited'));
+
         return redirect(route('show.members', $member->id));
     }
 };

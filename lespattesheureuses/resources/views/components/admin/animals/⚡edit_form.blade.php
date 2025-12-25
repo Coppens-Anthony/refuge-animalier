@@ -112,8 +112,8 @@ new class extends Component {
 
         $animal = Animal::findOrFail($this->animalId);
 
-        if ($validated['status'] === Status::PENDING->value) {
-            $validated['status'] = Status::ADOPTABLE->value;
+        if ($validated['status'] === Status::PENDING) {
+            $validated['status'] = Status::ADOPTABLE;
         }
 
         if ($this->avatar) {
@@ -139,6 +139,7 @@ new class extends Component {
         $animal->vaccine()->sync($this->vaccine_ids);
         $animal->coat()->sync($this->coat_ids);
 
+        session()->flash('success', __('admin/global.animal_edited'));
         return redirect(route('show.animals', $animal->id));
     }
 };

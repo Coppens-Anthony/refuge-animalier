@@ -71,7 +71,7 @@ class Animal extends Model
 
             if ($months < 1) {
                 $days = floor($birthdate->diffInDays($now));
-                return $days . ' ' . ($days > 1 ? __('global.days') : __('global.day'));
+                return $days . ' ' . __('global.days');
             }
 
             return $months . ' ' . __('global.months');

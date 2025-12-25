@@ -43,6 +43,9 @@ new class extends Component {
 
 
         $user = User::create($validated);
+
+        session()->flash('success', __('admin/global.member_created'));
+
         return redirect(route('show.members', $user->id));
     }
 };

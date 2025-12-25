@@ -23,6 +23,7 @@ new class extends Component {
 
         Coat::create(['name' => $validated['coat']]);
         $this->dispatch('coat-added');
+        session()->flash('success', __('admin/global.coat_created'));
     }
 
     public function edit(Coat $coat)
@@ -41,6 +42,7 @@ new class extends Component {
         $coat->update(['name' => $validated['editCoat']]);
 
         $this->dispatch('coat-edited');
+        session()->flash('success', __('admin/global.coat_edited'));
     }
 
     public function delete($id)
@@ -51,7 +53,12 @@ new class extends Component {
 };
 ?>
 <div>
-    <section x-cloak x-data="{expanded: false, add: false, edit: false}">
+    <section x-cloak x-data="{expanded: false, add: false, edit: false}" class="relative">
+        @if (session('success'))
+            <div class="alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="w-fit mb-2 ml-auto cursor-pointer">
             <small class="underline" @click="add = true">{{__('admin/forms.add_element')}}</small>
         </div>

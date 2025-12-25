@@ -17,7 +17,12 @@ class extends Component {
 ?>
 
 <div>
-    <section>
+    <section class="relative">
+        @if (session('success'))
+            <div class="alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         <div class="flex flex-col md:flex-row md:gap-30 md:items-center mb-8">
             <div class="flex flex-col gap-8 md:w-1/2">
                 <div class="flex items-center gap-6">

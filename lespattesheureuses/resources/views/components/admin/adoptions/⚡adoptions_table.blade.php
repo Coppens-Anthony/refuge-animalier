@@ -15,13 +15,14 @@ new class extends Component {
     public $animals;
     public $animal;
     public $adopterId;
+    public $animalId;
     public $message;
     public $adoptionStatus = '';
     public string $term = '';
 
     public function mount()
     {
-        $this->animals = Animal::all();
+        $this->animals = Animal::where('status', Status::ADOPTABLE)->get();
         $this->adopters = Adopter::all();
     }
 
@@ -46,9 +47,9 @@ new class extends Component {
     #[Computed]
     public function animalsOptions(): array
     {
-        return $this->animals->map(fn($adoption) => [
-            'value' => $adoption->id,
-            'trad' => $adoption->name,
+        return $this->animals->map(fn($animal) => [
+            'value' => $animal->id,
+            'trad' => $animal->name,
         ])->toArray();
     }
     #[Computed]
@@ -74,6 +75,10 @@ new class extends Component {
         'message' => $validated['message'],
         'status' => Adoptions::IN_PROGRESS,
         ]);
+
+        Animal::where('id', $validated['animalId'])->update(['status' => Status::IN_ADOPTION]);
+
+        session()->flash('success', __('admin/global.adoption_created'));
         return redirect(route('show.adoptions', $adoption->id));
     }
 
@@ -99,14 +104,14 @@ new class extends Component {
             <livewire:admin.global.modal>
                 <form wire:submit="store" class="flex flex-col gap-4">
                     <x-client.form.select
-                        name="animal"
+                        name="animalId"
                         wire:model="animalId"
                         :options="$this->animalsOptions"
                     >
                         {{__('admin/global.animal_name')}}
                     </x-client.form.select>
                     <x-client.form.select
-                        name="adopter"
+                        name="adopterId"
                         wire:model="adopterId"
                         :options="$this->adoptersOptions"
                     >
