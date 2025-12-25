@@ -12,6 +12,7 @@ new class extends Component {
     {
         $this->adoption->delete();
 
+        session()->flash('delete', __('admin/global.adoption_deny'));
         return redirect(route('index.adoptions'));
     }
 
@@ -21,6 +22,7 @@ new class extends Component {
             'status' => Adoptions::IN_PROGRESS
         ]);
 
+        session()->flash('success', __('admin/global.adoption_accepted'));
         return redirect(route('show.adoptions', $this->adoption));
     }
 };
@@ -28,14 +30,35 @@ new class extends Component {
 
 <div>
     @can('view-any', User::class)
-        <div class="flex gap-4 w-fit mx-auto mt-8">
-            <form wire:submit="destroy">
-                <x-client.global.button
-                    isDangerous="{{true}}"
-                    title="{{__('admin/forms.deny_adoption_request')}}">
-                    {{__('admin/forms.deny')}}
-                </x-client.global.button>
-            </form>
+        <div class="flex gap-4 w-fit mx-auto mt-8" x-data="{deleteModal: false}" x-cloak>
+            <x-client.global.button
+                :is-dangerous="true"
+                type="button"
+                title="{{__('admin/forms.deny_adoption_request')}}"
+                @click="deleteModal = true"
+            >
+                {{__('admin/forms.deny')}}
+            </x-client.global.button>
+
+            <livewire:admin.global.modal modalName="deleteModal">
+                <p class="mb-4">
+                    {{__('admin/global.confirm_delete', ['category' => 'la demande d\'adoption', 'name' => $this->adoption->adopter->name])}}
+                </p>
+                <div class="flex gap-6 w-fit mt-5.5 ml-auto">
+                    <button @click="deleteModal = false"
+                            class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">
+                        {{__('admin/global.close')}}
+                    </button>
+                    <form wire:submit="destroy" @submit="deleteModal = false">
+                        <x-client.global.button
+                            title="{{__('admin/forms.deny_adoption_request')}}"
+                            :is-dangerous="true"
+                        >
+                            {{__('admin/forms.deny')}}
+                        </x-client.global.button>
+                    </form>
+                </div>
+            </livewire:admin.global.modal>
             <form wire:submit="update">
                 <x-client.global.button
                     title="{{__('admin/forms.accept_adoption_request')}}">

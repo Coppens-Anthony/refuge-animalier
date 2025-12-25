@@ -19,6 +19,7 @@ new class extends Component {
             'status' => Status::ADOPTABLE
         ]);
 
+        session()->flash('delete', __('admin/global.adoption_archived'));
         return redirect(route('show.adoptions', $this->adoption));
     }
 };

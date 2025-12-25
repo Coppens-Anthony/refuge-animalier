@@ -28,6 +28,12 @@ class extends Component {
         session()->flash('success', __('admin/global.animal_status_edited'));
         $this->animal->update($validated);
     }
+
+    public function destroy()
+    {
+        $this->animal->update(['status' => Status::UNAVAILABLE]);
+        session()->flash('delete', __('admin/global.animal_deleted'));
+    }
 };
 ?>
 
@@ -36,6 +42,10 @@ class extends Component {
         @if (session('success'))
             <div class="alert-success">
                 {{ session('success') }}
+            </div>
+        @elseif(session('delete'))
+            <div class="alert-delete">
+                {{ session('delete') }}
             </div>
         @endif
         <div class="flex flex-col md:flex-row md:gap-30 md:items-center mb-8">
@@ -63,10 +73,10 @@ class extends Component {
                                     </select>
                                 </div>
                                 <div class="flex gap-6 w-fit mt-5.5 ml-auto">
-                                    <p @click="open = false"
+                                    <button @click="open = false"
                                        class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0    bg-white border-primary hover:bg-primary">
                                         {{__('admin/global.close')}}
-                                    </p>
+                                    </button>
                                     <x-client.global.button
                                         title="{{__('admin/forms.edit_title')}}"
                                     >
@@ -139,7 +149,37 @@ class extends Component {
         </div>
     </section>
     @can('view-any', User::class)
-        <div class="w-fit mx-auto">
+        <div class="w-fit mx-auto flex gap-4" x-data="{deleteModal: false}" x-cloak>
+            @if($this->animal->status != Status::UNAVAILABLE)
+                <x-client.global.button
+                    :is-dangerous="true"
+                    type="button"
+                    title="{{__('admin/forms.delete_title')}}"
+                    @click="deleteModal = true"
+                >
+                    {{__('admin/forms.delete')}}
+                </x-client.global.button>
+            @endif
+            <livewire:admin.global.modal modalName="deleteModal">
+                <p class="mb-4">
+                    {{__('admin/global.confirm_delete', ['category' => 'l\'animal', 'name' => $this->animal->name])}}
+                </p>
+                <small>{{__('admin/global.prevention_animal_delete')}}</small>
+                <div class="flex gap-6 w-fit mt-5.5 ml-auto">
+                    <button @click="deleteModal = false"
+                            class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">
+                        {{__('admin/global.close')}}
+                    </button>
+                    <form wire:submit="destroy" @submit="deleteModal = false">
+                        <x-client.global.button
+                            title="{{__('admin/forms.delete_title')}}"
+                            :is-dangerous="true"
+                        >
+                            {{__('admin/forms.delete')}}
+                        </x-client.global.button>
+                    </form>
+                </div>
+            </livewire:admin.global.modal>
             <x-client.global.cta
                 route="{{route('edit.animals', $this->animal->id)}}"
                 title="{{__('global.edit_title')}}">

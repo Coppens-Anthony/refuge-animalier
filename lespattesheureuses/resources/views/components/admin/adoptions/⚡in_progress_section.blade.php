@@ -13,8 +13,8 @@ new class extends Component {
     public function destroy()
     {
         $this->adoption->delete();
-
-        return redirect(route('index.animals'));
+        session()->flash('delete', __('admin/global.adoption_cancelled'));
+        return redirect(route('index.adoptions'));
     }
 
     public function update()
@@ -24,6 +24,7 @@ new class extends Component {
             'date' => Carbon::now()
         ]);
 
+        session()->flash('success', __('admin/global.adoption_finished'));
         return redirect(route('show.adoptions', $this->adoption));
     }
 };

@@ -22,6 +22,7 @@ class Adoption extends Model
     ];
     protected $casts = [
         'date' => 'date',
+        'created_at' => 'date',
         'status' => Adoptions::class
     ];
 

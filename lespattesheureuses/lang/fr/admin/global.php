@@ -62,5 +62,12 @@ return [
     'vaccine_created' => 'Vaccin ajouté avec succès',
     'vaccine_edited' => 'Vaccin modifié avec succès',
     'vaccine_deleted' => 'Vaccin supprimé avec succès',
-    'confirm_delete' => 'Êtes-vous sûr de vouloir supprimer :category : :name'
+    'confirm_delete' => 'Êtes-vous sûr de vouloir supprimer :category : :name',
+    'animal_deleted' => 'Animal supprimée avec succès',
+    'adoption_deny' => 'Adoption refusée avec succès',
+    'adoption_accepted' => 'Adoption acceptée avec succès',
+    'adoption_cancelled' => 'Adoption annulée avec succès',
+    'adoption_archived' => 'Adoption archivée avec succès',
+    'adoption_finished' => 'Adoption terminée avec succès',
+    'prevention_animal_delete' => 'Attention, il ne sera pas réellement supprimé mais archivé en tant qu\'indisponible.'
 ];

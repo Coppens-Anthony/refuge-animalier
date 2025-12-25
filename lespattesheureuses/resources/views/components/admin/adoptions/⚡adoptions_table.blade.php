@@ -52,6 +52,7 @@ new class extends Component {
             'trad' => $animal->name,
         ])->toArray();
     }
+
     #[Computed]
     public function adoptersOptions(): array
     {
@@ -64,16 +65,16 @@ new class extends Component {
     public function store()
     {
         $validated = $this->validate([
-        'animalId' => 'required|exists:animals,id',
-        'adopterId' => 'required|exists:adopters,id',
-        'message' => 'required'
+            'animalId' => 'required|exists:animals,id',
+            'adopterId' => 'required|exists:adopters,id',
+            'message' => 'required'
         ]);
 
         $adoption = Adoption::create([
-        'animal_id' => $validated['animalId'],
-        'adopter_id' => $validated['adopterId'],
-        'message' => $validated['message'],
-        'status' => Adoptions::IN_PROGRESS,
+            'animal_id' => $validated['animalId'],
+            'adopter_id' => $validated['adopterId'],
+            'message' => $validated['message'],
+            'status' => Adoptions::IN_PROGRESS,
         ]);
 
         Animal::where('id', $validated['animalId'])->update(['status' => Status::IN_ADOPTION]);
@@ -90,7 +91,12 @@ new class extends Component {
 };
 ?>
 <div class="col-span-full">
-    <section class="mb-4 flex flex-col gap-4">
+    <section class="mb-4 flex flex-col gap-4 relative">
+        @if(session('delete'))
+            <div class="alert-delete">
+                {{ session('delete') }}
+            </div>
+        @endif
         <div class="flex justify-end mt-4" x-data="{ open: false}" x-cloak>
             <h3 class="sr-only">{!!__('admin/nav.adoptions') !!}</h3>
             <div>
@@ -167,7 +173,7 @@ new class extends Component {
                     title="Vers la fiche de {{$adoption->animal->name}}">
                     <td class="py-2">{{$adoption->animal->name}}</td>
                     <td class="py-2">{{$adoption->adopter->name}}</td>
-                    <td class="py-2">{{$adoption->created_at}}</td>
+                    <td class="py-2">{{$adoption->created_at->format('d-m-Y')}}</td>
                     <td class="py-2">{{$adoption->status->label()}}</td>
                 </tr>
             @endforeach
