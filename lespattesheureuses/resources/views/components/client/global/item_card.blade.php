@@ -11,7 +11,7 @@
                      {{ $image_src }} 1200w"
              sizes="(max-width: 768px) 100vw, 50vw"
              alt="{{ $image_alt }}"
-             class="h-full object-cover border-primary">
+             class="h-full w-full object-cover border-primary">
     </div>
 
     <div class="flex flex-col gap-2 w-[calc(100%-16px*2)] mx-auto">

@@ -16,6 +16,7 @@
         />
         <x-client.home.animals
         title="{!! __('client/home.animals_title') !!}"
+        :items="$lastAnimals"
         />
         <x-client.home.contact_section/>
     </div>

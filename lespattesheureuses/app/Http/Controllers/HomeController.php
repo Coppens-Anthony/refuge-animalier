@@ -14,6 +14,11 @@ class HomeController
         $adoptions = Adoption::where('status', Adoptions::FINISHED);
         $animalsAdoptable = $animals->where('status', Status::ADOPTABLE);
 
-        return view('client.home', compact('animals', 'adoptions', 'animalsAdoptable'));
+        $lastAnimals = Animal::where('status', Status::ADOPTABLE)
+            ->orderBy('created_at', 'desc')
+            ->limit(3)
+            ->get();
+
+        return view('client.home', compact('animals', 'adoptions', 'animalsAdoptable', 'lastAnimals'));
     }
 }

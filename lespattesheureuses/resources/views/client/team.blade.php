@@ -5,5 +5,7 @@
         image_src="{{asset('assets/images/team_intro.png')}}"
         image_alt="{!! __('client/team.intro_img_alt') !!}"
     />
-    <x-client.team.team/>
+    <x-client.team.team
+        :items="$members"
+    />
 </x-client.global.layout>
