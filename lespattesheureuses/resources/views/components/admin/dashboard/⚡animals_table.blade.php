@@ -50,14 +50,13 @@ new class extends Component {
 ?>
 
 
-<div class="col-span-7 border-1 border-primary px-4 rounded-2xl">
+<div class="col-span-full lg:col-span-7 border-1 border-primary px-4 rounded-2xl">
     <section class="mb-4 flex flex-col gap-4">
         <h3 class="mt-4">{!! __('admin/global.animals') !!}</h3>
-        <form action="" class="flex gap-4">
+        <form class="grid grid-cols-2 md:grid-cols-3 gap-4">
             <x-client.form.input
                 name="search"
                 type="search"
-                class="w-1/3"
                 placeholder="{{__('global.search')}}"
                 wire:model.live.debounce="term"
             >
@@ -65,7 +64,6 @@ new class extends Component {
             </x-client.form.input>
             <x-client.form.select
                 name="specieId"
-                class="w-1/3"
                 wire:model.live="specieId"
                 :options="$this->speciesOptions"
             >
@@ -73,7 +71,6 @@ new class extends Component {
             </x-client.form.select>
             <x-client.form.select
                 name="status"
-                class="w-1/3"
                 wire:model.live="status"
                 :options="Status::options()"
             >

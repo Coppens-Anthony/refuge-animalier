@@ -109,7 +109,7 @@ new class extends Component {
         </h3>
 
         <div x-show="expanded" class="border-primary border-1 rounded-xl border-t-0 p-4">
-            <ul class="grid grid-cols-2 gap-8">
+            <ul class="grid sx:grid-cols-2 gap-8">
                 @foreach($this->breeds as $breed)
                     <li class="flex items-center gap-4" x-data="{edit: false, deleteModal: false}">
                         <p>{{$breed->name}} - {{$breed->specie->name}}</p>

@@ -92,6 +92,7 @@ new class extends Component {
 <div class="col-span-full">
     <form wire:submit="update" class="col-span-full flex flex-col gap-8">
         @csrf
+
         <div class="flex flex-col gap-2 w-fit mx-auto text-center mb-12 font-bold">
             <input id="avatar" name="avatar" type="file" wire:model="avatar"
                    class="invisible absolute top-0 left-0 h-0 w-0"
@@ -118,96 +119,66 @@ new class extends Component {
                 @endif
             </label>
         </div>
+
         <div class="flex justify-between gap-4">
-            <fieldset class="w-1/2 flex flex-col gap-4">
-                <x-client.form.input
-                    wire:model="lastname"
-                    name="lastname"
-                    placeholder="Doe">
+            <fieldset class="grid md:grid-cols-2 gap-4 w-full">
+
+                <x-client.form.input wire:model="lastname" name="lastname">
                     {!! __('admin/members.lastname') !!}
                 </x-client.form.input>
-                <x-client.form.input
-                    wire:model="email"
-                    name="email"
-                    type="email"
-                    placeholder="john@doe.com">
-                    {!! __('admin/global.email') !!}
-                </x-client.form.input>
-                <x-client.form.input
-                    wire:model="oldPassword"
-                    name="oldPassword"
-                    {{--type="password"--}}
-                    placeholder=""
-                >
-                    {!! __('admin/members.password_temporary') !!}
-                </x-client.form.input>
-            </fieldset>
-            <fieldset class="w-1/2 flex flex-col gap-4">
-                <x-client.form.input
-                    wire:model="firstname"
-                    name="firstname"
-                    placeholder="John">
+
+                <x-client.form.input wire:model="firstname" name="firstname">
                     {!! __('admin/members.firstname') !!}
                 </x-client.form.input>
-                <x-client.form.input
-                    wire:model="telephone"
-                    name="telephone"
-                    type="telephone"
-                    placeholder="0123 45 67 89">
+
+                <x-client.form.input wire:model="email" name="email" type="email">
+                    {!! __('admin/global.email') !!}
+                </x-client.form.input>
+
+                <x-client.form.input wire:model="telephone" name="telephone">
                     {!! __('admin/global.telephone') !!}
                 </x-client.form.input>
+
+                <x-client.form.input wire:model="oldPassword" name="oldPassword" type="password">
+                    {!! __('admin/members.password_temporary') !!}
+                </x-client.form.input>
+
                 <x-client.form.input
                     wire:model="password"
                     name="password"
                     type="password"
-                    placeholder=""
-                    is-required="{{false}}"
-                >
+                    is-required="{{ false }}">
                     {!! __('admin/members.new_password') !!}
                 </x-client.form.input>
+
             </fieldset>
         </div>
-        <fieldset class="flex justify-between gap-4">
-            <legend class="text-2xl mb-4">Ses disponibilités <span class="text-secondary">*</span></legend>
-            <div class="w-1/2 flex flex-col gap-4">
-                <x-client.form.checkbox
-                    label="{{__('admin/dispo.monday')}}"
-                    day="monday"
-                />
-                <x-client.form.checkbox
-                    label="{{__('admin/dispo.tuesday')}}"
-                    day="tuesday"
-                />
-                <x-client.form.checkbox
-                    label="{{__('admin/dispo.wednesday')}}"
-                    day="wednesday"
-                />
-                <x-client.form.checkbox
-                    label="{{__('admin/dispo.thursday')}}"
-                    day="thursday"
-                />
+
+        <fieldset class="grid md:grid-cols-2 gap-2 md:gap-8 w-full">
+            <legend class="text-2xl mb-4">
+                Ses disponibilités <span class="text-secondary">*</span>
+            </legend>
+
+            <div class="flex flex-col gap-2">
+                <x-client.form.checkbox label="{{__('admin/dispo.monday')}}" day="monday"/>
+                <x-client.form.checkbox label="{{__('admin/dispo.tuesday')}}" day="tuesday"/>
+                <x-client.form.checkbox label="{{__('admin/dispo.wednesday')}}" day="wednesday"/>
+                <x-client.form.checkbox label="{{__('admin/dispo.thursday')}}" day="thursday"/>
             </div>
-            <div class="w-1/2 flex flex-col gap-4">
-                <x-client.form.checkbox
-                    label="{{__('admin/dispo.friday')}}"
-                    day="friday"
-                />
-                <x-client.form.checkbox
-                    label="{{__('admin/dispo.saturday')}}"
-                    day="saturday"
-                />
-                <x-client.form.checkbox
-                    label="{{__('admin/dispo.sunday')}}"
-                    day="sunday"
-                />
+
+            <div class="flex flex-col gap-2">
+                <x-client.form.checkbox label="{{__('admin/dispo.friday')}}" day="friday"/>
+                <x-client.form.checkbox label="{{__('admin/dispo.saturday')}}" day="saturday"/>
+                <x-client.form.checkbox label="{{__('admin/dispo.sunday')}}" day="sunday"/>
             </div>
         </fieldset>
+
         <div class="mx-auto w-fit">
-            <x-client.global.button
-                title="{{__('admin/members.edit_title')}}"
-            >
+            <x-client.global.button title="{{__('admin/members.edit_title')}}">
                 {!! __('admin/forms.edit') !!}
             </x-client.global.button>
         </div>
+
     </form>
 </div>
+

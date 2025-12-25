@@ -23,7 +23,7 @@ new class extends Component {
 <div class="col-span-full">
     <section>
         <h3 class="sr-only">{!! __('admin/dashboard.key_numbers') !!}</h3>
-        <ul class="flex gap-4">
+        <ul class="grid grid-cols-2 sx:grid-cols-3 md:grid-cols-5 gap-4">
             <livewire:admin.dashboard.key_card
                 title="{!! __('admin/nav.adoptions') !!}"
                 number="{{count($this->adoptions)}}"

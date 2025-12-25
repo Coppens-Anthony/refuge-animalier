@@ -2,23 +2,33 @@
 
 use Livewire\Component;
 use App\Models\User;
+use Livewire\Attributes\Computed;
 
 new class extends Component {
-    //
+
+    #[Computed]
+    public function authUser()
+    {
+        return auth()->user();
+    }
 };
 ?>
 
-<div class="w-1/6">
-    <aside class="bg-primary w-fit h-full fixed top-0 shadow-2xl">
+<div>
+    <aside class="hidden lg:block bg-primary shadow-2xl fixed top-0 left-0 h-full z-40 w-48">
         <h2 class="sr-only">Menu</h2>
-        <div class="relative w-fit mb-8 pt-4 mx-auto">
-            <a href="{{route('dashboard')}}" class="absolute top-0 left-0 h-full w-full"
-               title="{!! __('admin/dashboard.to_dashboard') !!}"></a>
+
+        <div class="relative w-fit mb-8 pt-4 mx-auto px-4">
+            <a href="{{route('dashboard')}}"
+               class="absolute top-0 left-0 h-full w-full"
+               title="{!! __('admin/dashboard.to_dashboard') !!}">
+            </a>
             <x-client.global.logo/>
         </div>
-        <nav class="w-fit ml-4">
+
+        <nav class="px-4">
             <h3 class="sr-only">{{__('global.navigation')}}</h3>
-            <ul class="flex flex-col gap-6">
+            <ul class="flex flex-col gap-4">
                 <livewire:admin.global.item_nav
                     route="dashboard"
                     title="{!! __('admin/nav.to_dashboard') !!}"

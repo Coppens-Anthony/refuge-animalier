@@ -152,7 +152,7 @@ new class extends Component {
             </label>
         </div>
         <div class="flex justify-between gap-4">
-            <fieldset class="w-1/2 flex flex-col gap-4">
+            <fieldset class="grid md:grid-cols-2 gap-4 w-full">
                 <x-client.form.input
                     wire:model="name"
                     name="name"
@@ -185,8 +185,6 @@ new class extends Component {
                     :options="Sex::options()">
                     {!! __('admin/global.sex') !!}
                 </x-client.form.select>
-            </fieldset>
-            <fieldset class="w-1/2 flex flex-col gap-4" x-data="{open: false}">
                 <livewire:admin.global.modal_checkbox
                     wire:model="coat_ids"
                     :key="'coats-'.microtime()"

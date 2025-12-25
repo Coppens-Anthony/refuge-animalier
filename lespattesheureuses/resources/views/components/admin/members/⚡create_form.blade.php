@@ -15,7 +15,7 @@ new class extends Component {
 
     public function mount()
     {
-        $this->availabilities  = [
+        $this->availabilities = [
             'monday' => ['morning' => false, 'afternoon' => false, 'evening' => false],
             'tuesday' => ['morning' => false, 'afternoon' => false, 'evening' => false],
             'wednesday' => ['morning' => false, 'afternoon' => false, 'evening' => false],
@@ -55,12 +55,18 @@ new class extends Component {
     <form wire:submit="store" class="col-span-full flex flex-col gap-8">
         @csrf
         <div class="flex justify-between gap-4">
-            <fieldset class="w-1/2 flex flex-col gap-4">
+            <fieldset class="grid md:grid-cols-2 gap-4 w-full">
                 <x-client.form.input
                     wire:model="lastname"
                     name="lastname"
                     placeholder="Doe">
                     {!! __('admin/members.lastname') !!}
+                </x-client.form.input>
+                <x-client.form.input
+                    wire:model="firstname"
+                    name="firstname"
+                    placeholder="John">
+                    {!! __('admin/members.firstname') !!}
                 </x-client.form.input>
                 <x-client.form.input
                     wire:model="email"
@@ -70,27 +76,19 @@ new class extends Component {
                     {!! __('admin/global.email') !!}
                 </x-client.form.input>
                 <x-client.form.input
-                    wire:model="password"
-                    name="password"
-                    {{--type="password"--}}
-                    placeholder=""
-                >
-                    {!! __('admin/members.password_temporary') !!}
-                </x-client.form.input>
-            </fieldset>
-            <fieldset class="w-1/2 flex flex-col gap-4">
-                <x-client.form.input
-                    wire:model="firstname"
-                    name="firstname"
-                    placeholder="John">
-                    {!! __('admin/members.firstname') !!}
-                </x-client.form.input>
-                <x-client.form.input
                     wire:model="telephone"
                     name="telephone"
                     type="telephone"
                     placeholder="0123 45 67 89">
                     {!! __('admin/global.telephone') !!}
+                </x-client.form.input>
+                <x-client.form.input
+                    wire:model="password"
+                    name="password"
+                    type="password"
+                    placeholder=""
+                >
+                    {!! __('admin/members.password_temporary') !!}
                 </x-client.form.input>
                 <x-client.form.select
                     name="role"
@@ -101,9 +99,9 @@ new class extends Component {
                 </x-client.form.select>
             </fieldset>
         </div>
-        <fieldset class="flex justify-between gap-4">
+        <fieldset class="grid md:grid-cols-2 gap-2 md:gap-8 w-full">
             <legend class="text-2xl mb-4">Ses disponibilités <span class="text-secondary">*</span></legend>
-            <div class="w-1/2 flex flex-col gap-4">
+            <div class="flex flex-col gap-2">
                 <x-client.form.checkbox
                     label="{{__('admin/dispo.monday')}}"
                     day="monday"
@@ -121,7 +119,7 @@ new class extends Component {
                     day="thursday"
                 />
             </div>
-            <div class="w-1/2 flex flex-col gap-4">
+            <div class="flex flex-col gap-2">
                 <x-client.form.checkbox
                     label="{{__('admin/dispo.friday')}}"
                     day="friday"
