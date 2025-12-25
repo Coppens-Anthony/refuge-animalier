@@ -72,12 +72,10 @@ new class extends Component {
         session()->flash('success', __('admin/global.vaccine_edited'));
     }
 
-    public function delete($id)
+    public function delete(Vaccine $vaccine)
     {
-        $vaccine = Vaccine::findOrFail($id);
         $vaccine->delete();
-
-        $this->dispatch('vaccine-deleted');
+        session()->flash('delete', __('admin/global.vaccine_deleted'));
     }
 };
 ?>
@@ -86,6 +84,10 @@ new class extends Component {
         @if (session('success'))
             <div class="alert-success">
                 {{ session('success') }}
+            </div>
+        @elseif(session('delete'))
+            <div class="alert-delete">
+                {{ session('delete') }}
             </div>
         @endif
         <div class="w-fit mb-2 ml-auto cursor-pointer">
@@ -107,7 +109,7 @@ new class extends Component {
         <div x-show="expanded" class="border-primary border-1 rounded-xl border-t-0 p-4">
             <ul class="grid grid-cols-2 gap-8">
                 @foreach($this->vaccines as $vaccine)
-                    <li class="flex items-center gap-4" x-data="{edit: false}">
+                    <li class="flex items-center gap-4" x-data="{edit: false, deleteModal: false}">
                         <p>{{$vaccine->name}} - {{$vaccine->specie->name}}</p>
                         <div class="flex gap-2">
                             <img src="{{asset('assets/icons/edit.svg')}}"
@@ -115,55 +117,75 @@ new class extends Component {
                                  class="cursor-pointer"
                                  wire:click="edit({{$vaccine}})"
                                  @click="edit = true">
-                            <form wire:submit="delete({{$vaccine->id}})">
-                                <button type="submit" class="cursor-pointer">
-                                    <img src="{{asset('assets/icons/delete.svg')}}"
-                                         alt="{{__('global.delete_icon')}}">
-                                </button>
-                            </form>
-                        </div>
-                        <div class="inset-0 fixed z-40 bg-black opacity-50 w-full h-full" x-show="edit"></div>
-                        <div x-show="edit" x-on:vaccine-edited.window="edit = false" @click.outside="edit = false"
-                             @keydown.escape.window="edit = false"
-                             class="p-6 fixed w-[50vw] z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform origin-center bg-white border-primary border-2 rounded-2xl shadow-2xl backdrop:bg-black backdrop:opacity-50">
-                            <div class="absolute z-60 cursor-pointer top-2 right-2" @click="edit = false">
-                                <svg viewBox="0 0 24 24" fill="black" width="40" height="40"
-                                     xmlns="http://www.w3.org/2000/svg">
-                                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                                    <g id="SVGRepo_iconCarrier">
-                                        <path d="M16 8L8 16M8.00001 8L16 16" stroke="#000000" stroke-width="1.5"
-                                              stroke-linecap="round"
-                                              stroke-linejoin="round"></path>
-                                    </g>
-                                </svg>
-                            </div>
-                            <form wire:submit="update" class="flex flex-col gap-4">
-                                <x-client.form.input
-                                    wire:model="editVaccine"
-                                    name="editVaccine"
-                                    placeholder="{{$vaccine->name}}"
-                                >
-                                    {{__('admin/forms.vaccine_edit')}}
-                                </x-client.form.input>
-                                <x-client.form.select
-                                    wire:model="editSpecieId"
-                                    name="editSpecieId"
-                                    :options="$this->speciesOptions"
-                                >
-                                    Associer à une espèce
-                                </x-client.form.select>
+                            <img src="{{asset('assets/icons/delete.svg')}}"
+                                 alt="{{__('global.delete_icon')}}"
+                                 @click="deleteModal = true"
+                                 class="cursor-pointer"
+                            >
+
+                            <livewire:admin.global.modal modalName="deleteModal">
+                                <p class="mb-4">
+                                    {{__('admin/global.confirm_delete', ['category' => 'le vaccin', 'name' => $vaccine->name])}}
+                                </p>
                                 <div class="flex gap-6 w-fit mt-5.5 ml-auto">
-                                    <p @click="edit = false"
+                                    <p @click="deleteModal = false"
                                        class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">
                                         {{__('admin/global.close')}}
                                     </p>
-                                    <x-client.global.button
-                                        title="{{__('admin/forms.edit_title')}}">
-                                        {{__('admin/forms.edit')}}
-                                    </x-client.global.button>
+                                    <form wire:submit="delete({{$vaccine}})">
+                                        <x-client.global.button
+                                            title="{{__('admin/forms.delete_title')}}"
+                                            :is-dangerous="true"
+                                        >
+                                            {{__('admin/forms.delete')}}
+                                        </x-client.global.button>
+                                    </form>
                                 </div>
-                            </form>
+                            </livewire:admin.global.modal>
+                            <div class="inset-0 fixed z-40 bg-black opacity-50 w-full h-full" x-show="edit"></div>
+                            <div x-show="edit" x-on:vaccine-edited.window="edit = false" @click.outside="edit = false"
+                                 @keydown.escape.window="edit = false"
+                                 class="p-6 fixed w-[50vw] z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform origin-center bg-white border-primary border-2 rounded-2xl shadow-2xl backdrop:bg-black backdrop:opacity-50">
+                                <div class="absolute z-60 cursor-pointer top-2 right-2" @click="edit = false">
+                                    <svg viewBox="0 0 24 24" fill="black" width="40" height="40"
+                                         xmlns="http://www.w3.org/2000/svg">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round"
+                                           stroke-linejoin="round"></g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path d="M16 8L8 16M8.00001 8L16 16" stroke="#000000" stroke-width="1.5"
+                                                  stroke-linecap="round"
+                                                  stroke-linejoin="round"></path>
+                                        </g>
+                                    </svg>
+                                </div>
+                                <form wire:submit="update" class="flex flex-col gap-4">
+                                    <x-client.form.input
+                                        wire:model="editVaccine"
+                                        name="editVaccine"
+                                        placeholder="{{$vaccine->name}}"
+                                    >
+                                        {{__('admin/forms.vaccine_edit')}}
+                                    </x-client.form.input>
+                                    <x-client.form.select
+                                        wire:model="editSpecieId"
+                                        name="editSpecieId"
+                                        :options="$this->speciesOptions"
+                                    >
+                                        Associer à une espèce
+                                    </x-client.form.select>
+                                    <div class="flex gap-6 w-fit mt-5.5 ml-auto">
+                                        <p @click="edit = false"
+                                           class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">
+                                            {{__('admin/global.close')}}
+                                        </p>
+                                        <x-client.global.button
+                                            title="{{__('admin/forms.edit_title')}}">
+                                            {{__('admin/forms.edit')}}
+                                        </x-client.global.button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </li>
                 @endforeach

@@ -6,6 +6,8 @@ return [
     'add' => 'Ajouter',
     'add_animal_title' => 'Ajouter l\'animal',
     'edit_title' => 'Modifier l\'élement',
+    'delete_title' => 'Supprimer l\'élement',
+    'delete' => 'Supprimer',
     'add_element' => 'Ajouter un élément',
     'add_coat' => 'Ajouter un pelage',
     'add_specie' => 'Ajouter une espèce',

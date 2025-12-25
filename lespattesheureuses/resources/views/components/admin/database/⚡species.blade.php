@@ -47,10 +47,10 @@ new class extends Component {
 
     }
 
-    public function delete($id)
+    public function delete(Specie $specie)
     {
-        $specie = Specie::findOrFail($id);
         $specie->delete();
+        session()->flash('delete', __('admin/global.specie_deleted'));
     }
 };
 ?>
@@ -59,6 +59,10 @@ new class extends Component {
         @if (session('success'))
             <div class="alert-success">
                 {{ session('success') }}
+            </div>
+        @elseif(session('delete'))
+            <div class="alert-delete">
+                {{ session('delete') }}
             </div>
         @endif
         <div class="w-fit mb-2 ml-auto cursor-pointer">
@@ -80,7 +84,7 @@ new class extends Component {
         <div x-show="expanded" class="border-primary border-1 rounded-xl border-t-0 p-4">
             <ul class="grid grid-cols-2 gap-8">
                 @foreach($this->species as $specie)
-                    <li class="flex items-center gap-4" x-data="{edit: false}">
+                    <li class="flex items-center gap-4" x-data="{edit: false, deleteModal: false}">
                         <p>{{$specie->name}}</p>
                         <div class="flex gap-2">
                             <img src="{{asset('assets/icons/edit.svg')}}"
@@ -88,13 +92,31 @@ new class extends Component {
                                  class="cursor-pointer"
                                  wire:click="edit({{$specie}})"
                                  @click="edit = true">
-                            <form wire:submit="delete({{$specie->id}})">
-                                <button type="submit" class="cursor-pointer">
-                                    <img src="{{asset('assets/icons/delete.svg')}}"
-                                         alt="{{__('global.delete_icon')}}"
-                                    >
-                                </button>
-                            </form>
+                            <img src="{{asset('assets/icons/delete.svg')}}"
+                                 alt="{{__('global.delete_icon')}}"
+                                 @click="deleteModal = true"
+                                 class="cursor-pointer"
+                            >
+
+                            <livewire:admin.global.modal modalName="deleteModal">
+                                <p class="mb-4">
+                                    {{__('admin/global.confirm_delete', ['category' => 'l\'espèce', 'name' => $specie->name])}}
+                                </p>
+                                <div class="flex gap-6 w-fit mt-5.5 ml-auto">
+                                    <p @click="deleteModal = false"
+                                       class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">
+                                        {{__('admin/global.close')}}
+                                    </p>
+                                    <form wire:submit="delete({{$specie}})">
+                                        <x-client.global.button
+                                            title="{{__('admin/forms.delete_title')}}"
+                                            :is-dangerous="true"
+                                        >
+                                            {{__('admin/forms.delete')}}
+                                        </x-client.global.button>
+                                    </form>
+                                </div>
+                            </livewire:admin.global.modal>
                         </div>
                         <div class="inset-0 fixed z-40 bg-black opacity-50 w-full h-full" x-show="edit"></div>
                         <div x-show="edit" x-on:specie-edited.window="edit = false" @click.outside="edit = false"

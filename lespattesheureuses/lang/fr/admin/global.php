@@ -52,10 +52,15 @@ return [
     'animal_status_edited' => 'Statut de l\'animal modifié avec succès',
     'specie_created' => 'Espèce ajoutée avec succès',
     'specie_edited' => 'Espèce modifiée avec succès',
+    'specie_deleted' => 'Espèce supprimée avec succès',
     'breed_created' => 'Race ajoutée avec succès',
     'breed_edited' => 'Race modifiée avec succès',
+    'breed_deleted' => 'Race supprimée avec succès',
     'coat_created' => 'Pelage ajouté avec succès',
     'coat_edited' => 'Pelage modifié avec succès',
+    'coat_deleted' => 'Pelage supprimé avec succès',
     'vaccine_created' => 'Vaccin ajouté avec succès',
     'vaccine_edited' => 'Vaccin modifié avec succès',
+    'vaccine_deleted' => 'Vaccin supprimé avec succès',
+    'confirm_delete' => 'Êtes-vous sûr de vouloir supprimer :category : :name'
 ];
