@@ -31,7 +31,8 @@ class Animal extends Model
     protected $casts = [
         'status' => Status::class,
         'sex' => Sex::class,
-        'birthdate' => 'date'
+        'birthdate' => 'date',
+        'created_at' => 'datetime',
     ];
 
 
