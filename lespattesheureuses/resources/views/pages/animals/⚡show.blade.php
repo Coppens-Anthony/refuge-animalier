@@ -50,7 +50,7 @@ class extends Component {
         @endif
         <div class="flex flex-col md:flex-row md:gap-30 md:items-center mb-8">
             <div class="flex flex-col gap-8 md:w-1/2">
-                <div class="flex items-center gap-6">
+                <div class="flex flex-col md:flex-row md:items-center gap-6">
                     <h3 class="text-[2rem]">{{$this->animal->name}}</h3>
                     <div class="flex gap-2 items-center" x-data="{open: false}" x-cloak>
                         <x-client.global.status isInCard="{{false}}">
@@ -72,7 +72,7 @@ class extends Component {
                                         @endforeach
                                     </select>
                                 </div>
-                                <div class="flex gap-6 w-fit mt-5.5 ml-auto">
+                                <div class="flex flex-col md:flex-row gap-6 w-fit mt-5.5 ml-auto">
                                     <button @click="open = false"
                                        class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0    bg-white border-primary hover:bg-primary">
                                         {{__('admin/global.close')}}

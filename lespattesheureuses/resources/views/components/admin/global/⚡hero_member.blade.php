@@ -23,13 +23,13 @@ new class extends Component {
 ?>
 
 <div>
-    <section class="flex gap-30 items-center relative">
+    <section class="flex flex-col md:flex-row gap-8 md:gap-30 md:items-center relative">
         @if (session('success'))
             <div class="alert-success">
                 {{ session('success') }}
             </div>
         @endif
-        <div class="flex flex-col gap-8 w-1/2">
+        <div class="flex flex-col gap-8 md:w-1/2">
             <div class="flex gap-4 items-center">
                 <h3 class="text-2xl">{{$this->member->firstname . ' ' . $this->member->lastname}}</h3>
                 <x-client.global.status

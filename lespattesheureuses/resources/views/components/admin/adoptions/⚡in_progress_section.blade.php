@@ -32,7 +32,7 @@ new class extends Component {
 
 <div>
 
-    <div class="flex gap-4 w-fit mx-auto mt-8">
+    <div class="flex flex-col md:flex-row gap-4 w-fit mx-auto mt-8">
         <form wire:submit="destroy">
             <x-client.global.button
                 isDangerous="{{true}}"
@@ -43,8 +43,7 @@ new class extends Component {
         <form wire:submit="update">
             <x-client.global.button
                 title="{{__('admin/forms.accept_adoption_request')}}">
-                {{$this->adoption->adopter->name}} {{__('admin/global.have_adopted')}} {{$this->adoption->animal->name}}
-                &nbsp;!
+                {{$this->adoption->adopter->name}} {{__('admin/global.have_adopted')}} {{$this->adoption->animal->name}}&nbsp;!
             </x-client.global.button>
         </form>
     </div>

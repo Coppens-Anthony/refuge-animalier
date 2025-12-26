@@ -33,11 +33,11 @@ new class extends Component {
            <p>
                Sarah Dupont a réalisé une demande d’adoption pour Max. Vous pouvez analyser la demande et l’accepter ou la refuser.
            </p>
-           <div class="flex gap-6 w-fit mt-5.5 ml-auto">
-               <p @click="open = false"
+           <div class="flex flex-col md:flex-row gap-6 w-fit mt-5.5 ml-auto mb-2">
+               <button @click="open = false"
                    class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0    bg-white border-primary hover:bg-primary">
                    Fermer
-               </p>
+               </button>
                <x-client.global.cta
                 title=""
                 route=""
