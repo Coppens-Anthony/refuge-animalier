@@ -12,7 +12,7 @@ return [
     'animals_searching_family' => 'Animaux adoptables',
     'home_icon' => 'Icône de maison',
     'search_icon' => 'Icône de loupe',
-    'filters_icon' => 'Icône de filtres',
+    'filters' => 'Filtres',
     'heart_icon' => 'Icône de coeur',
     'paws_icon' => 'Icône de 2 pattes d\'animaux',
     'paw_icon' => 'Icône d\'une patte d\'animal',

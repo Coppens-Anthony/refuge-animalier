@@ -6,5 +6,5 @@
         image_alt="{!! __('client/animals.intro_image_alt') !!}"
     />
 
-    <x-client.animals.animals :animals="$animals"/>
+    <x-client.animals.animals :species="$species" :breeds="$breeds" :coats="$coats" :animals="$animals"/>
 </x-client.global.layout>
