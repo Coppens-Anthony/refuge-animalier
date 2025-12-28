@@ -164,20 +164,32 @@ new class extends Component {
                 {{__('admin/global.status')}}
             </x-client.form.select>
         </form>
-        <livewire:admin.global.table.table
-            :titles="[__('admin/global.animal_name'), __('admin/global.adopter_name'), __('admin/global.date'), __('admin/global.status')]">
-            @foreach($this->adoptions as $adoption)
-                <tr class="hover:bg-primary-opacity cursor-pointer"
-                    wire:click="goToAdoption({{ $adoption->id }})"
-                    wire:key="animal-{{ $adoption->id }}"
-                    title="Vers la fiche de {{$adoption->animal->name}}">
-                    <td class="py-2">{{$adoption->animal->name}}</td>
-                    <td class="py-2">{{$adoption->adopter->name}}</td>
-                    <td class="py-2">{{$adoption->created_at->format('d-m-Y')}}</td>
-                    <td class="py-2">{{$adoption->status->label()}}</td>
-                </tr>
-            @endforeach
-        </livewire:admin.global.table.table>
+            <livewire:admin.global.table.table
+                :titles="[__('admin/global.animal_name'), __('admin/global.adopter_name'), __('admin/global.date'), __('admin/global.status')]">
+                @foreach($this->adoptions as $adoption)
+                    <tr class="table__tr"
+                        wire:click="goToAdoption({{ $adoption->id }})"
+                        wire:key="adoption-{{ $adoption->id }}"
+                        title="Vers la fiche de {{$adoption->animal->name}}">
+                        <td class="text_td">
+                            <span class="title_td">{{__('admin/global.animal_name')}}</span>
+                            <span class="font-medium">{{$adoption->animal->name}}</span>
+                        </td>
+                        <td class="text_td">
+                            <span class="title_td">{{__('admin/global.adopter_name')}}</span>
+                            <span>{{$adoption->adopter->name}}</span>
+                        </td>
+                        <td class="text_td">
+                            <span class="title_td">{{__('admin/global.date')}}</span>
+                            <span>{{$adoption->created_at->format('d-m-Y')}}</span>
+                        </td>
+                        <td class="text_td">
+                            <span class="title_td">{{__('admin/global.status')}}</span>
+                            <span>{{$adoption->status->label()}}</span>
+                        </td>
+                    </tr>
+                @endforeach
+            </livewire:admin.global.table.table>
 
         <div class="mt-4">
             {{ $this->adoptions->links() }}

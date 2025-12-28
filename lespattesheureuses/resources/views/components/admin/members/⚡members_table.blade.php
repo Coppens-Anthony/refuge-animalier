@@ -54,31 +54,44 @@ new class extends Component {
             </x-client.form.select>
         </form>
         <livewire:admin.global.table.table
-            :titles="[__('admin/global.avatar'), __('admin/global.name'),__('admin/global.email'),__('admin/global.telephone'), __('admin/global.status')]">
+            :titles="[__('admin/global.avatar'), __('admin/global.name'),__('admin/global.email'), __('admin/global.status')]">
             @foreach($this->members as $member)
-                <tr class="hover:bg-primary-opacity cursor-pointer"
+                <tr class="table__tr"
                     wire:click="goToMember({{ $member->id }})"
-                    wire:key="animal-{{ $member->id }}"
+                    wire:key="member-{{ $member->id }}"
                     title="Vers la fiche de {{$member->firstname . ' ' . $member->lastname}}">
-                    <td class="py-2">
-                        @if($member->avatar)
-                        <img src="{{ asset('avatars/originals/'.$member->avatar) }}"
-                             srcset="
-                            {{asset('avatars/variants/300x300/'.$member->avatar)}} 300w,
-                            {{asset('avatars/variants/600x600/'.$member->avatar)}} 600w,
-                            {{asset('avatars/variants/900x900/'.$member->avatar)}} 900w,
-                            {{asset('avatars/variants/1200x1200/'.$member->avatar)}} 1200w"
-                             sizes="(max-width: 768px) 100vw, 50vw"
-                             alt="{!! __('client/animals.animal_image_alt', ['name' => $member->firstname . ' ' . $member->lastname]) !!}"
-                             class="w-12 h-12 rounded-full object-cover mx-auto">
-                        @else
-                            Avatar
-                        @endif
+                    <td class="avatar_td">
+                        <span class="avatar_title">{{__('admin/global.avatar')}}</span>
+                        <div class="avatar_container">
+                            @if($member->avatar)
+                                <img src="{{ asset('avatars/originals/'.$member->avatar) }}"
+                                     srcset="
+                    {{asset('avatars/variants/300x300/'.$member->avatar)}} 300w,
+                    {{asset('avatars/variants/600x600/'.$member->avatar)}} 600w,
+                    {{asset('avatars/variants/900x900/'.$member->avatar)}} 900w,
+                    {{asset('avatars/variants/1200x1200/'.$member->avatar)}} 1200w"
+                                     sizes="(max-width: 768px) 48px, 48px"
+                                     alt="{!! __('client/animals.animal_image_alt', ['name' => $member->firstname . ' ' . $member->lastname]) !!}"
+                                     class="avatar">
+                            @else
+                                <div class="no_avatar">
+                                    Avatar
+                                </div>
+                            @endif
+                        </div>
                     </td>
-                    <td class="py-2">{{$member->firstname . ' ' . $member->lastname}}</td>
-                    <td class="py-2">{{$member->email}}</td>
-                    <td class="py-2">{{$member->telephone}}</td>
-                    <td class="py-2">{{$member->status->label()}}</td>
+                    <td class="text_td">
+                        <span class="title_td">{{__('admin/global.name')}}</span>
+                        <span class="font-medium">{{$member->firstname . ' ' . $member->lastname}}</span>
+                    </td>
+                    <td class="text_td">
+                        <span class="title_td">{{__('admin/global.email')}}</span>
+                        <span>{{$member->email}}</span>
+                    </td>
+                    <td class="text_td">
+                        <span class="title_td">{{__('admin/global.status')}}</span>
+                        <span>{{$member->status->label()}}</span>
+                    </td>
                 </tr>
             @endforeach
         </livewire:admin.global.table.table>

@@ -86,7 +86,7 @@ new class extends Component {
 };
 ?>
 
-<div class="col-span-3 border-1 border-primary px-4 rounded-2xl">
+<div class="col-span-full sx:col-span-5 md:col-span-3 border-1 border-primary px-4 rounded-2xl">
     <section class="mt-4 flex flex-col gap-4">
         <h3>{!! __('admin/dashboard.stats') !!}</h3>
         <div class="flex items-center justify-between ">

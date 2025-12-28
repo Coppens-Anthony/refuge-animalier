@@ -11,17 +11,17 @@ new class extends Component {
 ?>
 
 <div>
-    <table class="w-full text-center rounded-t-2xl overflow-hidden">
-        <thead class="bg-primary">
+    <table class="w-full md:text-center md:rounded-t-2xl md:overflow-hidden md:table-fixed">
+        <thead class="hidden md:table-header-group bg-primary">
         <tr class="table-row">
             @foreach($titles as $title)
-                <th class="py-4 w-1/{{count($titles)}}">
+                <th class="py-4">
                     {{$title}}
                 </th>
             @endforeach
         </tr>
         </thead>
-        <tbody class="border-primary border-1">
+        <tbody class="flex flex-col gap-4 md:table-row-group md:border-primary md:border-1">
         {{$slot}}
         </tbody>
     </table>
