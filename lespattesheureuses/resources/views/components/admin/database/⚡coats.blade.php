@@ -100,7 +100,7 @@ new class extends Component {
                                 <p class="mb-4">
                                     {{__('admin/global.confirm_delete', ['category' => 'le pelage', 'name' => $coat->name])}}
                                 </p>
-                                <div class="flex gap-6 w-fit mt-5.5 ml-auto">
+                                <div class="flex flex-col md:flex-row gap-6 w-fit mt-5.5 ml-auto">
                                     <button @click="deleteModal = false"
                                        class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">
                                         {{__('admin/global.close')}}
@@ -119,7 +119,7 @@ new class extends Component {
                         <div class="inset-0 fixed z-40 bg-black opacity-50 w-full h-full" x-show="edit"></div>
                         <div x-show="edit" x-on:coat-edited.window="edit = false" @click.outside="edit = false"
                              @keydown.escape.window="edit = false"
-                             class="p-6 fixed w-[50vw] z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform origin-center bg-white border-primary border-2 rounded-2xl shadow-2xl backdrop:bg-black backdrop:opacity-50">
+                             class="p-6 fixed w-3/4 md:w-[50vw] z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform origin-center bg-white border-primary border-2 rounded-2xl shadow-2xl backdrop:bg-black backdrop:opacity-50">
                             <div class="absolute z-60 cursor-pointer top-2 right-2" @click="edit = false">
                                 <svg viewBox="0 0 24 24" fill="black" width="40" height="40"
                                      xmlns="http://www.w3.org/2000/svg">
@@ -140,7 +140,7 @@ new class extends Component {
                                 >
                                     {{__('admin/forms.coat_edit')}}
                                 </x-client.form.input>
-                                <div class="flex gap-6 w-fit mt-5.5 ml-auto">
+                                <div class="flex flex-col md:flex-row gap-6 w-fit mt-5.5 ml-auto">
                                     <p @click="edit = false"
                                        class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">
                                         {{__('admin/global.close')}}
@@ -160,7 +160,7 @@ new class extends Component {
         <div class="inset-0 fixed z-40 bg-black opacity-50 w-full h-full" x-show="add"></div>
         <div x-show="add" x-on:coat-added.window="add = false" @click.outside="add = false"
              @keydown.escape.window="add = false"
-             class="p-6 fixed w-[50vw] z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform origin-center bg-white border-primary border-2 rounded-2xl shadow-2xl backdrop:bg-black backdrop:opacity-50">
+             class="p-6 fixed w-3/4 md:w-[50vw] z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform origin-center bg-white border-primary border-2 rounded-2xl shadow-2xl backdrop:bg-black backdrop:opacity-50">
             <div class="absolute z-60 cursor-pointer top-2 right-2" @click="add = false">
                 <svg viewBox="0 0 24 24" fill="black" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
                     <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -179,7 +179,7 @@ new class extends Component {
                 >
                     {{__('admin/forms.add_coat')}}
                 </x-client.form.input>
-                <div class="flex gap-6 w-fit mt-5.5 ml-auto">
+                <div class="flex flex-col md:flex-row gap-6 w-fit mt-5.5 ml-auto">
                     <p @click="add = false"
                        class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">
                         {{__('admin/global.close')}}

@@ -41,10 +41,10 @@ new class extends Component {
             </x-client.global.button>
 
             <livewire:admin.global.modal modalName="deleteModal">
-                <p class="mb-4">
+                <p class="my-4">
                     {{__('admin/global.confirm_delete', ['category' => 'la demande d\'adoption', 'name' => $this->adoption->adopter->name])}}
                 </p>
-                <div class="flex gap-6 w-fit mt-5.5 ml-auto">
+                <div class="flex flex-col md:flex-row gap-6 w-fit mt-5.5 ml-auto">
                     <button @click="deleteModal = false"
                             class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">
                         {{__('admin/global.close')}}

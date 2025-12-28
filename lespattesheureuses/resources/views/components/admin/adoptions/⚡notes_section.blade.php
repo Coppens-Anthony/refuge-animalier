@@ -108,7 +108,7 @@ new class extends Component {
                                 >
                                     {{__('admin/forms.note_edit')}}
                                 </x-client.form.textarea>
-                                <div class="flex gap-6 w-fit mt-5.5 ml-auto">
+                                <div class="flex flex-col md:flex-row gap-6 w-fit mt-5.5 ml-auto">
                                     <p @click="edit = false"
                                        class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">
                                         {{__('admin/global.close')}}
@@ -146,7 +146,7 @@ new class extends Component {
                             {{__('admin/global.add_note')}}
                         </x-client.form.textarea>
                     </div>
-                    <div class="flex gap-6 w-fit mt-5.5 ml-auto">
+                    <div class="flex flex-col md:flex-row gap-6 w-fit mt-5.5 ml-auto">
                         <p @click="open = false"
                            class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0    bg-white border-primary hover:bg-primary">
                             {{__('admin/global.close')}}

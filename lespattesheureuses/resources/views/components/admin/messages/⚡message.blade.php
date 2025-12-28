@@ -29,7 +29,7 @@ new class extends Component {
     </li>
     <livewire:admin.global.modal>
        <article>
-           <h4 class="font-bold mb-4">Demande d'adoption pour Max</h4>
+           <h4 class="font-bold my-4">Demande d'adoption pour Max</h4>
            <p>
                Sarah Dupont a réalisé une demande d’adoption pour Max. Vous pouvez analyser la demande et l’accepter ou la refuser.
            </p>

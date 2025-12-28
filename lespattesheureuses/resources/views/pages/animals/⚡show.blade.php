@@ -61,7 +61,7 @@ class extends Component {
                              @click="open = !open">
                         <livewire:admin.global.modal>
                             <form wire:submit="update" @submit="open = false">
-                                <div class="flex flex-col gap-2">
+                                <div class="flex flex-col gap-2 mt-4">
                                     <label
                                         for="status">{{__('admin/global.change_status')}} {{$this->animal->name}}</label>
                                     <select name="status" id="status" wire:model="status"
@@ -161,11 +161,11 @@ class extends Component {
                 </x-client.global.button>
             @endif
             <livewire:admin.global.modal modalName="deleteModal">
-                <p class="mb-4">
+                <p class="my-4">
                     {{__('admin/global.confirm_delete', ['category' => 'l\'animal', 'name' => $this->animal->name])}}
                 </p>
                 <small>{{__('admin/global.prevention_animal_delete')}}</small>
-                <div class="flex gap-6 w-fit mt-5.5 ml-auto">
+                <div class="flex flex-col md:flex-row gap-6 w-fit mt-5.5 ml-auto">
                     <button @click="deleteModal = false"
                             class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">
                         {{__('admin/global.close')}}
