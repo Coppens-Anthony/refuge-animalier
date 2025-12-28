@@ -68,7 +68,7 @@ new class extends Component {
             <ul class="flex flex-col gap-4">
                 @foreach($this->adoption->notes as $note)
                     <li class="flex gap-4 items-start" x-data="{edit: false}">
-                        <p>{{$note->user->name}} ({{$note->formatDate('created_at')}}) : {{$note->content}}</p>
+                        <p>{{$note->user->firstname . ' ' . $note->user->lastname}} ({{$note->formatDate('created_at')}}) : {{$note->content}}</p>
                         <div class="flex gap-2">
                             <img src="{{asset('assets/icons/edit.svg')}}"
                                  alt="{{__('global.edit_icon')}}"
@@ -86,7 +86,7 @@ new class extends Component {
                         <div class="inset-0 fixed z-40 bg-black opacity-50 w-full h-full" x-show="edit"></div>
                         <div x-show="edit" x-cloak x-on:note-edited.window="edit = false" @click.outside="edit = false"
                              @keydown.escape.window="edit = false"
-                             class="p-6 fixed w-[50vw] z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform origin-center bg-white border-primary border-2 rounded-2xl shadow-2xl backdrop:bg-black backdrop:opacity-50">
+                             class="p-6 fixed w-3/4 md:w-[50vw] z-50 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transform origin-center bg-white border-primary border-2 rounded-2xl shadow-2xl backdrop:bg-black backdrop:opacity-50">
                             <div class="absolute z-60 cursor-pointer top-2 right-2" @click="edit = false">
                                 <svg viewBox="0 0 24 24" fill="black" width="40" height="40"
                                      xmlns="http://www.w3.org/2000/svg">

@@ -34,7 +34,7 @@ new class extends Component {
 <div class="col-span-full">
     <section class="mb-4 flex flex-col gap-4">
         <h3 class="sr-only">{!!__('admin/members.members') !!}</h3>
-        <form action="" class="flex gap-4">
+        <form class="grid grid-cols-2 gap-4">
             <x-client.form.input
                 name="search"
                 type="search"

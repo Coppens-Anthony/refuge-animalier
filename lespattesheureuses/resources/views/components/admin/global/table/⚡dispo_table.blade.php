@@ -9,7 +9,7 @@ new class extends Component {
 ?>
 
 <div>
-    <div class="flex flex-col gap-4 sx:hidden">
+    <div class="flex flex-col gap-4 md:hidden">
         @foreach($member->availabilities as $day => $periods)
             <div class="border border-primary rounded-2xl p-4">
                 <h3 class="font-semibold text-lg mb-3">{{__("admin/dispo.$day")}}</h3>
@@ -29,7 +29,7 @@ new class extends Component {
         @endforeach
     </div>
 
-    <table class="hidden sx:table w-full text-center rounded-t-2xl overflow-hidden">
+    <table class="hidden md:table w-full text-center rounded-t-2xl overflow-hidden">
         <thead class="bg-primary">
         <tr class="table-row">
             <th></th>

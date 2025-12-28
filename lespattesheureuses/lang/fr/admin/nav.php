@@ -34,4 +34,8 @@ return [
     'alert_icon' => 'Icône de cloche',
     'alerts' => 'Alertes',
     'to_profile' => 'Vers votre profil',
+
+    'logout' => 'Se déconnecter',
+    'to_logout' => 'Déconnectez-vous',
+    'logout_icon' => 'Icône de déconnexion'
 ];

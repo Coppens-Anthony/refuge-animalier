@@ -17,7 +17,7 @@ new class extends Component {
 <div class="h-fit w-full mb-8">
     <header class="flex justify-between items-center">
         <h2 class="text-2xl">{{$title}}</h2>
-        <div class="flex items-center gap-2 relative">
+        <div class="hidden lg:flex lg:items-center lg:gap-2 lg:relative">
             <a href="{{route('show.members', $this->authUser->id)}}" title="{!! __('admin/nav.to_profile') !!}"
                class="absolute top-0 left-0 h-full w-full"></a>
             <p class="leading-tight">{{$this->authUser->firstname . ' ' . $this->authUser->lastname}}</p>

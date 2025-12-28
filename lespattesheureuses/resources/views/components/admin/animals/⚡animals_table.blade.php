@@ -61,11 +61,10 @@ new class extends Component {
                 {!!__('admin/global.create_animal') !!}
             </x-client.global.cta>
         </div>
-        <form action="" class="flex gap-4">
+        <form class="grid grid-cols-2 md:grid-cols-3 gap-4">
             <x-client.form.input
                 name="search"
                 type="search"
-                class="w-full"
                 placeholder="{{__('global.search')}}"
                 wire:model.live.debounce="term"
             >
@@ -73,7 +72,6 @@ new class extends Component {
             </x-client.form.input>
             <x-client.form.select
                 name="specieId"
-                class="w-full"
                 wire:model.live="specieId"
                 :options="$this->speciesOptions"
             >
@@ -81,7 +79,6 @@ new class extends Component {
             </x-client.form.select>
             <x-client.form.select
                 name="status"
-                class="w-full"
                 wire:model.live="status"
                 :options="Status::options()"
             >

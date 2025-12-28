@@ -145,7 +145,7 @@ new class extends Component {
             </livewire:admin.global.modal>
         </div>
 
-        <form action="" class="flex gap-4">
+        <form class="grid grid-cols-2 gap-4">
             <x-client.form.input
                 name="search"
                 type="search"
