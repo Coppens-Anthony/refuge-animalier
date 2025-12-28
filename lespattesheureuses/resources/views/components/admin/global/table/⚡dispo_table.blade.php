@@ -9,7 +9,27 @@ new class extends Component {
 ?>
 
 <div>
-    <table class="w-full text-center rounded-t-2xl overflow-hidden">
+    <div class="flex flex-col gap-4 sx:hidden">
+        @foreach($member->availabilities as $day => $periods)
+            <div class="border border-primary rounded-2xl p-4">
+                <h3 class="font-semibold text-lg mb-3">{{__("admin/dispo.$day")}}</h3>
+                <div class="flex flex-col gap-2">
+                    @foreach(['morning', 'afternoon', 'evening'] as $period)
+                        <div class="flex justify-between items-center py-2 border-b border-primary last:border-0">
+                            <span class="opacity-60">{{ __("admin/dispo.$period") }}</span>
+                            @if($periods[$period])
+                                <img src="{{asset('assets/icons/dispo_yes.svg')}}" alt="{{__('admin/dispo.check_alt')}}" class="w-6 h-6">
+                            @else
+                                <img src="{{asset('assets/icons/dispo_no.svg')}}" alt="{{__('admin/dispo.cross_alt')}}" class="w-6 h-6">
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endforeach
+    </div>
+
+    <table class="hidden sx:table w-full text-center rounded-t-2xl overflow-hidden">
         <thead class="bg-primary">
         <tr class="table-row">
             <th></th>
@@ -25,11 +45,9 @@ new class extends Component {
                 @foreach($member->availabilities as $day => $periods)
                     <td class="w-1/8">
                         @if($periods[$period])
-                            <img src="{{asset('assets/icons/dispo_yes.svg')}}" alt="{{__('admin/dispo.check_alt')}}"
-                                 class="m-auto">
+                            <img src="{{asset('assets/icons/dispo_yes.svg')}}" alt="{{__('admin/dispo.check_alt')}}" class="m-auto">
                         @else
-                            <img src="{{asset('assets/icons/dispo_no.svg')}}" alt="{{__('admin/dispo.cross_alt')}}"
-                                 class="m-auto">
+                            <img src="{{asset('assets/icons/dispo_no.svg')}}" alt="{{__('admin/dispo.cross_alt')}}" class="m-auto">
                         @endif
                     </td>
                 @endforeach
@@ -38,4 +56,3 @@ new class extends Component {
         </tbody>
     </table>
 </div>
-
