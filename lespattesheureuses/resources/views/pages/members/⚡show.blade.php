@@ -22,6 +22,7 @@ class extends Component {
     @can('edit', $this->member)
     <div class="mx-auto">
             <x-client.global.cta
+                wire:navigate="{{route('edit.members', $this->member->id)}}"
                 route="{{route('edit.members', $this->member->id)}}"
                 title="{{__('global.edit_title')}}"
             >

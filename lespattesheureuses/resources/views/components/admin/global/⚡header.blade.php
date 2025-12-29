@@ -18,7 +18,7 @@ new class extends Component {
     <header class="flex justify-between items-center">
         <h2 class="text-2xl">{{$title}}</h2>
         <div class="hidden lg:flex lg:items-center lg:gap-2 lg:relative">
-            <a href="{{route('show.members', $this->authUser->id)}}" title="{!! __('admin/nav.to_profile') !!}"
+            <a wire:navigate="{{route('show.members', $this->authUser->id)}}" href="{{route('show.members', $this->authUser->id)}}" title="{!! __('admin/nav.to_profile') !!}"
                class="absolute top-0 left-0 h-full w-full"></a>
             <p class="leading-tight">{{$this->authUser->firstname . ' ' . $this->authUser->lastname}}</p>
             @if($this->authUser->avatar)

@@ -16,7 +16,7 @@ new class extends Component {
 <div>
     <li>
         <div class="relative w-fit flex gap-2 items-center">
-            <a href="{{route($route)}}" title="{{$title}}" class="absolute top-0 left-0 h-full w-full"></a>
+            <a wire:navigate="{{route($route)}}" href="{{route($route)}}" title="{{$title}}" class="absolute top-0 left-0 h-full w-full"></a>
             <img src="{{asset('assets/icons/' . $image . '.svg')}}" alt="{{$image_alt}}" class="relative z-10 pointer-events-none">
             <p class="relative z-10 pointer-events-none {{$isDangerous ? 'text-red-400' : ''}}">{{$text}}</p>
             @if(request()->routeIs($route))

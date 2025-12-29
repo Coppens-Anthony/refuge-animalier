@@ -181,6 +181,7 @@ class extends Component {
                 </div>
             </livewire:admin.global.modal>
             <x-client.global.cta
+                wire:navigate="{{route('edit.animals', $this->animal->id)}}"
                 route="{{route('edit.animals', $this->animal->id)}}"
                 title="{{__('global.edit_title')}}">
                 {{__('admin/forms.edit')}}

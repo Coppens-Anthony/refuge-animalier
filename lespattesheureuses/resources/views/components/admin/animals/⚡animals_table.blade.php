@@ -55,6 +55,7 @@ new class extends Component {
                 {!!__('admin/global.animals') !!}
             </h3>
             <x-client.global.cta
+                wire:navigate="{{route('client_animals')}}"
                 route="{{route('create.animals')}}"
                 title="{!! __('admin/global.create_animal_title') !!}"
             >

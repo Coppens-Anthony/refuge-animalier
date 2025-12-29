@@ -15,6 +15,7 @@ class extends Component {
     @can('create', User::class)
         <div class="col-span-full ml-auto">
             <x-client.global.cta
+                wire:navigate="{{route('create.members')}}"
                 route="{{route('create.members')}}"
                 title="{!! __('admin/members.create_member_title') !!}">
                 {!!__('admin/members.create_member') !!}

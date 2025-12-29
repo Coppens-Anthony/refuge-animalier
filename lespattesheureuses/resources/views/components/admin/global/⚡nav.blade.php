@@ -46,7 +46,7 @@ new class extends Component {
         <h2 class="sr-only">Menu</h2>
 
         <div class="relative w-fit mb-8 pt-4 mx-auto px-4">
-            <a href="{{route('dashboard')}}"
+            <a wire:navigate="{{route('dashboard')}}" href="{{route('dashboard')}}"
                class="absolute top-0 left-0 h-full w-full"
                title="{!! __('admin/dashboard.to_dashboard') !!}">
             </a>
@@ -111,6 +111,7 @@ new class extends Component {
                 @endcan
                 <li class="lg:hidden mt-8 pt-6 border-t border-black">
                     <a href="{{route('show.members', $this->authUser->id)}}"
+                       wire:navigate="{{route('show.members', $this->authUser->id)}}"
                        title="{!! __('admin/nav.to_profile') !!}"
                        class="flex items-center gap-3 p-3 rounded-xl bg-black/5 hover:bg-black/10 transition-colors">
                         @if($this->authUser->avatar)
