@@ -8,7 +8,11 @@
         </div>
     </div>
     <div class="md:w-1/2 relative">
-        <img src="{{asset('assets/images/home_contact.jpg')}}" alt="{!! __('client/home.contact_image_alt') !!}"
+        <img src="{{asset('assets/images/home_contact.jpg')}}}}"
+             srcset="{{asset('assets/images/300x300/home_contact.jpg')}} 300w,
+                     {{asset('assets/images/600x600/home_contact.jpg')}} 600w,
+                        {{asset('assets/images/900x900/home_contact.jpg')}} 900w"
+             sizes="(max-width: 768px) 100vw, 50vw" alt="{!! __('client/home.contact_image_alt') !!}"
              class="w-full h-full rounded-4xl">
     </div>
 </section>

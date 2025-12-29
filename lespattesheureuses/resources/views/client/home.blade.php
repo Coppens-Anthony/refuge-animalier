@@ -5,7 +5,7 @@
         title="{!! __('client/home.intro_title') !!}"
         desc="{!! __('client/home.intro_desc') !!}"
         links="{{true}}"
-        image_src="{{ asset('assets/images/home_intro.png') }}"
+        image_src="home_intro.jpg"
         image_alt="{!! __('client/home.intro_image_alt') !!}"
     />
     <div class="flex flex-col gap-16">

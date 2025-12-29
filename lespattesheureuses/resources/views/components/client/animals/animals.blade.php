@@ -11,5 +11,5 @@
         <p class="mx-auto my-8">Aucun élément correspondant à votre recherche</p>
     @endif
 
-    <x-client.global.pagination/>
+    {{$animals->links()}}
 </section>

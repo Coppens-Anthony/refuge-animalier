@@ -39,7 +39,11 @@
                 </form>
             </div>
             <div class="md:w-1/2">
-                <img src="{{asset('assets/images/login.png')}}" alt="{!! __('login.image_alt') !!}"
+                <img src="{{asset('assets/images/login.jpg')}}}}"
+                     srcset="{{asset('assets/images/300x300/login.jpg')}} 300w,
+                     {{asset('assets/images/600x600/login.jpg')}} 600w,
+                        {{asset('assets/images/900x900/login.jpg')}} 900w"
+                     sizes="(max-width: 768px) 100vw, 50vw" alt="{!! __('login.image_alt') !!}"
                      class="w-full h-full rounded-4xl">
             </div>
         </section>

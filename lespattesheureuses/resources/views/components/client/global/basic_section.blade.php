@@ -12,9 +12,15 @@
         @endif
     </div>
     <div class="md:w-1/2 relative">
-        <img src="{{$image_src}}" alt="{{$image_alt}}" class="w-full h-full rounded-4xl">
+        <img src="{{asset('assets/images/'.$image_src)}}}}"
+             srcset="{{asset('assets/images/300x300/'.$image_src)}} 300w,
+                     {{asset('assets/images/600x600/'.$image_src)}} 600w,
+                        {{asset('assets/images/900x900/'.$image_src)}} 900w"
+             sizes="(max-width: 768px) 100vw, 50vw"
+             alt="{{$image_alt}}" class="w-full h-full rounded-4xl">
         <div class="absolute top-[-3rem] right-[-3rem] sx:top-[-8rem] sx:right-[-9rem] sx:w-[140%] md:top-[-7rem] md:right-[-7rem] lg:top-[-7rem] lg:right-[-7rem] -z-20 w-[130%]">
-            <img src="{{asset('assets/icons/organic_1.svg')}}" alt="{!! __('global.organic_1_alt') !!}" class="w-full h-full">
+            <img src="{{asset('assets/icons/organic_1.svg')}}"
+                 alt="{!! __('global.organic_1_alt') !!}" class="w-full h-full">
         </div>
     </div>
 </section>

@@ -70,7 +70,7 @@ class AnimalController extends Controller
             }
         });
 
-        $animals = $query->get();
+        $animals = $query->paginate(9);
 
         $species = Specie::all()->map(fn($specie) => [
             'value' => $specie->id,
