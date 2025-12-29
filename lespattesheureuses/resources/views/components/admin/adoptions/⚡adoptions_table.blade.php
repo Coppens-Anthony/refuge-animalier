@@ -44,26 +44,9 @@ new class extends Component {
             ->paginate(10);
     }
 
-    #[Computed]
-    public function animalsOptions(): array
-    {
-        return $this->animals->map(fn($animal) => [
-            'value' => $animal->id,
-            'trad' => $animal->name,
-        ])->toArray();
-    }
-
-    #[Computed]
-    public function adoptersOptions(): array
-    {
-        return $this->adopters->map(fn($adopter) => [
-            'value' => $adopter->id,
-            'trad' => $adopter->name,
-        ])->toArray();
-    }
-
     public function store()
     {
+
         $validated = $this->validate([
             'animalId' => 'required|exists:animals,id',
             'adopterId' => 'required|exists:adopters,id',
@@ -109,20 +92,20 @@ new class extends Component {
             </div>
             <livewire:admin.global.modal>
                 <form wire:submit="store" class="flex flex-col gap-4">
-                    <x-client.form.select
+                    <x-admin.form.alpine_select
                         name="animalId"
                         wire:model="animalId"
-                        :options="$this->animalsOptions"
+                        :options="$this->animals"
                     >
                         {{__('admin/global.animal_name')}}
-                    </x-client.form.select>
-                    <x-client.form.select
+                    </x-admin.form.alpine_select>
+                    <x-admin.form.alpine_select
                         name="adopterId"
                         wire:model="adopterId"
-                        :options="$this->adoptersOptions"
+                        :options="$this->adopters"
                     >
                         {{__('admin/global.adopter_name')}}
-                    </x-client.form.select>
+                    </x-admin.form.alpine_select>
                     <x-client.form.textarea
                         name="message"
                         wire:model="message"
@@ -131,7 +114,7 @@ new class extends Component {
                     >
                         {{__('global.message')}}
                     </x-client.form.textarea>
-                    <div class="flex gap-6 w-fit mt-5.5 ml-auto">
+                    <div class="flex flex-col sx:flex-row gap-6 w-fit mt-5.5 ml-auto">
                         <p @click="edit = false"
                            class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">
                             {{__('admin/global.close')}}
@@ -164,32 +147,32 @@ new class extends Component {
                 {{__('admin/global.status')}}
             </x-client.form.select>
         </form>
-            <livewire:admin.global.table.table
-                :titles="[__('admin/global.animal_name'), __('admin/global.adopter_name'), __('admin/global.date'), __('admin/global.status')]">
-                @foreach($this->adoptions as $adoption)
-                    <tr class="table__tr"
-                        wire:click="goToAdoption({{ $adoption->id }})"
-                        wire:key="adoption-{{ $adoption->id }}"
-                        title="Vers la fiche de {{$adoption->animal->name}}">
-                        <td class="text_td">
-                            <span class="title_td">{{__('admin/global.animal_name')}}</span>
-                            <span class="font-medium">{{$adoption->animal->name}}</span>
-                        </td>
-                        <td class="text_td">
-                            <span class="title_td">{{__('admin/global.adopter_name')}}</span>
-                            <span>{{$adoption->adopter->name}}</span>
-                        </td>
-                        <td class="text_td">
-                            <span class="title_td">{{__('admin/global.date')}}</span>
-                            <span>{{$adoption->created_at->format('d-m-Y')}}</span>
-                        </td>
-                        <td class="text_td">
-                            <span class="title_td">{{__('admin/global.status')}}</span>
-                            <span>{{$adoption->status->label()}}</span>
-                        </td>
-                    </tr>
-                @endforeach
-            </livewire:admin.global.table.table>
+        <livewire:admin.global.table.table
+            :titles="[__('admin/global.animal_name'), __('admin/global.adopter_name'), __('admin/global.date'), __('admin/global.status')]">
+            @foreach($this->adoptions as $adoption)
+                <tr class="table__tr"
+                    wire:click="goToAdoption({{ $adoption->id }})"
+                    wire:key="adoption-{{ $adoption->id }}"
+                    title="Vers la fiche de {{$adoption->animal->name}}">
+                    <td class="text_td">
+                        <span class="title_td">{{__('admin/global.animal_name')}}</span>
+                        <span class="font-medium">{{$adoption->animal->name}}</span>
+                    </td>
+                    <td class="text_td">
+                        <span class="title_td">{{__('admin/global.adopter_name')}}</span>
+                        <span>{{$adoption->adopter->name}}</span>
+                    </td>
+                    <td class="text_td">
+                        <span class="title_td">{{__('admin/global.date')}}</span>
+                        <span>{{$adoption->created_at->format('d-m-Y')}}</span>
+                    </td>
+                    <td class="text_td">
+                        <span class="title_td">{{__('admin/global.status')}}</span>
+                        <span>{{$adoption->status->label()}}</span>
+                    </td>
+                </tr>
+            @endforeach
+        </livewire:admin.global.table.table>
 
         <div class="mt-4">
             {{ $this->adoptions->links() }}
