@@ -6,4 +6,5 @@ return [
     'image_alt' => 'Image d\'un homme et un chien se tapant dans la main',
     'login' => 'Se connecter',
     'login_title' => 'Connectez-vous',
+    'remember_me' => 'Rester connecté(e)',
 ];

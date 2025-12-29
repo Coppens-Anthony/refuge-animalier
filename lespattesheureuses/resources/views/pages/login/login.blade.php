@@ -28,6 +28,17 @@
                         >
                             Mot de passe
                         </x-client.form.input>
+
+                        <div class="flex items-center gap-2">
+                            <input
+                                type="checkbox"
+                                name="remember"
+                                id="remember"
+                            >
+                            <label for="remember" class="cursor-pointer">
+                                {!! __('login.remember_me') !!}
+                            </label>
+                        </div>
                     </fieldset>
                     <div class="mx-auto">
                         <x-client.global.button
@@ -39,7 +50,7 @@
                 </form>
             </div>
             <div class="md:w-1/2">
-                <img src="{{asset('assets/images/login.jpg')}}}}"
+                <img src="{{asset('assets/images/login.jpg')}}"
                      srcset="{{asset('assets/images/300x300/login.jpg')}} 300w,
                      {{asset('assets/images/600x600/login.jpg')}} 600w,
                         {{asset('assets/images/900x900/login.jpg')}} 900w"
