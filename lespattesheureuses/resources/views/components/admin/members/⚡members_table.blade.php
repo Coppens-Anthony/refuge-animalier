@@ -68,8 +68,7 @@ new class extends Component {
                                      srcset="
                     {{asset('avatars/variants/300x300/'.$member->avatar)}} 300w,
                     {{asset('avatars/variants/600x600/'.$member->avatar)}} 600w,
-                    {{asset('avatars/variants/900x900/'.$member->avatar)}} 900w,
-                    {{asset('avatars/variants/1200x1200/'.$member->avatar)}} 1200w"
+                    {{asset('avatars/variants/900x900/'.$member->avatar)}} 900w"
                                      sizes="(max-width: 768px) 48px, 48px"
                                      alt="{!! __('client/animals.animal_image_alt', ['name' => $member->firstname . ' ' . $member->lastname]) !!}"
                                      class="avatar">

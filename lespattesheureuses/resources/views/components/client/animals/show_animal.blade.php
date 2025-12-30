@@ -61,8 +61,7 @@
                  srcset="
                         {{asset('avatars/variants/300x300/'.$animal->avatar)}} 300w,
                         {{asset('avatars/variants/600x600/'.$animal->avatar)}} 600w,
-                        {{asset('avatars/variants/900x900/'.$animal->avatar)}} 900w,
-                        {{asset('avatars/variants/1200x1200/'.$animal->avatar)}} 1200w"
+                        {{asset('avatars/variants/900x900/'.$animal->avatar)}} 900w"
                  sizes="(max-width: 768px) 100vw, 50vw"
                  alt="{!! __('client/animals.animal_image_alt', ['name' => $animal->name]) !!}"
                  class="w-full h-full rounded-4xl object-cover">

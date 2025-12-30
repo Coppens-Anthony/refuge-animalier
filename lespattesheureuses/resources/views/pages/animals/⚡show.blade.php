@@ -56,9 +56,11 @@ class extends Component {
                         <x-client.global.status isInCard="{{false}}">
                             {{$this->animal->status->label()}}
                         </x-client.global.status>
-                        <img src="{{asset('assets/icons/edit.svg')}}" alt="{{__('global.edit_icon')}}"
-                             class="h-5.8 w-5.8 cursor-pointer"
-                             @click="open = !open">
+                        @can('view-any', User::class)
+                            <img src="{{asset('assets/icons/edit.svg')}}" alt="{{__('global.edit_icon')}}"
+                                 class="h-5.8 w-5.8 cursor-pointer"
+                                 @click="open = !open">
+                        @endcan
                         <livewire:admin.global.modal>
                             <form wire:submit="update" @submit="open = false">
                                 <div class="flex flex-col gap-2 mt-4">
@@ -74,7 +76,7 @@ class extends Component {
                                 </div>
                                 <div class="flex flex-col md:flex-row gap-6 w-fit mt-5.5 ml-auto">
                                     <button @click="open = false"
-                                       class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0    bg-white border-primary hover:bg-primary">
+                                            class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0    bg-white border-primary hover:bg-primary">
                                         {{__('admin/global.close')}}
                                     </button>
                                     <x-client.global.button
@@ -140,8 +142,7 @@ class extends Component {
                      srcset="
                         {{asset('avatars/variants/300x300/'.$this->animal->avatar)}} 300w,
                         {{asset('avatars/variants/600x600/'.$this->animal->avatar)}} 600w,
-                        {{asset('avatars/variants/900x900/'.$this->animal->avatar)}} 900w,
-                        {{asset('avatars/variants/1200x1200/'.$this->animal->avatar)}} 1200w"
+                        {{asset('avatars/variants/900x900/'.$this->animal->avatar)}} 900w"
                      sizes="(max-width: 768px) 100vw, 50vw"
                      alt="{!! __('client/animals.animal_image_alt', ['name' => $this->animal->name]) !!}"
                      class="w-full h-full rounded-4xl object-cover">
