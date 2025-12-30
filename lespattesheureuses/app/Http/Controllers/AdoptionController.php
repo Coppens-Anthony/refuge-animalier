@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Enums\Adoptions;
 use App\Enums\Status;
+use App\Mail\AdoptionCreated;
 use App\Models\Adopter;
 use App\Models\Adoption;
 use App\Models\Animal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class AdoptionController extends Controller
 {
@@ -36,7 +38,7 @@ class AdoptionController extends Controller
             ]);
         }
 
-        Adoption::create([
+        $adoption = Adoption::create([
             'animal_id' => $animal->id,
             'adopter_id' => $adopter->id,
             'status' => Adoptions::PENDING,
@@ -47,6 +49,10 @@ class AdoptionController extends Controller
         $animal->update([
             'status' => Status::PENDING,
         ]);
+
+        Mail::to(config('mail.from.address'))->queue(
+            new AdoptionCreated($adoption)
+        );
 
         return redirect(route('client_animals'));
     }

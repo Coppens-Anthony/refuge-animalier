@@ -1,9 +1,12 @@
 <?php
 
 use App\Enums\Adoptions;
+use App\Mail\AdoptionAccepted;
 use App\Models\Adoption;
 use App\Models\User;
 use Livewire\Component;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 new class extends Component {
     public Adoption $adoption;
@@ -21,6 +24,10 @@ new class extends Component {
         $this->adoption->update([
             'status' => Adoptions::IN_PROGRESS
         ]);
+
+        Mail::to($this->adoption->adopter->email)->queue(
+            new AdoptionAccepted($this->adoption)
+        );
 
         session()->flash('success', __('admin/global.adoption_accepted'));
         return redirect(route('show.adoptions', $this->adoption));
