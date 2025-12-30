@@ -147,6 +147,7 @@ new class extends Component {
 
 <div class="col-span-full">
     <form wire:submit="update" class="col-span-full flex flex-col gap-8">
+        @csrf
         <div class="flex flex-col gap-2 w-fit mx-auto text-center mb-12 font-bold">
             <input id="avatar" name="avatar" type="file" wire:model="avatar"
                    class="invisible absolute top-0 left-0 h-0 w-0"
