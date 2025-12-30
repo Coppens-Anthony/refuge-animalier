@@ -14,10 +14,12 @@
             :adoptions="$adoptions"
             :animalsAdoptable="$animalsAdoptable"
         />
-        <x-client.home.animals
-        title="{!! __('client/home.animals_title') !!}"
-        :items="$lastAnimals"
-        />
+        @if($lastAnimals->count() > 0)
+            <x-client.home.animals
+                title="{!! __('client/home.animals_title') !!}"
+                :items="$lastAnimals"
+            />
+        @endif
         <x-client.home.contact_section/>
     </div>
 </x-client.global.layout>

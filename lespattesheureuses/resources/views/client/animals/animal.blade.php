@@ -2,8 +2,10 @@
     <x-client.animals.show_animal
         :animal="$animal"
     />
-    <x-client.home.animals
-        title="{!! __('client/animals.others_animals_title') !!}"
-        :items="$suggestedAnimals"
-    />
+    @if($suggestedAnimals->count() > 0)
+        <x-client.home.animals
+            title="{!! __('client/animals.others_animals_title') !!}"
+            :items="$suggestedAnimals"
+        />
+    @endif
 </x-client.global.layout>
