@@ -4,6 +4,7 @@ use App\Enums\Members;
 use App\Enums\Sex;
 use App\Enums\Status;
 use App\Jobs\ProcessUploadedAvatar;
+use App\Mail\AnimalCreated;
 use App\Models\Animal;
 use App\Models\User;
 use App\Models\AnimalVaccine;
@@ -15,6 +16,7 @@ use Illuminate\Validation\Rule;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Mail;
 
 new class extends Component {
     use WithFileUploads;
@@ -92,7 +94,9 @@ new class extends Component {
             'coat_ids.*' => 'exists:coats,id',
         ]);
 
-        if (auth()->user()->status === Members::VOLUNTEER->value) {
+        $user = auth()->user()->status;
+
+        if ($user === Members::VOLUNTEER) {
             $validated['status'] = Status::PENDING;
         }
 
@@ -120,6 +124,13 @@ new class extends Component {
         }
 
         session()->flash('success', __('admin/global.animal_created'));
+
+        if ($user === Members::VOLUNTEER) {
+            Mail::to(config('mail.from.address'))->queue(
+                new AnimalCreated($animal, auth()->user())
+            );
+        }
+
         return redirect(route('show.animals', $animal->id));
     }
 
