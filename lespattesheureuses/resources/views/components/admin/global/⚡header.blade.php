@@ -31,7 +31,9 @@ new class extends Component {
                      alt="{!! __('client/animals.animal_image_alt', ['name' => $this->authUser->firstname . ' ' . $this->authUser->lastname]) !!}"
                      class="rounded-full object-cover w-12 h-12 border-2 border-primary">
             @else
-                Avatar
+                <div class="w-12 h-12 mx-auto">
+                    <img src="{{asset('assets/icons/pp.svg')}}" alt="{!! __('global.pp_icon') !!}">
+                </div>
             @endif
         </div>
     </header>

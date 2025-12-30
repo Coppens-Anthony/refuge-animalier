@@ -73,8 +73,8 @@ new class extends Component {
                                      alt="{!! __('client/animals.animal_image_alt', ['name' => $member->firstname . ' ' . $member->lastname]) !!}"
                                      class="avatar">
                             @else
-                                <div class="no_avatar">
-                                    Avatar
+                                <div class="w-12 h-12 mx-auto">
+                                    <img src="{{asset('assets/icons/pp.svg')}}" alt="{!! __('global.pp_icon') !!}">
                                 </div>
                             @endif
                         </div>

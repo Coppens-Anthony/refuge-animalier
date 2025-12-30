@@ -11,6 +11,7 @@ return [
     'adoptions' => 'Adoptions réussies',
     'animals_searching_family' => 'Animaux adoptables',
     'home_icon' => 'Icône de maison',
+    'pp_icon' => 'Icône d\'une photo de profil par défaut',
     'search_icon' => 'Icône de loupe',
     'filters' => 'Filtres',
     'heart_icon' => 'Icône de coeur',
