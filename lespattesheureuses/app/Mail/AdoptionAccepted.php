@@ -27,7 +27,7 @@ class AdoptionAccepted extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: 'lespattesheureuse@gmail.com',
+            from: config('mail.from.address'),
             subject: 'Adoption Accepted'
         );
     }
@@ -38,7 +38,7 @@ class AdoptionAccepted extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mails.adoption_accepted',
+            markdown: 'mails.adoption_accepted',
         );
     }
 

@@ -20,6 +20,7 @@ class MemberCreated extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
+            from: config('mail.from.address'),
             subject: 'Member Account Created',
         );
     }
@@ -28,7 +29,6 @@ class MemberCreated extends Mailable implements ShouldQueue
     {
         return new Content(
             markdown: 'mails.member_created',
-            with: ['user' => $this->user],
         );
     }
 

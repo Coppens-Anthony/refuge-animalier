@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\Members;
+use App\Mail\MemberCreated;
 use App\Models\User;
 use Livewire\Component;
 
@@ -33,18 +34,20 @@ new class extends Component {
             'firstname' => 'required',
             'email' => 'email|required|unique:users,email',
             'telephone' => 'regex:/^0[1-9](?:[\s\.]?[0-9]{2}){4}$/|required',
-            'password' => 'required|min:8',
             'availabilities' => 'required|array'
         ]);
-        $validated['password'] = bcrypt($validated['password']);
+        $validated['password'] = bcrypt('password');
         $validated['avatar'] = '';
         $validated['status'] = Members::VOLUNTEER;
         $validated['availabilities'] = $this->availabilities;
 
-
         $user = User::create($validated);
 
         session()->flash('success', __('admin/global.member_created'));
+
+        Mail::to($user->email)->queue(
+            new MemberCreated($user)
+        );
 
         return redirect(route('show.members', $user->id));
     }
@@ -81,14 +84,6 @@ new class extends Component {
                     type="telephone"
                     placeholder="0123 45 67 89">
                     {!! __('admin/global.telephone') !!}
-                </x-client.form.input>
-                <x-client.form.input
-                    wire:model="password"
-                    name="password"
-                    type="password"
-                    placeholder=""
-                >
-                    {!! __('admin/members.password_temporary') !!}
                 </x-client.form.input>
                 <x-client.form.select
                     name="role"
