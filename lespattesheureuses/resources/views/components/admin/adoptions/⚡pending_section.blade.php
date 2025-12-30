@@ -2,6 +2,7 @@
 
 use App\Enums\Adoptions;
 use App\Mail\AdoptionAccepted;
+use App\Mail\AdoptionDenied;
 use App\Models\Adoption;
 use App\Models\User;
 use Livewire\Component;
@@ -14,6 +15,10 @@ new class extends Component {
     public function destroy()
     {
         $this->adoption->delete();
+
+        Mail::to($this->adoption->adopter->email)->send(
+            new AdoptionDenied($this->adoption)
+        );
 
         session()->flash('delete', __('admin/global.adoption_deny'));
         return redirect(route('index.adoptions'));
