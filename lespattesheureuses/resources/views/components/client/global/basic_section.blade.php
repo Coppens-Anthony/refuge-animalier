@@ -1,6 +1,11 @@
 @props(['title', 'desc', 'links' => false, 'image_src', 'image_alt'])
 
-<section class="flex flex-col items-center md:flex-row gap-8 md:gap-15 lg:gap-30 mb-16 lg:mb-32">
+<section class="relative flex flex-col items-center md:flex-row gap-8 md:gap-15 lg:gap-30 mb-16 lg:mb-32">
+    @if (session('success'))
+        <div class="alert-success">
+            {!! session('success') !!}
+        </div>
+    @endif
     <div class="flex flex-col gap-2 md:w-2/3 lg:w-1/2">
         <h2 class="text-[1.125rem] md:text-[1.5rem] lg:text-[2rem] font-bold lg:font-medium">{{$title}}</h2>
         <p>{{$desc}}</p>

@@ -24,7 +24,6 @@ new class extends Component {
         Specie::create(['name' => $validated['specie']]);
         $this->dispatch('specie-added');
         session()->flash('success', __('admin/global.specie_created'));
-
     }
 
     public function edit(Specie $specie)

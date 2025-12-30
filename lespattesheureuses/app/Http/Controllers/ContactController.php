@@ -22,6 +22,6 @@ class ContactController extends Controller
             new ContactForm($validated)
         );
 
-        return view('client.contact');
+        return redirect(route('client_contact'))->with('success', true);
     }
 }

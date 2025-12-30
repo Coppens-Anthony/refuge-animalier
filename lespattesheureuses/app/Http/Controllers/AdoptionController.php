@@ -54,6 +54,7 @@ class AdoptionController extends Controller
             new AdoptionCreated($adoption)
         );
 
+        session()->flash('success', __('global.success_adoption'));
         return redirect(route('client_animals'));
     }
 

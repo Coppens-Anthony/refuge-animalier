@@ -42,4 +42,8 @@ return [
     'years' => 'ans',
     'months' => 'mois',
     'days' => 'jours',
+    'success_contact_form' => 'Message envoyé avec succès&nbsp;!',
+    'success_contact_form_desc' => 'Nous avons bien reçu votre message et nous vous répondrons dans les plus brefs délais.',
+    'success_adoption' => 'Demande envoyée avec succès&nbsp;!',
+    'success_adoption_desc' => 'Nous avons bien reçu votre demande d\'adoption. Nous allons la traiter et nous vous répondrons dans les plus brefs délais.',
 ];
