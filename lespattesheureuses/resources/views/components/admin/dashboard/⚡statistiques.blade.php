@@ -49,7 +49,7 @@ new class extends Component {
     #[Computed]
     public function animals()
     {
-        return Animal::whereBetween('created_at', [$this->start, $this->end])->get();
+        return Animal::whereBetween('created_at', [$this->start, $this->end])->count();
     }
 
     #[Computed]
@@ -57,7 +57,7 @@ new class extends Component {
     {
         return Adoption::where('status', Adoptions::FINISHED)
             ->whereBetween('created_at', [$this->start, $this->end])
-            ->get();
+            ->count();
     }
 
     #[Computed]
@@ -65,7 +65,7 @@ new class extends Component {
     {
         return Animal::where('status', Status::ADOPTABLE)
             ->whereBetween('created_at', [$this->start, $this->end])
-            ->get();
+            ->count();
     }
 
     public function downloadPDF()
@@ -118,7 +118,7 @@ new class extends Component {
                 <li class="flex justify-center">
                     <x-client.home.stat
                         title="{!! __('global.collected_animals') !!}"
-                        :number="$this->animals->count()"
+                        :number="$this->animals"
                         image_src="{{ asset('assets/icons/home.svg') }}"
                         image_alt="{!! __('global.home_icon') !!}"
                     />
@@ -126,7 +126,7 @@ new class extends Component {
                 <li class="flex justify-center">
                     <x-client.home.stat
                         title="{!! __('global.adoptions') !!}"
-                        :number="$this->adoptions->count()"
+                        :number="$this->adoptions"
                         image_src="{{ asset('assets/icons/heart.svg') }}"
                         image_alt="{!! __('global.heart_icon') !!}"
                     />
@@ -134,7 +134,7 @@ new class extends Component {
                 <li class="flex justify-center">
                     <x-client.home.stat
                         title="{!! __('global.animals_searching_family') !!}"
-                        :number="$this->animalsAdoptable->count()"
+                        :number="$this->animalsAdoptable"
                         image_src="{{ asset('assets/icons/paws.svg') }}"
                         image_alt="{!! __('global.paws_icon') !!}"
                     />

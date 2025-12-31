@@ -13,10 +13,10 @@ new class extends Component {
 
     public function mount()
     {
-        $this->animals = Animal::where('status', Status::PENDING)->get();
-        $this->adoptions = Adoption::all();
-        $this->members = User::all();
-    }
+        $this->animals = Animal::where('status', Status::PENDING)->count();
+       $this->adoptions = Adoption::count();
+       $this->members = User::count();
+   }
 };
 ?>
 
@@ -26,7 +26,7 @@ new class extends Component {
         <ul class="grid grid-cols-2 sx:grid-cols-3 md:grid-cols-5 gap-4">
             <livewire:admin.dashboard.key_card
                 title="{!! __('admin/nav.adoptions') !!}"
-                number="{{count($this->adoptions)}}"
+                number="{{$this->adoptions}}"
                 image="dashboard_requests"
                 image_alt="{!! __('admin/nav.request_icon') !!}"
                 link_title="{!! __('admin/nav.to_requests') !!}"
@@ -35,7 +35,7 @@ new class extends Component {
             @can('view-any', User::class)
             <livewire:admin.dashboard.key_card
                 title="{!! __('admin/nav.validations') !!}"
-                number="{{count($this->animals)}}"
+                number="{{$this->animals}}"
                 image="dashboard_validations"
                 image_alt="{!! __('admin/nav.validation_icon') !!}"
                 link_title="{!! __('admin/nav.to_validations') !!}"
@@ -60,7 +60,7 @@ new class extends Component {
             />
             <livewire:admin.dashboard.key_card
                 title="{!! __('admin/nav.members') !!}"
-                number="{{count($this->members)}}"
+                number="{{$this->members}}"
                 image="dashboard_messages"
                 image_alt="{!! __('admin/nav.member_icon') !!}"
                 link_title="{!! __('admin/nav.to_members') !!}"

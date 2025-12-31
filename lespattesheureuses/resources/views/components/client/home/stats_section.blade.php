@@ -6,7 +6,7 @@
         <li class="flex justify-center">
             <x-client.home.stat
                 title="{!! __('global.collected_animals') !!}"
-                :number="$animals->count()"
+                :number="$animals"
                 image_src="{{ asset('assets/icons/home.svg') }}"
                 image_alt="{!! __('global.home_icon') !!}"
             />
