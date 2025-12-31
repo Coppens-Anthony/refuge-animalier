@@ -55,18 +55,18 @@
         </nav>
         <section>
             <h3 class="text-xl mb-4">{!! __('client/footer.coords') !!}</h3>
-            <ul class="flex flex-col gap-2">
-                <li>
+            <ul class="flex flex-col gap-2" itemscope itemtype="https://schema.org/Organization">
+                <li itemprop="address">
                     {!! __('client/footer.address') !!}
                 </li>
-                <li>
+                <li itemprop="address">
                     {!! __('client/footer.city') !!}
                 </li>
-                <li>
+                <li itemprop="email">
                     <a href="mailto:lespattesheureuse@gmail.com" class="link_footer">lespattesheureuse@gmail.com</a>
                 </li>
-                <li>
-                    <a href="tel:0123.45.67.89" class="link_footer">0123.45.67.89</a>
+                <li itemprop="telephone">
+                    <a href="tel:0123456789" class="link_footer">0123.45.67.89</a>
                 </li>
             </ul>
         </section>
