@@ -1,0 +1,19 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <!-- Fond -->
+    <circle cx="100" cy="100" r="100" fill="#E0E0E0"/>
+
+    <!-- Tête -->
+    <circle cx="100" cy="56" r="30" fill="#999999"/>
+
+    <!-- Corps plus large, silhouette organique -->
+    <path
+        d="
+      M44 166
+      C38 130 66 98 100 98
+      C134 98 162 130 156 166
+      C150 192 50 192 44 166
+      Z
+    "
+        fill="#999999"
+    />
+</svg>

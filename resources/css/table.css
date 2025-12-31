@@ -1,0 +1,32 @@
+.table__tr {
+    @apply flex flex-col border border-primary p-4 rounded-2xl hover:bg-primary-opacity cursor-pointer
+    md:table-row md:border-0 md:py-0;
+
+    .avatar_td {
+        @apply flex justify-between items-center py-2 md:table-cell md:py-2;
+
+        .avatar_title {
+            @apply opacity-60 md:hidden;
+        }
+
+        .avatar_container {
+            @apply md:mx-auto;
+        }
+
+        .avatar {
+            @apply w-12 h-12 rounded-full object-cover mx-auto;
+        }
+
+        .no_avatar {
+            @apply w-12 h-12 rounded-full bg-gray-200 mx-auto flex items-center justify-center text-gray-400 text-xs;
+        }
+    }
+
+    .text_td {
+        @apply flex justify-between items-center py-2 md:table-cell md:py-2;
+
+        .title_td {
+            @apply opacity-60 md:hidden;
+        }
+    }
+}

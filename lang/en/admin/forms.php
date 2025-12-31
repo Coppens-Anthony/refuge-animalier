@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'add_animal_image_alt' => 'Animal photo',
+    'add_image' => 'Add a photo',
+    'add' => 'Add',
+    'add_animal_title' => 'Add the animal',
+    'edit_title' => 'Edit the item',
+    'delete_title' => 'Delete the item',
+    'delete' => 'Delete',
+    'add_element' => 'Add an item',
+    'add_coat' => 'Add a coat',
+    'add_specie' => 'Add a species',
+    'add_breed' => 'Add a breed',
+    'add_vaccine' => 'Add a vaccine',
+    'match_specie' => 'Associate with a species',
+    'coat_edit' => 'Edit coat',
+    'specie_edit' => 'Edit species',
+    'breed_edit' => 'Edit breed',
+    'vaccine_edit' => 'Edit vaccine',
+    'edit' => 'Edit',
+    'fire' => 'Fire',
+    'deny_adoption_request' => 'Deny adoption request',
+    'accept_adoption_request' => 'Accept adoption request',
+    'deny' => 'Deny',
+    'accept' => 'Accept',
+    'note_edit' => 'Edit note',
+];
