@@ -6,7 +6,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\MemberController;
 
-Route::domain('lespattesheureuses.test')->group(function () {
+Route::domain('refuge-animalier-backup-moddrt')->group(function () {
     Route::get('/', [HomeController::class, 'index'])->name('client_home');
 
     Route::get('animals', [AnimalController::class, 'index'])->name('client_animals');
