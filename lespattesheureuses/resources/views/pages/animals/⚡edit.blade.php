@@ -4,7 +4,7 @@ use App\Models\Animal;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Title('Modifier un animal')]
+new #[Title('Modifier l’animal')]
 class extends Component {
     public Animal $animal;
 

@@ -9,7 +9,7 @@ use Illuminate\Validation\Rule;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Title('Fiche de ')]
+new #[Title('Fiche de l’animal')]
 class extends Component {
     public Animal $animal;
     public string $status;

@@ -5,7 +5,7 @@ use Livewire\Attributes\Computed;
 use Livewire\Attributes\Title;
 use Livewire\Component;
 
-new #[Title('Profil de ')]
+new #[Title('Profil du membre ')]
 class extends Component {
     public User $member;
 };
