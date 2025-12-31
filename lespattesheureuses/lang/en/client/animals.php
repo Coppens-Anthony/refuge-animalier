@@ -1,0 +1,27 @@
+<?php
+
+return [
+    'intro_title' => 'They are waiting for a helping hand, an open heart, a place to start again',
+    'intro_desc' => 'They patiently wait for the day their hearts find a home. Come meet those who could change your life… and theirs.',
+    'intro_image_alt' => 'Image of four dogs in a field',
+    'animals_title' => 'Find a friend for life!',
+    'animal_image_alt' => 'Image of :name',
+    'see_me' => 'View :name’s profile',
+    'character_title' => 'Personality',
+    'character' => 'He is a very affectionate dog who loves human company. He enjoys walks and gets along well with other dogs. A bit wary at first, but he quickly becomes a real cuddle bug once he feels safe.',
+    'request_button' => 'I would like to schedule an appointment to meet :name',
+    'request_button_title' => 'Go to the adoption form for :name',
+    'others_animals_title' => 'They are also looking for a family',
+    'male' => 'Male',
+    'female' => 'Female',
+    'sex' => 'Sex',
+    'breed' => 'Breed',
+    'coat' => 'Coat',
+    'age' => 'Age',
+    'specie' => 'Species',
+    '0_1' => 'Under 1 year',
+    '1_3' => 'Between 1 and 3 years',
+    '3_6' => 'Between 3 and 6 years',
+    '6_10' => 'Between 6 and 10 years',
+    'more_10' => 'Over 10 years',
+];

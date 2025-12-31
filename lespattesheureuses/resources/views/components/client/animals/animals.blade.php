@@ -8,7 +8,7 @@
     @if($animals->count() > 0)
         <x-client.global.cards_grid :items="$animals"/>
     @else
-        <p class="mx-auto my-8">Aucun élément correspondant à votre recherche</p>
+        <p class="mx-auto my-8">{!! __('global.no_element_founded') !!}</p>
     @endif
 
     {{$animals->links()}}

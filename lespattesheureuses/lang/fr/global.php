@@ -47,4 +47,5 @@ return [
     'success_contact_form_desc' => 'Nous avons bien reçu votre message et nous vous répondrons dans les plus brefs délais.',
     'success_adoption' => 'Demande envoyée avec succès&nbsp;!',
     'success_adoption_desc' => 'Nous avons bien reçu votre demande d\'adoption. Nous allons la traiter et nous vous répondrons dans les plus brefs délais.',
+    'no_element_founded' => 'Aucun élément ne correspond à votre recherche'
 ];

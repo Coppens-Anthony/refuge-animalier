@@ -30,8 +30,8 @@ new class extends Component {
         <form wire:submit="update">
             <x-client.global.button
                 isDangerous="{{true}}"
-                title="{{__('admin/forms.deny_adoption_request')}}">
-                {{__('admin/global.archived_adoption')}}
+                title="{!!__('admin/forms.deny_adoption_request')!!}">
+                {!!__('admin/global.archived_adoption')!!}
             </x-client.global.button>
         </form>
     </div>

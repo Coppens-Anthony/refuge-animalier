@@ -28,7 +28,7 @@
                     <x-client.global.icon_text
                         image_src="{{asset('assets/icons/paw.svg')}}"
                         image_alt="{!! __('global.paw_icon') !!}">
-                        {{__('admin/global.coats')}} :
+                        {!! __('admin/global.coats')!!} :
                         @foreach($animal->coat as $coat)
                             {{$coat->name}},
                         @endforeach
@@ -38,7 +38,7 @@
                     <x-client.global.icon_text
                         image_src="{{asset('assets/icons/paw.svg')}}"
                         image_alt="{!! __('global.paw_icon') !!}">
-                        {{__('admin/global.vaccines')}} :
+                        {!! __('admin/global.vaccines') !!} :
                         @foreach($animal->vaccine as $vaccine)
                             {{$vaccine->name}},
                         @endforeach

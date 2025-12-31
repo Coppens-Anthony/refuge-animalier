@@ -63,7 +63,7 @@ new class extends Component {
 
 <div>
     <section class="mt-8 flex flex-col gap-4">
-        <h3 class="text-2xl">{{__('admin/global.notes')}}</h3>
+        <h3 class="text-2xl">{!!__('admin/global.notes')!!}</h3>
         @if($this->adoption->notes->count() > 0)
             <ul class="flex flex-col gap-4">
                 @foreach($this->adoption->notes as $note)
@@ -71,14 +71,14 @@ new class extends Component {
                         <p>{{$note->user->firstname . ' ' . $note->user->lastname}} ({{$note->formatDate('created_at')}}) : {{$note->content}}</p>
                         <div class="flex gap-2">
                             <img src="{{asset('assets/icons/edit.svg')}}"
-                                 alt="{{__('global.edit_icon')}}"
+                                 alt="{!!__('global.edit_icon')!!}"
                                  class="cursor-pointer w-6 h-6"
                                  wire:click="edit({{$note}})"
                                  @click="edit = true">
                             <form wire:submit="delete({{$note->id}})">
                                 <button type="submit" class="cursor-pointer w-6 h-6">
                                     <img src="{{asset('assets/icons/delete.svg')}}"
-                                         alt="{{__('global.delete_icon')}}"
+                                         alt="{!!__('global.delete_icon')!!}"
                                     >
                                 </button>
                             </form>
@@ -106,16 +106,16 @@ new class extends Component {
                                     name="editNote"
                                     placeholder="{{$note->content}}"
                                 >
-                                    {{__('admin/forms.note_edit')}}
+                                    {!!__('admin/forms.note_edit')!!}
                                 </x-client.form.textarea>
                                 <div class="flex flex-col md:flex-row gap-6 w-fit mt-5.5 ml-auto">
                                     <p @click="edit = false"
                                        class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">
-                                        {{__('admin/global.close')}}
+                                        {!!__('admin/global.close')!!}
                                     </p>
                                     <x-client.global.button
-                                        title="{{__('admin/forms.edit_title')}}">
-                                        {{__('admin/forms.edit')}}
+                                        title="{!!__('admin/forms.edit_title')!!}">
+                                        {!!__('admin/forms.edit')!!}
                                     </x-client.global.button>
                                 </div>
                             </form>
@@ -124,15 +124,15 @@ new class extends Component {
                 @endforeach
             </ul>
         @else
-            <p>{{__('admin/global.no_notes')}}</p>
+            <p>{!!__('admin/global.no_notes')!!}</p>
         @endif
         <div x-data="{open: false}"
              @close-modal.window="open = false"
              x-cloak>
-            <button title="{{__('admin/global.add_note')}}"
+            <button title="{!!__('admin/global.add_note')!!}"
                     @click="open = true"
                     class="px-8 py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 cursor-pointer border-primary bg-white hover:bg-primary">
-                {{__('admin/global.add_note')}}
+                {!!__('admin/global.add_note')!!}
             </button>
             <livewire:admin.global.modal>
                 <form wire:submit="store">
@@ -141,20 +141,20 @@ new class extends Component {
                             rows="3"
                             name="note"
                             wire:model="note"
-                            placeholder="{{__('admin/global.note_placeholder', ['name' => $this->adoption->adopter->name])}}"
+                            placeholder="{!!__('admin/global.note_placeholder', ['name' => $this->adoption->adopter->name])!!}"
                         >
-                            {{__('admin/global.add_note')}}
+                            {!!__('admin/global.add_note')!!}
                         </x-client.form.textarea>
                     </div>
                     <div class="flex flex-col md:flex-row gap-6 w-fit mt-5.5 ml-auto">
                         <p @click="open = false"
                            class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0    bg-white border-primary hover:bg-primary">
-                            {{__('admin/global.close')}}
+                            {!!__('admin/global.close')!!}
                         </p>
                         <x-client.global.button
-                            title="{{__('admin/global.add_note')}}"
+                            title="{!!__('admin/global.add_note')!!}"
                         >
-                            {{__('admin/forms.add')}}
+                            {!!__('admin/forms.add')!!}
                         </x-client.global.button>
                     </div>
                 </form>

@@ -65,7 +65,7 @@ new class extends Component {
             </div>
         @endif
         <div class="w-fit mb-2 ml-auto cursor-pointer">
-            <small class="underline" @click="add = true">{{__('admin/forms.add_element')}}</small>
+            <small class="underline" @click="add = true">{!! __('admin/forms.add_element') !!}</small>
         </div>
         <h3 type="button" x-on:click="expanded = !expanded"
             class="bg-primary cursor-pointer p-4 w-full rounded-xl flex items-center justify-between">
@@ -87,12 +87,12 @@ new class extends Component {
                         <p>{{$specie->name}}</p>
                         <div class="flex gap-2">
                             <img src="{{asset('assets/icons/edit.svg')}}"
-                                 alt="{{__('global.edit_icon')}}"
+                                 alt="{!! __('global.edit_icon') !!}"
                                  class="cursor-pointer"
                                  wire:click="edit({{$specie}})"
                                  @click="edit = true">
                             <img src="{{asset('assets/icons/delete.svg')}}"
-                                 alt="{{__('global.delete_icon')}}"
+                                 alt="{!! __('global.delete_icon') !!}"
                                  @click="deleteModal = true"
                                  class="cursor-pointer"
                             >
@@ -101,17 +101,17 @@ new class extends Component {
                                 <p class="my-4">
                                     {{__('admin/global.confirm_delete', ['category' => 'l\'espèce', 'name' => $specie->name])}}
                                 </p>
-                                <div class="flex flex-col md:flex-row flex-col md:flex-row gap-6 w-fit mt-5.5 ml-auto">
+                                <div class="flex flex-col md:flex-row gap-6 w-fit mt-5.5 ml-auto">
                                     <button @click="deleteModal = false"
                                        class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">
-                                        {{__('admin/global.close')}}
+                                        {!! __('admin/global.close') !!}
                                     </button>
                                     <form wire:submit="delete({{$specie}})">
                                         <x-client.global.button
-                                            title="{{__('admin/forms.delete_title')}}"
+                                            title="{!! __('admin/forms.delete_title') !!}"
                                             :is-dangerous="true"
                                         >
-                                            {{__('admin/forms.delete')}}
+                                            {!! __('admin/forms.delete') !!}
                                         </x-client.global.button>
                                     </form>
                                 </div>
@@ -144,11 +144,11 @@ new class extends Component {
                                 <div class="flex flex-col md:flex-row gap-6 w-fit mt-5.5 ml-auto">
                                     <p @click="edit = false"
                                        class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">
-                                        {{__('admin/global.close')}}
+                                        {!! __('admin/global.close') !!}
                                     </p>
                                     <x-client.global.button
-                                        title="{{__('admin/forms.edit_title')}}">
-                                        {{__('admin/forms.edit')}}
+                                        title="{!! __('admin/forms.edit_title') !!}">
+                                        {!! __('admin/forms.edit') !!}
                                     </x-client.global.button>
                                 </div>
                             </form>

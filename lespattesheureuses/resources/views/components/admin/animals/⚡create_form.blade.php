@@ -158,7 +158,7 @@ new class extends Component {
                     </small>
                     @enderror</p>
                 @if($this->avatar)
-                    <img src="{{$this->avatar->temporaryUrl()}}" alt="{{__('admin/table.image_alt')}}"
+                    <img src="{{$this->avatar->temporaryUrl()}}" alt="{!! __('admin/table.image_alt') !!}"
                          class="object-cover absolute w-[175px] h-[175px] rounded-2xl">
                 @endif
             </label>

@@ -85,9 +85,9 @@ new class extends Component {
             <div>
                 <button
                     @click="open = true"
-                    title="{{__('admin/global.add_adoption')}}"
+                    title="{!! __('admin/global.add_adoption')!!}"
                     class="px-8 py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 cursor-pointer bg-primary border-primary hover:bg-white">
-                    {{__('admin/global.create_adoption')}}
+                    {!! __('admin/global.create_adoption')!!}
                 </button>
             </div>
             <livewire:admin.global.modal>
@@ -97,31 +97,31 @@ new class extends Component {
                         wire:model="animalId"
                         :options="$this->animals"
                     >
-                        {{__('admin/global.animal_name')}}
+                        {!! __('admin/global.animal_name')!!}
                     </x-admin.form.alpine_select>
                     <x-admin.form.alpine_select
                         name="adopterId"
                         wire:model="adopterId"
                         :options="$this->adopters"
                     >
-                        {{__('admin/global.adopter_name')}}
+                        {!!__('admin/global.adopter_name')!!}
                     </x-admin.form.alpine_select>
                     <x-client.form.textarea
                         name="message"
                         wire:model="message"
-                        placeholder="{{__('admin/global.message_placeholder')}}"
+                        placeholder="{!!__('admin/global.message_placeholder')!!}"
                         rows="4"
                     >
-                        {{__('global.message')}}
+                        {!!__('global.message')!!}
                     </x-client.form.textarea>
                     <div class="flex flex-col sx:flex-row gap-6 w-fit mt-5.5 ml-auto">
                         <p @click="edit = false"
                            class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">
-                            {{__('admin/global.close')}}
+                            {!!__('admin/global.close')!!}
                         </p>
                         <x-client.global.button
-                            title="{{__('admin/forms.add_title')}}">
-                            {{__('admin/forms.add')}}
+                            title="{!!__('admin/forms.add_title')!!}">
+                            {!!__('admin/forms.add')!!}
                         </x-client.global.button>
                     </div>
                 </form>
@@ -133,10 +133,10 @@ new class extends Component {
                 name="search"
                 type="search"
                 class="w-full"
-                placeholder="{{__('global.search')}}"
+                placeholder="{!!__('global.search')!!}"
                 wire:model.live.debounce="term"
             >
-                {{__('global.search')}}
+                {!!__('global.search')!!}
             </x-client.form.input>
             <x-client.form.select
                 name="adoptionStatus"
@@ -144,7 +144,7 @@ new class extends Component {
                 wire:model.live="adoptionStatus"
                 :options="Adoptions::options()"
             >
-                {{__('admin/global.status')}}
+                {!!__('admin/global.status')!!}
             </x-client.form.select>
         </form>
         <livewire:admin.global.table.table
@@ -155,19 +155,19 @@ new class extends Component {
                     wire:key="adoption-{{ $adoption->id }}"
                     title="Vers la fiche de {{$adoption->animal->name}}">
                     <td class="text_td">
-                        <span class="title_td">{{__('admin/global.animal_name')}}</span>
+                        <span class="title_td">{!!__('admin/global.animal_name')!!}</span>
                         <span class="font-medium">{{$adoption->animal->name}}</span>
                     </td>
                     <td class="text_td">
-                        <span class="title_td">{{__('admin/global.adopter_name')}}</span>
+                        <span class="title_td">{!!__('admin/global.adopter_name')!!}</span>
                         <span>{{$adoption->adopter->name}}</span>
                     </td>
                     <td class="text_td">
-                        <span class="title_td">{{__('admin/global.date')}}</span>
+                        <span class="title_td">{!!__('admin/global.date')!!}</span>
                         <span>{{$adoption->created_at->format('d-m-Y')}}</span>
                     </td>
                     <td class="text_td">
-                        <span class="title_td">{{__('admin/global.status')}}</span>
+                        <span class="title_td">{!!__('admin/global.status')!!}</span>
                         <span>{{$adoption->status->label()}}</span>
                     </td>
                 </tr>
@@ -180,6 +180,3 @@ new class extends Component {
 
     </section>
 </div>
-
-
-

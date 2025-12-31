@@ -49,7 +49,6 @@ new class extends Component {
 };
 ?>
 
-
 <div class="col-span-full lg:col-span-7 border-1 border-primary px-4 rounded-2xl">
     <section class="mb-4 flex flex-col gap-4">
         <h3 class="mt-4">{!! __('admin/global.animals') !!}</h3>
@@ -57,42 +56,47 @@ new class extends Component {
             <x-client.form.input
                 name="search"
                 type="search"
-                placeholder="{{__('global.search')}}"
+                placeholder="{!! __('global.search') !!}"
                 wire:model.live.debounce="term"
             >
-                {{__('global.search')}}
+                {!! __('global.search') !!}
             </x-client.form.input>
             <x-client.form.select
                 name="specieId"
                 wire:model.live="specieId"
                 :options="$this->speciesOptions"
             >
-                {{__('admin/global.specie')}}
+                {!! __('admin/global.specie') !!}
             </x-client.form.select>
             <x-client.form.select
                 name="status"
                 wire:model.live="status"
                 :options="Status::options()"
             >
-                {{__('admin/global.status')}}
+                {!! __('admin/global.status') !!}
             </x-client.form.select>
         </form>
         <livewire:admin.global.table.table
-            :titles="[__('admin/global.avatar'),__('admin/global.name'),__('admin/global.specie'),__('admin/global.status')]">
+            :titles="[
+                __('admin/global.avatar'),
+                __('admin/global.name'),
+                __('admin/global.specie'),
+                __('admin/global.status')
+            ]">
             @foreach($this->animals as $animal)
                 <tr class="table__tr"
                     wire:click="goToAnimal({{ $animal->id }})"
                     wire:key="animal-{{ $animal->id }}"
                     title="Vers la fiche de {{$animal->name}}">
                     <td class="avatar_td">
-                        <span class="avatar_title">{{__('admin/global.avatar')}}</span>
+                        <span class="avatar_title">{!! __('admin/global.avatar') !!}</span>
                         <div class="avatar_container">
                             @if($animal->avatar)
                                 <img src="{{ asset('avatars/originals/'.$animal->avatar) }}"
                                      srcset="
-                        {{asset('avatars/variants/300x300/'.$animal->avatar)}} 300w,
-                        {{asset('avatars/variants/600x600/'.$animal->avatar)}} 600w,
-                        {{asset('avatars/variants/900x900/'.$animal->avatar)}} 900w"
+                        {{ asset('avatars/variants/300x300/'.$animal->avatar) }} 300w,
+                        {{ asset('avatars/variants/600x600/'.$animal->avatar) }} 600w,
+                        {{ asset('avatars/variants/900x900/'.$animal->avatar) }} 900w"
                                      sizes="(max-width: 768px) 48px, 48px"
                                      alt="{!! __('client/animals.animal_image_alt', ['name' => $animal->name]) !!}"
                                      class="avatar">
@@ -104,15 +108,15 @@ new class extends Component {
                         </div>
                     </td>
                     <td class="text_td">
-                        <span class="title_td">{{__('admin/global.name')}}</span>
+                        <span class="title_td">{!! __('admin/global.name') !!}</span>
                         <span class="font-medium">{{$animal->name}}</span>
                     </td>
                     <td class="text_td">
-                        <span class="title_td">{{__('admin/global.specie')}}</span>
+                        <span class="title_td">{!! __('admin/global.specie') !!}</span>
                         <span>{{$animal->breed->specie->name}}</span>
                     </td>
                     <td class="text_td">
-                        <span class="title_td">{{__('admin/global.status')}}</span>
+                        <span class="title_td">{!! __('admin/global.status') !!}</span>
                         <span>{{$animal->status->label()}}</span>
                     </td>
                 </tr>
@@ -123,5 +127,5 @@ new class extends Component {
             {{ $this->animals->links() }}
         </div>
     </section>
-
 </div>
+

@@ -11,7 +11,7 @@
         name="email"
         placeholder="john@doe.com"
         type="email">
-        Email
+        {!! __('admin/global.email') !!}
     </x-client.form.input>
     <x-client.form.input
         name="telephone"

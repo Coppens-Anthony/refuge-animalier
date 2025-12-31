@@ -36,14 +36,14 @@ new class extends Component {
         <form wire:submit="destroy">
             <x-client.global.button
                 isDangerous="{{true}}"
-                title="{{__('admin/forms.deny_adoption_request')}}">
-                {{__('admin/global.stop_adoption')}} {{$this->adoption->animal->name}}
+                title="{!!__('admin/forms.deny_adoption_request')!!}">
+                {!!__('admin/global.stop_adoption')!!} {{$this->adoption->animal->name}}
             </x-client.global.button>
         </form>
         <form wire:submit="update">
             <x-client.global.button
-                title="{{__('admin/forms.accept_adoption_request')}}">
-                {{$this->adoption->adopter->name}} {{__('admin/global.have_adopted')}} {{$this->adoption->animal->name}}&nbsp;!
+                title="{!!__('admin/forms.accept_adoption_request')!!}">
+                {{$this->adoption->adopter->name}} {!!__('admin/global.have_adopted')!!} {{$this->adoption->animal->name}}&nbsp;!
             </x-client.global.button>
         </form>
     </div>
