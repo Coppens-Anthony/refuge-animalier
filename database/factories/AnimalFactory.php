@@ -28,3 +28,4 @@ class AnimalFactory extends Factory
         ];
     }
 }
+
