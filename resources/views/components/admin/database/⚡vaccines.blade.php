@@ -206,7 +206,7 @@ new class extends Component {
                     </g>
                 </svg>
             </div>
-            <form wire:submit="store" class="flex flex-col md:flex-row gap-4">
+            <form wire:submit="store" class="flex flex-col gap-4">
                 <x-client.form.input
                     wire:model="vaccine"
                     name="vaccine"
