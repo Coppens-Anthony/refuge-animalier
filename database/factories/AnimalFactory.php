@@ -11,13 +11,13 @@ use Illuminate\Support\Carbon;
 
 class AnimalFactory extends Factory
 {
-    //protected $model = Animal::class;
+    protected $model = Animal::class;
 
     public function definition(): array
     {
         return [
             'avatar' => '',
-            'name' => $this->faker->name(),
+            'name' => $this->faker->firstName(),
             'birthdate' => Carbon::yesterday(),
             'sex' => $this->faker->randomElement(Sex::values()),
             'temperament' => $this->faker->word(),
