@@ -50,7 +50,7 @@ class AdoptionController extends Controller
             'status' => Status::IN_ADOPTION,
         ]);
 
-        Mail::to(config('mail.from.address'))->queue(
+        Mail::to(config('mail.from.address'))->send(
             new AdoptionCreated($adoption)
         );
 
