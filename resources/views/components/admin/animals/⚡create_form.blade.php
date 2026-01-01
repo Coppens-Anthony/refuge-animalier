@@ -132,7 +132,7 @@ new class extends Component {
         session()->flash('success', __('admin/global.animal_created'));
 
         if ($user === Members::VOLUNTEER) {
-            Mail::to(config('mail.from.address'))->queue(
+            Mail::to(config('mail.from.address'))->send(
                 new AnimalCreated($animal, auth()->user())
             );
         }

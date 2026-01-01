@@ -18,7 +18,7 @@ class ContactController extends Controller
             'message' => 'required|max:255'
         ]);
 
-        Mail::to(config('mail.from.address'))->queue(
+        Mail::to(config('mail.from.address'))->send(
             new ContactForm($validated)
         );
 

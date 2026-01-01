@@ -35,7 +35,7 @@ new class extends Component {
             'status' => Status::IN_ADOPTION
         ]);
 
-        Mail::to($this->adoption->adopter->email)->queue(
+        Mail::to($this->adoption->adopter->email)->send(
             new AdoptionAccepted($this->adoption)
         );
 
