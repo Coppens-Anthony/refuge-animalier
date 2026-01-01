@@ -64,11 +64,11 @@ new class extends Component {
                         <span class="avatar_title">{{__('admin/global.avatar')}}</span>
                         <div class="avatar_container">
                             @if($member->avatar)
-                                <img src="{{ asset('avatars/originals/'.$member->avatar) }}"
+                                <img src="{{ Storage::disk('s3')->url('avatars/originals/'.$member->avatar) }}"
                                      srcset="
-                    {{asset('avatars/variants/300x300/'.$member->avatar)}} 300w,
-                    {{asset('avatars/variants/600x600/'.$member->avatar)}} 600w,
-                    {{asset('avatars/variants/900x900/'.$member->avatar)}} 900w"
+                    {{Storage::disk('s3')->url('avatars/variants/300x300/'.$member->avatar)}} 300w,
+                    {{Storage::disk('s3')->url('avatars/variants/600x600/'.$member->avatar)}} 600w,
+                    {{Storage::disk('s3')->url('avatars/variants/900x900/'.$member->avatar)}} 900w"
                                      sizes="(max-width: 768px) 48px, 48px"
                                      alt="{!! __('client/animals.animal_image_alt', ['name' => $member->firstname . ' ' . $member->lastname]) !!}"
                                      class="avatar">

@@ -3,6 +3,7 @@
 use App\Enums\Members;
 use App\Jobs\ProcessUploadedAvatar;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -48,18 +49,20 @@ new class extends Component {
             'avatar' => 'nullable|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        if (!\Illuminate\Support\Facades\Hash::check($validated['oldPassword'], $member->password)) {
+        if (!Hash::check($validated['oldPassword'], $member->password)) {
             $this->addError('oldPassword', 'Mot de passe incorrect');
             return;
         }
 
         if ($this->avatar) {
             $new_original_file_name = uniqid() . '.' . config('avatars.avatar_type');
-            $full_path_to_original = Storage::disk('public')
-                ->putFileAs(config('avatars.original_path'),
-                    $this->avatar,
-                    $new_original_file_name
-                );
+
+            $full_path_to_original = $this->avatar->storeAs(
+                config('avatars.original_path'),
+                $new_original_file_name,
+                's3'
+            );
+
             if ($full_path_to_original) {
                 $validated['avatar'] = $new_original_file_name;
                 ProcessUploadedAvatar::dispatchSync($full_path_to_original, $new_original_file_name);
