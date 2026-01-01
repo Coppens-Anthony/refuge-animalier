@@ -141,6 +141,7 @@ class DatabaseSeeder extends Seeder
             'lastname' => 'Doe',
             'firstname' => 'John',
             'email' => 'john@doe.com',
+            'telephone' => '0456.95.34.65',
             'password' => 'password',
             'status' => Members::ADMINISTRATOR,
         ]);
