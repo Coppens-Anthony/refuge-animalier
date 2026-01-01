@@ -11,7 +11,7 @@ use Illuminate\Support\Carbon;
 
 class AnimalFactory extends Factory
 {
-    protected $model = Animal::class;
+    //protected $model = Animal::class;
 
     public function definition(): array
     {
