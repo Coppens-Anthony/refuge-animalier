@@ -124,7 +124,11 @@ class DatabaseSeeder extends Seeder
         $adopters = Adopter::factory(20)->create();
 
         for ($i = 0; $i < 20; $i++) {
-            $status = fake()->randomElement([Adoptions::FINISHED, Adoptions::PENDING, Adoptions::IN_PROGRESS]);
+            $status = collect([
+                Adoptions::FINISHED,
+                Adoptions::PENDING,
+                Adoptions::IN_PROGRESS,
+            ])->random();
 
             Adoption::factory()->create([
                 'status' => $status,
