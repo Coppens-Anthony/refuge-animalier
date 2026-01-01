@@ -4,7 +4,7 @@
     @foreach($items as $item)
         <li>
             <x-client.global.item_card
-                :image_src="$item->avatar ? asset('avatars/originals/'.$item->avatar) : asset('assets/images/max.jpg')"
+                :image_src="Storage::disk('s3')->url('avatars/originals/'.$item->avatar)"
                 :image_alt="__('client/animals.animal_image_alt', ['name' => $item->name])"
                 :status="$item->status"
                 :name="$item->name"
