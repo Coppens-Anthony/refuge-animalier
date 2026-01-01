@@ -87,7 +87,7 @@ return [
     */
 
     'prefix' => '',
-    'domain' => 'https://admin.refuge-animalier-backup-moddrt.laravel.cloud/',
+    'domain' => 'admin.refuge-animalier-backup-moddrt.laravel.cloud/',
 
     /*
     |--------------------------------------------------------------------------

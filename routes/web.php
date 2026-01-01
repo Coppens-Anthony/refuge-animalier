@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 require 'client.php';
 
-Route::domain('https://admin.refuge-animalier-backup-moddrt.laravel.cloud/')->group(function () {
+Route::domain('admin.refuge-animalier-backup-moddrt.laravel.cloud/')->group(function () {
 
     Route::view('/', 'pages.login.login')
         ->name('login')->middleware('guest');
