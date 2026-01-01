@@ -106,7 +106,7 @@ new class extends Component {
             $validated['status'] = Status::PENDING;
         }
 
-        if ($validated['avatar']) {
+        if ($this->avatar) {
             $new_original_file_name = uniqid() . '.' . config('avatars.avatar_type');
             $full_path_to_original = Storage::disk('s3')
                 ->putFileAs(config('avatars.original_path'),
