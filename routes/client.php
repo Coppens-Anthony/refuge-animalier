@@ -23,4 +23,7 @@ Route::group([], function () {
         return view('client.contact');
     })->name('client_contact');
     Route::post('contact', [ContactController::class, 'store'])->name('client_contact.store');
+
+    Route::view('/login', 'pages.login.login')
+        ->name('login')->middleware('guest');
 });
