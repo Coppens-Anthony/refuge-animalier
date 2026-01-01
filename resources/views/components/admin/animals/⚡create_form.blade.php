@@ -77,6 +77,12 @@ new class extends Component {
             ->toArray();
     }
 
+    public function updatedSpecieId($value)
+    {
+        $this->breed_id = null;
+        $this->vaccine_ids = [];
+    }
+
     public function store()
     {
         $validated = $this->validate([
