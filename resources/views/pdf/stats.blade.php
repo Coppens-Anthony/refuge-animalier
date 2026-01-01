@@ -10,8 +10,8 @@
 <body>
 <h1>{{__('admin/stats.desc') . Carbon\Carbon::create($year, $month)->locale(App::getLocale())->translatedFormat('F Y')}}</h1>
 
-<p>{{__('admin/stats.animals') . $animals->count()}}</p>
-<p>{{__('admin/stats.adoptions') . $adoptions->count()}}</p>
-<p>{{__('admin/stats.animalsAdoptable') . $animalsAdoptable->count()}}</p>
+<p>{{__('admin/stats.animals') . $animals}}</p>
+<p>{{__('admin/stats.adoptions') . $adoptions}}</p>
+<p>{{__('admin/stats.animalsAdoptable') . $animalsAdoptable}}</p>
 </body>
 </html>
