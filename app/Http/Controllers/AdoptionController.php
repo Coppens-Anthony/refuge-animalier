@@ -47,7 +47,7 @@ class AdoptionController extends Controller
         ]);
 
         $animal->update([
-            'status' => Status::PENDING,
+            'status' => Status::IN_ADOPTION,
         ]);
 
         Mail::to(config('mail.from.address'))->queue(

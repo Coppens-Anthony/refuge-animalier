@@ -128,10 +128,10 @@ new class extends Component {
                                     {{__('admin/global.confirm_delete', ['category' => 'le vaccin', 'name' => $vaccine->name])}}
                                 </p>
                                 <div class="flex flex-col md:flex-row gap-6 w-fit mt-5.5 ml-auto">
-                                    <p @click="deleteModal = false"
+                                    <button @click="deleteModal = false"
                                        class="px-8 cursor-pointer py-2 block w-fit rounded-xl duration-200 text-center hover:duration-200 border-4 mx-auto sx:mx-0 bg-white border-primary hover:bg-primary">
                                         {!! __('admin/global.close') !!}
-                                    </p>
+                                    </button>
                                     <form wire:submit="delete({{$vaccine}})">
                                         <x-client.global.button
                                             title="{!! __('admin/forms.delete_title') !!}"
