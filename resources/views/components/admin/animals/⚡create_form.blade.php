@@ -108,11 +108,13 @@ new class extends Component {
 
         if ($this->avatar) {
             $new_original_file_name = uniqid() . '.' . config('avatars.avatar_type');
-            $full_path_to_original = Storage::disk('s3')
-                ->putFileAs(config('avatars.original_path'),
-                    $this->avatar,
-                    $new_original_file_name
-                );
+
+            $full_path_to_original = $this->avatar->storeAs(
+                config('avatars.original_path'),
+                $new_original_file_name,
+                's3'
+            );
+            
             if ($full_path_to_original) {
                 $validated['avatar'] = $new_original_file_name;
                 ProcessUploadedAvatar::dispatchSync($full_path_to_original, $new_original_file_name);
