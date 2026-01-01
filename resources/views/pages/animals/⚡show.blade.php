@@ -138,11 +138,11 @@ class extends Component {
                 </article>
             </div>
             <div class="md:w-1/2 aspect-square">
-                <img src="{{asset('avatars/originals/'.$this->animal->avatar)}}"
+                <img src="{{Storage::disk('s3')->url('avatars/originals/'.$this->animal->avatar)}}"
                      srcset="
-                        {{asset('avatars/variants/300x300/'.$this->animal->avatar)}} 300w,
-                        {{asset('avatars/variants/600x600/'.$this->animal->avatar)}} 600w,
-                        {{asset('avatars/variants/900x900/'.$this->animal->avatar)}} 900w"
+                        {{Storage::disk('s3')->url('avatars/variants/300x300/'.$this->animal->avatar)}} 300w,
+                        {{Storage::disk('s3')->url('avatars/variants/600x600/'.$this->animal->avatar)}} 600w,
+                        {{Storage::disk('s3')->url('avatars/variants/900x900/'.$this->animal->avatar)}} 900w"
                      sizes="(max-width: 768px) 100vw, 50vw"
                      alt="{!! __('client/animals.animal_image_alt', ['name' => $this->animal->name]) !!}"
                      class="w-full h-full rounded-4xl object-cover">
