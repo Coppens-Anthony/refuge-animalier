@@ -87,7 +87,7 @@ return [
     */
 
     'prefix' => '',
-    'domain' => 'admin.lespattesheureuses.test',
+    'domain' => 'https://admin.refuge-animalier-backup-moddrt.laravel.cloud/',
 
     /*
     |--------------------------------------------------------------------------
