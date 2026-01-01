@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
 
-        $species = [
+        /*$species = [
             'Chien' => [
                 'Husky',
                 'Berger allemand',
@@ -98,7 +98,6 @@ class DatabaseSeeder extends Seeder
         }
 
 
-        /* Animals seeding */
         $animals = collect();
         for ($i = 0; $i < 20; $i++) {
             $animal = Animal::factory()->create([
@@ -136,7 +135,7 @@ class DatabaseSeeder extends Seeder
                 'animal_id' => $animals->unique()->random()->id,
                 'adopter_id' => $adopters->random()->id,
             ]);
-        }
+        }*/
 
         User::factory()->create([
             'lastname' => 'Doe',
@@ -146,7 +145,7 @@ class DatabaseSeeder extends Seeder
             'status' => Members::ADMINISTRATOR,
         ]);
 
-        User::factory(10)->create();
+        //User::factory(10)->create();
     }
 }
 
