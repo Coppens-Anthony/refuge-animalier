@@ -139,8 +139,6 @@ new class extends Component {
 
         return redirect(route('show.animals', $animal->id));
     }
-
-
 };
 ?>
 

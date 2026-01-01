@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\Adoptions;
+use App\Enums\Status;
 use App\Mail\AdoptionAccepted;
 use App\Mail\AdoptionDenied;
 use App\Models\Adoption;
@@ -28,6 +29,10 @@ new class extends Component {
     {
         $this->adoption->update([
             'status' => Adoptions::IN_PROGRESS
+        ]);
+
+        $this->adoption->animal->update([
+            'status' => Status::IN_ADOPTION
         ]);
 
         Mail::to($this->adoption->adopter->email)->queue(
