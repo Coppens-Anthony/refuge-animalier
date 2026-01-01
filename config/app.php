@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'refuge-animalier-backup-moddrt.laravel.cloud/'),
+    'url' => env('APP_URL', 'refuge-animalier-backup-moddrt.laravel.cloud'),
 
     /*
     |--------------------------------------------------------------------------
