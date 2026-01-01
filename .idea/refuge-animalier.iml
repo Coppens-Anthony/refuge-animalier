@@ -10,6 +10,8 @@
       <sourceFolder url="file://$MODULE_DIR$/lespattesheureuses/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
       <sourceFolder url="file://$MODULE_DIR$/lespattesheureuses/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="Tests\" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/tests/Unit" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/lespattesheureuses/vendor/bacon/bacon-qr-code" />
       <excludeFolder url="file://$MODULE_DIR$/lespattesheureuses/vendor/barryvdh/laravel-debugbar" />
       <excludeFolder url="file://$MODULE_DIR$/lespattesheureuses/vendor/barryvdh/laravel-dompdf" />
@@ -155,6 +157,11 @@
       <excludeFolder url="file://$MODULE_DIR$/lespattesheureuses/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/lespattesheureuses/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/lespattesheureuses/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/aws/aws-crt-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/aws/aws-sdk-php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/league/flysystem-aws-s3-v3" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/mtdowling/jmespath.php" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/filesystem" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
