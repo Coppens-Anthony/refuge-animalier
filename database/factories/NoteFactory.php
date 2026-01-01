@@ -14,7 +14,7 @@ class NoteFactory extends Factory
     public function definition(): array
     {
         return [
-            'content' => $this->faker->text(),
+            'content' => fake()->text(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
 

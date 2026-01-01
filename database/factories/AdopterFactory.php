@@ -13,9 +13,9 @@ class AdopterFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'email' => $this->faker->unique()->safeEmail(),
-            'telephone' => $this->faker->phoneNumber(),
+            'name' => fake()->name(),
+            'email' => fake()->unique()->safeEmail(),
+            'telephone' => fake()->phoneNumber(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
