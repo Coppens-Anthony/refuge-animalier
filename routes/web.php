@@ -5,22 +5,22 @@ use Illuminate\Support\Facades\Route;
 
 require 'client.php';
 
-Route::prefix('admin')->middleware('auth')->group(function () {
+Route::prefix('admin')->group(function () {
 
     Route::view('/', 'pages.login.login')
         ->name('login')->middleware('guest');
 
     Route::livewire('/dashboard', 'pages::dashboard.⚡dashboard')
-        ->name('dashboard');
+        ->name('dashboard')->middleware('auth');
 
     Route::livewire('/animals', 'pages::animals.⚡index')
-        ->name('index.animals');
+        ->name('index.animals')->middleware('auth');
     Route::livewire('/animals/create', 'pages::animals.⚡create')
-        ->name('create.animals');
+        ->name('create.animals')->middleware('auth');
     Route::livewire('/animals/{animal}', 'pages::animals.⚡show')
-        ->name('show.animals');
+        ->name('show.animals')->middleware('auth');
     Route::livewire('/animals/{animal}/edit', 'pages::animals.⚡edit')
-        ->name('edit.animals');
+        ->name('edit.animals')->middleware('auth');
 
     Route::livewire('/adoptions', 'pages::adoptions.⚡index')
         ->name('index.adoptions')->middleware('auth');
