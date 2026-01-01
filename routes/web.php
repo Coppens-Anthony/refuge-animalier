@@ -5,22 +5,22 @@ use Illuminate\Support\Facades\Route;
 
 require 'client.php';
 
-Route::domain('admin.refuge-animalier-backup-moddrt.laravel.cloud')->group(function () {
+Route::prefix('admin')->middleware('auth')->group(function () {
 
     Route::view('/', 'pages.login.login')
         ->name('login')->middleware('guest');
 
     Route::livewire('/dashboard', 'pages::dashboard.⚡dashboard')
-        ->name('dashboard')->middleware('auth');
+        ->name('dashboard');
 
     Route::livewire('/animals', 'pages::animals.⚡index')
-        ->name('index.animals')->middleware('auth');
+        ->name('index.animals');
     Route::livewire('/animals/create', 'pages::animals.⚡create')
-        ->name('create.animals')->middleware('auth');
+        ->name('create.animals');
     Route::livewire('/animals/{animal}', 'pages::animals.⚡show')
-        ->name('show.animals')->middleware('auth');
+        ->name('show.animals');
     Route::livewire('/animals/{animal}/edit', 'pages::animals.⚡edit')
-        ->name('edit.animals')->middleware('auth');
+        ->name('edit.animals');
 
     Route::livewire('/adoptions', 'pages::adoptions.⚡index')
         ->name('index.adoptions')->middleware('auth');
