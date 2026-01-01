@@ -17,11 +17,11 @@ class AnimalFactory extends Factory
     {
         return [
             'avatar' => '',
-            'name' => fake()->name(),
+            'name' => $this->faker->name(),
             'birthdate' => Carbon::yesterday(),
-            'sex' => fake()->randomElement(Sex::values()),
-            'temperament' => fake()->word(),
-            'status' => fake()->randomElement(Status::values()),
+            'sex' => $this->faker->randomElement(Sex::values()),
+            'temperament' => $this->faker->word(),
+            'status' => $this->faker->randomElement(Status::values()),
             'breed_id' => Breed::factory(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),

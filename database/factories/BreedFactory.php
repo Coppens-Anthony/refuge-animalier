@@ -13,8 +13,8 @@ class BreedFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->name(),
-            'specie_id' => fake()->randomNumber(),
+            'name' => $this->faker->name(),
+            'specie_id' => $this->faker->randomNumber(),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];
