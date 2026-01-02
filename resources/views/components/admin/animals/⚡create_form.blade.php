@@ -86,7 +86,7 @@ new class extends Component {
     public function store()
     {
         $validated = $this->validate([
-            'avatar' => 'required|mimes:jpeg,png,jpg,gif|max:2048',
+            'avatar' => 'required|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'name' => 'required',
             'breed_id' => 'required|exists:breeds,id',
             'birthdate' => 'required|date|before:today',

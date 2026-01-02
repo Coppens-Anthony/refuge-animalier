@@ -97,7 +97,7 @@ new class extends Component {
     public function update()
     {
         $validated = $this->validate([
-            'avatar' => 'nullable|mimes:jpeg,png,jpg,gif|max:2048',
+            'avatar' => 'nullable|mimes:jpeg,png,jpg,gif,webp|max:2048',
             'name' => 'required|string|max:255',
             'breed_id' => 'required|exists:breeds,id',
             'birthdate' => 'required|date|before:today',

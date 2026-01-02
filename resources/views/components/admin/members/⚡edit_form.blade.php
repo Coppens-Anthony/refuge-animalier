@@ -46,7 +46,7 @@ new class extends Component {
             'oldPassword' => 'required|min:8',
             'password' => 'nullable|min:8|different:oldPassword',
             'availabilities' => 'required|array',
-            'avatar' => 'nullable|mimes:jpeg,png,jpg,gif|max:2048'
+            'avatar' => 'nullable|mimes:jpeg,png,jpg,gif,webp|max:2048'
         ]);
 
         if (!Hash::check($validated['oldPassword'], $member->password)) {
