@@ -86,14 +86,20 @@ class extends Component {
                 </article>
             </div>
             <div class="md:w-1/2 aspect-square" wire:key="animal-image-{{$this->adoption->animal->id}}">
-                <img src="{{Storage::url('avatars/originals/'.$this->adoption->animal->avatar)}}"
-                     srcset="
+                @if(str_starts_with($this->adoption->animal->avatar, 'public/assets/images/animals/'))
+                    <img src="{{asset(str_replace('public/assets/', 'assets/', $this->adoption->animal->avatar))}}"
+                         alt="Photo de {{$this->adoption->animal->name}}"
+                         class="avatar">
+                @else
+                    <img src="{{Storage::url('avatars/originals/'.$this->adoption->animal->avatar)}}"
+                         srcset="
                         {{Storage::url('avatars/variants/300x300/'.$this->adoption->animal->avatar)}} 300w,
                         {{Storage::url('avatars/variants/600x600/'.$this->adoption->animal->avatar)}} 600w,
                         {{Storage::url('avatars/variants/900x900/'.$this->adoption->animal->avatar)}} 900w"
-                     sizes="(max-width: 768px) 100vw, 50vw"
-                     alt="{!! __('client/animals.animal_image_alt', ['name' => $this->adoption->animal->name]) !!}"
-                     class="w-full h-full rounded-4xl object-cover">
+                         sizes="(max-width: 768px) 100vw, 50vw"
+                         alt="{!! __('client/animals.animal_image_alt', ['name' => $this->adoption->animal->name]) !!}"
+                         class="w-full h-full rounded-4xl object-cover">
+                @endif
             </div>
         </div>
     </section>

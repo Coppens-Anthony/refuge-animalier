@@ -75,19 +75,19 @@ new class extends Component {
                     <td class="avatar_td">
                         <span class="avatar_title">{{__('admin/global.avatar')}}</span>
                         <div class="avatar_container">
-                            @if($animal->avatar)
+                            @if(str_starts_with($animal->avatar, 'public/assets/images/animals/'))
+                                <img src="{{asset(str_replace('public/assets/', 'assets/', $animal->avatar))}}"
+                                     alt="Photo de {{$animal->name}}"
+                                     class="avatar">
+                            @else
                                 <img src="{{ Storage::url('avatars/originals/'.$animal->avatar) }}"
                                      srcset="
-                    {{Storage::url('avatars/variants/300x300/'.$animal->avatar)}} 300w,
-                    {{Storage::url('avatars/variants/600x600/'.$animal->avatar)}} 600w,
-                    {{Storage::url('avatars/variants/900x900/'.$animal->avatar)}} 900w"
+                {{Storage::url('avatars/variants/300x300/'.$animal->avatar)}} 300w,
+                {{Storage::url('avatars/variants/600x600/'.$animal->avatar)}} 600w,
+                {{Storage::url('avatars/variants/900x900/'.$animal->avatar)}} 900w"
                                      sizes="(max-width: 768px) 48px, 48px"
                                      alt="{!! __('client/animals.animal_image_alt', ['name' => $animal->name]) !!}"
                                      class="avatar">
-                            @else
-                                <div class="no_avatar">
-                                    Avatar
-                                </div>
                             @endif
                         </div>
                     </td>

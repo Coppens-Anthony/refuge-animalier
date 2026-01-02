@@ -106,8 +106,6 @@ class DatabaseSeeder extends Seeder
 
         $animalsAvatars = [
             'public/assets/images/animals/max.jpg',
-            'public/assets/images/animals/bella.jpg',
-            'public/assets/images/animals/luna.jpg',
             'public/assets/images/animals/bear.jpg',
             'public/assets/images/animals/ragnar.jpg',
             'public/assets/images/animals/molly.jpg',
