@@ -121,9 +121,7 @@ new class extends Component {
 
             $full_path_to_original = $this->avatar->storeAs(
                 config('avatars.original_path'),
-                $new_original_file_name,
-                's3'
-            );
+                $new_original_file_name);
 
             if ($full_path_to_original) {
                 $validated['avatar'] = $new_original_file_name;
