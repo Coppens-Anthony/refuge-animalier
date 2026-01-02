@@ -101,7 +101,20 @@ class DatabaseSeeder extends Seeder
             'Max', 'Bella', 'Charlie', 'Luna', 'Cooper', 'Daisy', 'Milo', 'Lucy',
             'Rocky', 'Molly', 'Buddy', 'Sadie', 'Jack', 'Sucre', 'Duke', 'Bailey',
             'Oliver', 'Billy', 'Bear', 'Maggie', 'Moka', 'Milou', 'Bill', 'Larry', 'Chelsea',
-            'Roucky', 'Ragnar', 'Beethoven', 'Luna', 'Ivar'
+            'Roucky', 'Ragnar', 'Beethoven', 'Baghera', 'Ivar'
+        ];
+
+        $animalsAvatars = [
+            'public/assets/images/max.jpg',
+            'public/assets/images/bella.jpg',
+            'public/assets/images/luna.jpg',
+            'public/assets/images/bear.jpg',
+            'public/assets/images/ragnar.jpg',
+            'public/assets/images/molly.jpg',
+            'public/assets/images/sucre.jpg',
+            'public/assets/images/lucy.jpg',
+            'public/assets/images/beethoven.jpg',
+            'public/assets/images/baghera.jpg',
         ];
 
         $temperaments = [
@@ -133,7 +146,7 @@ class DatabaseSeeder extends Seeder
         $animals = collect();
         for ($i = 0; $i < 30; $i++) {
             $animal = Animal::create([
-                'avatar' => '',
+                'avatar' => $animalsAvatars[array_rand($animalsAvatars)],
                 'name' => $animalNames[$i],
                 'birthdate' => Carbon::now()->subYears(rand(0, 20))->subDays(rand(0, 365)),
                 'sex' => $sexes[array_rand($sexes)],
