@@ -51,6 +51,7 @@ new class extends Component {
                 </div>
             </div>
         </div>
+        <div class="md:w-1/2 aspect-square">
             @if(str_starts_with($this->member->avatar, 'public/assets/images/'))
                 <img src="{{asset(str_replace('public/assets/', 'assets/', $this->member->avatar))}}"
                      alt="Photo de {{$this->member->firstname}}"
@@ -65,5 +66,6 @@ new class extends Component {
                      alt="{!! __('client/animals.animal_image_alt', ['name' => $this->member->firstname]) !!}"
                      class="w-full h-full rounded-4xl object-cover">
             @endif
+        </div>
     </section>
 </div>

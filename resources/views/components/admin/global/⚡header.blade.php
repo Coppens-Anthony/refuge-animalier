@@ -24,7 +24,7 @@ new class extends Component {
             @if(str_starts_with($this->authUser->avatar, 'public/assets/images/'))
                 <img src="{{asset(str_replace('public/assets/', 'assets/', $this->authUser->avatar))}}"
                      alt="{!! __('client/animals.animal_image_alt', ['name' => $this->authUser->firstname . ' ' . $this->authUser->lastname]) !!}"
-                     class="avatar">
+                     class="rounded-full object-cover w-12 h-12 border-2 border-primary">
             @else
                 <img src="{{ Storage::url('avatars/originals/'.$this->authUser->avatar) }}"
                      srcset="
@@ -33,7 +33,7 @@ new class extends Component {
                 {{Storage::url('avatars/variants/900x900/'.$this->authUser->avatar)}} 900w"
                      sizes="(max-width: 768px) 48px, 48px"
                      alt="{!! __('global.pp_icon') !!}"
-                     class="avatar">
+                     class="rounded-full object-cover w-12 h-12 border-2 border-primary">
             @endif
         </div>
     </header>
