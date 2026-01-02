@@ -57,14 +57,20 @@
             </article>
         </div>
         <div class="md:w-1/2 aspect-square">
-            <img src="{{Storage::url('avatars/originals/'.$animal->avatar)}}"
-                 srcset="
+            @if(str_starts_with($animal->avatar, 'public/assets/images/animals/'))
+                <img src="{{asset(str_replace('public/assets/', 'assets/', $animal->avatar))}}"
+                     alt="Photo de {{$animal->name}}"
+                     class="w-full h-full rounded-4xl object-cover">
+            @else
+                <img src="{{Storage::url('avatars/originals/'.$animal->avatar)}}"
+                     srcset="
                         {{Storage::url('avatars/variants/300x300/'.$animal->avatar)}} 300w,
                         {{Storage::url('avatars/variants/600x600/'.$animal->avatar)}} 600w,
                         {{Storage::url('avatars/variants/900x900/'.$animal->avatar)}} 900w"
-                 sizes="(max-width: 768px) 100vw, 50vw"
-                 alt="{!! __('client/animals.animal_image_alt', ['name' => $animal->name]) !!}"
-                 class="w-full h-full rounded-4xl object-cover">
+                     sizes="(max-width: 768px) 100vw, 50vw"
+                     alt="{!! __('client/animals.animal_image_alt', ['name' => $animal->name]) !!}"
+                     class="w-full h-full rounded-4xl object-cover">
+            @endif
         </div>
     </div>
     <div class="mx-auto w-fit">

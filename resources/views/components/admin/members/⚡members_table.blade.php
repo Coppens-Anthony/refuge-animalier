@@ -15,7 +15,7 @@ new class extends Component {
     {
         return User::when($this->term, function ($query) {
             $query->where('firstname', 'like', '%' . $this->term . '%')
-            ->orWhere('lastname', 'like', '%' . $this->term . '%');
+                ->orWhere('lastname', 'like', '%' . $this->term . '%');
         })
             ->when($this->status !== '', function ($query) {
                 $query->where('status', $this->status);
@@ -63,19 +63,19 @@ new class extends Component {
                     <td class="avatar_td">
                         <span class="avatar_title">{{__('admin/global.avatar')}}</span>
                         <div class="avatar_container">
-                            @if($member->avatar)
-                                <img src="{{ Storage::url('avatars/originals/'.$member->avatar) }}"
-                                     srcset="
-                    {{Storage::url('avatars/variants/300x300/'.$member->avatar)}} 300w,
-                    {{Storage::url('avatars/variants/600x600/'.$member->avatar)}} 600w,
-                    {{Storage::url('avatars/variants/900x900/'.$member->avatar)}} 900w"
-                                     sizes="(max-width: 768px) 48px, 48px"
+                            @if(str_starts_with($member->avatar, 'public/assets/images/'))
+                                <img src="{{asset(str_replace('public/assets/', 'assets/', $member->avatar))}}"
                                      alt="{!! __('client/animals.animal_image_alt', ['name' => $member->firstname . ' ' . $member->lastname]) !!}"
                                      class="avatar">
                             @else
-                                <div class="w-12 h-12 mx-auto">
-                                    <img src="{{asset('assets/icons/pp.svg')}}" alt="{!! __('global.pp_icon') !!}">
-                                </div>
+                                <img src="{{ Storage::url('avatars/originals/'.$member->avatar) }}"
+                                     srcset="
+                {{Storage::url('avatars/variants/300x300/'.$member->avatar)}} 300w,
+                {{Storage::url('avatars/variants/600x600/'.$member->avatar)}} 600w,
+                {{Storage::url('avatars/variants/900x900/'.$member->avatar)}} 900w"
+                                     sizes="(max-width: 768px) 48px, 48px"
+                                     alt="{!! __('global.pp_icon') !!}"
+                                     class="avatar">
                             @endif
                         </div>
                     </td>

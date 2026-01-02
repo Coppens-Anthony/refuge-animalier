@@ -241,7 +241,7 @@ class DatabaseSeeder extends Seeder
 
         foreach ($userData as $data) {
             User::create([
-                'avatar' => null,
+                'avatar' => 'public/assets/images/defaultPP',
                 'lastname' => $data['lastname'],
                 'firstname' => $data['firstname'],
                 'email' => $data['email'],

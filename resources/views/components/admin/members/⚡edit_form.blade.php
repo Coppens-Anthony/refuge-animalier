@@ -114,6 +114,11 @@ new class extends Component {
                     <img src="{{$this->avatar->temporaryUrl()}}" alt="{{__('admin/table.image_alt')}}"
                          class="object-cover absolute w-[175px] h-[175px] rounded-2xl top-0 left-0">
                 @elseif($this->currentAvatar)
+                    @if(str_starts_with($this->avatar, 'public/assets/images/'))
+                        <img src="{{asset(str_replace('public/assets/', 'assets/', $this->avatar))}}"
+                             alt="{!! __('admin/table.image_alt') !!}"
+                             class="object-cover absolute w-[175px] h-[175px] rounded-2xl top-0 left-0">
+                    @endif
                     <img src="{{Storage::url('avatars/originals/'.$this->currentAvatar)}}"
                          alt="{{__('admin/table.image_alt')}}"
                          class="object-cover absolute w-[175px] h-[175px] rounded-2xl top-0 left-0">

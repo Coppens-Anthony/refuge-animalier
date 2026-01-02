@@ -51,21 +51,19 @@ new class extends Component {
                 </div>
             </div>
         </div>
-        @if($this->member->avatar)
-            <div class="md:w-1/2 aspect-square">
+            @if(str_starts_with($this->member->avatar, 'public/assets/images/'))
+                <img src="{{asset(str_replace('public/assets/', 'assets/', $this->member->avatar))}}"
+                     alt="Photo de {{$this->member->firstname}}"
+                     class="w-full h-full rounded-4xl object-cover">
+            @else
                 <img src="{{Storage::url('avatars/originals/'.$this->member->avatar)}}"
                      srcset="
                         {{Storage::url('avatars/variants/300x300/'.$this->member->avatar)}} 300w,
                         {{Storage::url('avatars/variants/600x600/'.$this->member->avatar)}} 600w,
                         {{Storage::url('avatars/variants/900x900/'.$this->member->avatar)}} 900w"
                      sizes="(max-width: 768px) 100vw, 50vw"
-                     alt="{!! __('client/animals.animal_image_alt', ['name' => $this->member->firstname . ' ' . $this->member->lastname]) !!}"
+                     alt="{!! __('client/animals.animal_image_alt', ['name' => $this->member->firstname]) !!}"
                      class="w-full h-full rounded-4xl object-cover">
-            </div>
-        @else
-            <div class="md:w-1/2">
-                <img src="{{asset('assets/icons/pp.svg')}}" alt="{!! __('global.pp_icon') !!}" class="m-auto">
-            </div>
-        @endif
+            @endif
     </section>
 </div>

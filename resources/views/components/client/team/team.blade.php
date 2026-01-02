@@ -4,7 +4,11 @@
         @foreach($items as $item)
             <li>
                 <x-client.global.item_card
-                    :image_src="Storage::url('avatars/originals/'.$item->avatar)"
+                    @if(str_starts_with($item->avatar, 'public/assets/images/'))
+                        :image_src="asset(str_replace('public/assets/', 'assets/', $item->avatar))"
+                    @else
+                        :image_src="Storage::url('avatars/originals/'.$item->avatar)"
+                    @endif
                     :image_alt="__('client/animals.animal_image_alt', ['name' => $item->name])"
                     :status="$item->status->label()"
                     :name="$item->name"
