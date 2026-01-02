@@ -105,16 +105,16 @@ class DatabaseSeeder extends Seeder
         ];
 
         $animalsAvatars = [
-            'public/assets/images/max.jpg',
-            'public/assets/images/bella.jpg',
-            'public/assets/images/luna.jpg',
-            'public/assets/images/bear.jpg',
-            'public/assets/images/ragnar.jpg',
-            'public/assets/images/molly.jpg',
-            'public/assets/images/sucre.jpg',
-            'public/assets/images/lucy.jpg',
-            'public/assets/images/beethoven.jpg',
-            'public/assets/images/baghera.jpg',
+            'public/assets/images/animals/max.jpg',
+            'public/assets/images/animals/bella.jpg',
+            'public/assets/images/animals/luna.jpg',
+            'public/assets/images/animals/bear.jpg',
+            'public/assets/images/animals/ragnar.jpg',
+            'public/assets/images/animals/molly.jpg',
+            'public/assets/images/animals/sucre.jpg',
+            'public/assets/images/animals/lucy.jpg',
+            'public/assets/images/animals/beethoven.jpg',
+            'public/assets/images/animals/baghera.jpg',
         ];
 
         $temperaments = [
