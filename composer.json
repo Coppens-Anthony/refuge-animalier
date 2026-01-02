@@ -10,7 +10,6 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
-        "fakerphp/faker": "^v1.23.0",
         "barryvdh/laravel-dompdf": "^3.1",
         "intervention/image-laravel": "^1.5",
         "laravel/fortify": "^1.30",
