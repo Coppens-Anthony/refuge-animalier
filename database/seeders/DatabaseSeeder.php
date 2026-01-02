@@ -104,6 +104,19 @@ class DatabaseSeeder extends Seeder
             'Roucky', 'Ragnar', 'Beethoven', 'Baghera', 'Ivar'
         ];
 
+        $animalsAvatars = [
+            'public/assets/images/max.jpg',
+            'public/assets/images/bella.jpg',
+            'public/assets/images/luna.jpg',
+            'public/assets/images/bear.jpg',
+            'public/assets/images/ragnar.jpg',
+            'public/assets/images/molly.jpg',
+            'public/assets/images/sucre.jpg',
+            'public/assets/images/lucy.jpg',
+            'public/assets/images/beethoven.jpg',
+            'public/assets/images/baghera.jpg',
+        ];
+
         $temperaments = [
             'Aime beaucoup le contact humain et recherche constamment les câlins. Très doux et patient avec les enfants.',
             'Déborde d\'énergie et adore jouer pendant des heures. A besoin de beaucoup d\'exercice quotidien.',
@@ -133,7 +146,7 @@ class DatabaseSeeder extends Seeder
         $animals = collect();
         for ($i = 0; $i < 30; $i++) {
             $animal = Animal::create([
-                'avatar' => '',
+                'avatar' => $animalsAvatars[array_rand($animalsAvatars)],
                 'name' => $animalNames[$i],
                 'birthdate' => Carbon::now()->subYears(rand(0, 20))->subDays(rand(0, 365)),
                 'sex' => $sexes[array_rand($sexes)],
@@ -181,7 +194,7 @@ class DatabaseSeeder extends Seeder
             $adopters->push(Adopter::create($data));
         }
 
-        $adoptionStatuses = [
+        $adoptionStatus = [
             Adoptions::FINISHED,
             Adoptions::PENDING,
             Adoptions::IN_PROGRESS,
@@ -201,13 +214,13 @@ class DatabaseSeeder extends Seeder
         ];
 
         for ($i = 0; $i < 10; $i++) {
-            $status = $adoptionStatuses[array_rand($adoptionStatuses)];
+            $status = $adoptionStatus[array_rand($adoptionStatus)];
 
             Adoption::create([
                 'status' => $status,
                 'date' => ($status == Adoptions::FINISHED ? Carbon::now()->subDays(rand(1, 30)) : null),
                 'message' => $messages[array_rand($messages)],
-                'animal_id' => $animals->unique()->random()->id,
+                'animal_id' => $animals->random()->id,
                 'adopter_id' => $adopters->random()->id,
                 'created_at' => Carbon::now()->subDays(rand(1, 60)),
                 'updated_at' => Carbon::now(),
