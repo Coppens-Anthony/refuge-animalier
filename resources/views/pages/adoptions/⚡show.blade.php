@@ -89,7 +89,7 @@ class extends Component {
                 @if(str_starts_with($this->adoption->animal->avatar, 'public/assets/images/animals/'))
                     <img src="{{asset(str_replace('public/assets/', 'assets/', $this->adoption->animal->avatar))}}"
                          alt="Photo de {{$this->adoption->animal->name}}"
-                         class="avatar">
+                         class="w-full h-full rounded-4xl object-cover">
                 @else
                     <img src="{{Storage::url('avatars/originals/'.$this->adoption->animal->avatar)}}"
                          srcset="
