@@ -237,6 +237,15 @@ class DatabaseSeeder extends Seeder
                 'telephone' => $data['telephone'],
                 'password' => Hash::make('password'),
                 'status' => $data['status'],
+                'availabilities' => [
+                    'monday' => ['morning' => (bool)rand(0, 1), 'afternoon' => (bool)rand(0, 1), 'evening' => (bool)rand(0, 1)],
+                    'tuesday' => ['morning' => (bool)rand(0, 1), 'afternoon' => (bool)rand(0, 1), 'evening' => (bool)rand(0, 1)],
+                    'wednesday' => ['morning' => (bool)rand(0, 1), 'afternoon' => (bool)rand(0, 1), 'evening' => (bool)rand(0, 1)],
+                    'thursday' => ['morning' => (bool)rand(0, 1), 'afternoon' => (bool)rand(0, 1), 'evening' => (bool)rand(0, 1)],
+                    'friday' => ['morning' => (bool)rand(0, 1), 'afternoon' => (bool)rand(0, 1), 'evening' => (bool)rand(0, 1)],
+                    'saturday' => ['morning' => (bool)rand(0, 1), 'afternoon' => (bool)rand(0, 1), 'evening' => (bool)rand(0, 1)],
+                    'sunday' => ['morning' => (bool)rand(0, 1), 'afternoon' => (bool)rand(0, 1), 'evening' => (bool)rand(0, 1)],
+                ],
             ]);
         }
     }
