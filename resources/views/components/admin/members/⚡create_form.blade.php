@@ -3,6 +3,7 @@
 use App\Enums\Members;
 use App\Mail\MemberCreated;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 use Livewire\Component;
 
 new class extends Component {
@@ -45,7 +46,7 @@ new class extends Component {
 
         session()->flash('success', __('admin/global.member_created'));
 
-        Mail::to($user->email)->queue(
+        Mail::to($user->email)->send(
             new MemberCreated($user)
         );
 
