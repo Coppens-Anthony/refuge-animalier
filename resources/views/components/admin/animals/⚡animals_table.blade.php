@@ -96,8 +96,8 @@ new class extends Component {
                     <td class="avatar_td">
                         <span class="avatar_title">{!!__('admin/global.avatar')!!}</span>
                         <div class="avatar_container">
-                            @if(str_starts_with($animal->avatar, 'public/assets/image/animal/'))
-                                <img src="{{asset(str_replace('public/', '', $animal->avatar))}}"
+                            @if(str_starts_with($animal->avatar, 'public/assets/images/animals/'))
+                                <img src="{{asset(str_replace('public/assets/', 'assets/', $animal->avatar))}}"
                                      alt="Photo de {{$animal->name}}"
                                      class="avatar">
                             @else
