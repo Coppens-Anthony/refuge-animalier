@@ -104,19 +104,6 @@ class DatabaseSeeder extends Seeder
             'Roucky', 'Ragnar', 'Beethoven', 'Baghera', 'Ivar'
         ];
 
-        $animalsAvatars = [
-            'max.jpg',
-            'bella.jpg',
-            'luna.jpg',
-            'bear.jpg',
-            'ragnar.jpg',
-            'molly.jpg',
-            'sucre.jpg',
-            'lucy.jpg',
-            'beethoven.jpg',
-            'baghera.jpg',
-        ];
-
         $temperaments = [
             'Aime beaucoup le contact humain et recherche constamment les câlins. Très doux et patient avec les enfants.',
             'Déborde d\'énergie et adore jouer pendant des heures. A besoin de beaucoup d\'exercice quotidien.',
@@ -146,7 +133,7 @@ class DatabaseSeeder extends Seeder
         $animals = collect();
         for ($i = 0; $i < 30; $i++) {
             $animal = Animal::create([
-                'avatar' => $animalsAvatars[array_rand($animalsAvatars)],
+                'avatar' => '',
                 'name' => $animalNames[$i],
                 'birthdate' => Carbon::now()->subYears(rand(0, 20))->subDays(rand(0, 365)),
                 'sex' => $sexes[array_rand($sexes)],
