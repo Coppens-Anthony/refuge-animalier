@@ -27,10 +27,10 @@ class UserFactory extends Factory
     {
         return [
             'avatar' => '',
-            'lastname' => '',
-            'firstname' => '',
-            'email' => '',
-            'telephone' => '',
+            'lastname' => $this->faker->lastName(),
+            'firstname' => $this->faker->firstName(),
+            'email' => $this->faker->email(),
+            'telephone' => $this->faker->phoneNumber(),
             'status' => Members::ADMINISTRATOR,
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
