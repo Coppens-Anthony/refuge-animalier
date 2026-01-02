@@ -4,7 +4,7 @@
     <ul class="mx-auto flex flex-col gap-4 sx:grid sx:grid-cols-2 md:grid md:grid-cols-3 md:gap-6 mb-6">
         @foreach($items as $item)
             @php
-                $imageSrc = str_starts_with($item->avatar, 'public/assets/images/animals/')
+                $imageSrc = str_starts_with($item->avatar, 'public/assets/images/')
                     ? asset(str_replace('public/assets/', 'assets/', $item->avatar))
                     : Storage::url('avatars/originals/'.$item->avatar);
             @endphp
