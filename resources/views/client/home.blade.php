@@ -14,7 +14,7 @@
             :adoptions="$adoptions"
             :animalsAdoptable="$animalsAdoptable"
         />
-        @if($lastAnimals->count() > 0)
+        @if($lastAnimals->isNotEmpty())
             <x-client.home.animals
                 title="{!! __('client/home.animals_title') !!}"
                 :items="$lastAnimals"

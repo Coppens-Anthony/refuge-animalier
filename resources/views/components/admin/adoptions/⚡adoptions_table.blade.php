@@ -29,7 +29,7 @@ new class extends Component {
     #[Computed]
     public function adoptions()
     {
-        return Adoption::when($this->term, function ($query) {
+        return Adoption::with('animal', 'adopter')->when($this->term, function ($query) {
             $query->whereHas('animal', function ($q) {
                 $q->where('name', 'like', '%' . $this->term . '%');
             })

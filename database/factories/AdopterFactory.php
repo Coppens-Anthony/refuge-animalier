@@ -15,7 +15,8 @@ class AdopterFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
-            'telephone' => $this->faker->phoneNumber(),
+            //'telephone' => $this->faker->phoneNumber(),
+            'telephone' => $this->faker->regexify('0[1-9][0-9]{8}'),
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
         ];

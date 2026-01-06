@@ -14,7 +14,7 @@
         <li class="flex justify-center">
             <x-client.home.stat
                 title="{!! __('global.adoptions') !!}"
-                :number="$adoptions->count()"
+                :number="$adoptions"
                 image_src="{{ asset('assets/icons/heart.svg') }}"
                 image_alt="{!! __('global.heart_icon') !!}"
             />
@@ -22,7 +22,7 @@
         <li class="flex justify-center">
             <x-client.home.stat
                 title="{!! __('global.animals_searching_family') !!}"
-                :number="$animalsAdoptable->count()"
+                :number="$animalsAdoptable"
                 image_src="{{ asset('assets/icons/paws.svg') }}"
                 image_alt="{!! __('global.paws_icon') !!}"
             />

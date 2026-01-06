@@ -14,7 +14,7 @@ new class extends Component {
     #[Computed]
     public function animals()
     {
-        return Animal::where('status', Status::PENDING)->when($this->term, function ($query) {
+        return Animal::with('breed.specie')->where('status', Status::PENDING)->when($this->term, function ($query) {
             $query->where('name', 'like', '%' . $this->term . '%');
         })
             ->when($this->specieId !== '', function ($query) {

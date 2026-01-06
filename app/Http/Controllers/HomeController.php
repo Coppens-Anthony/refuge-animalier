@@ -11,8 +11,8 @@ class HomeController
     public function index()
     {
         $animals = Animal::count();
-        $adoptions = Adoption::where('status', Adoptions::FINISHED);
-        $animalsAdoptable = Animal::where('status', Status::ADOPTABLE);
+        $adoptions = Adoption::where('status', Adoptions::FINISHED)->count();
+        $animalsAdoptable = Animal::where('status', Status::ADOPTABLE)->count();
 
         $lastAnimals = Animal::where('status', Status::ADOPTABLE)
             ->orderBy('created_at', 'desc')
