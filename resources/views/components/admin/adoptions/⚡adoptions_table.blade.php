@@ -23,7 +23,7 @@ new class extends Component {
     public function mount()
     {
         $this->animals = Animal::where('status', Status::ADOPTABLE)->get();
-        $this->adopters = Adopter::all();
+        $this->adopters = Adopter::whereHas('adoption')->get();
     }
 
     #[Computed]

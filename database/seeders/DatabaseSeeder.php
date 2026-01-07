@@ -183,8 +183,6 @@ class DatabaseSeeder extends Seeder
             ['name' => 'Julie Laurent', 'email' => 'julie.laurent@example.com', 'telephone' => '0478.90.12.34'],
             ['name' => 'Marc Lefebvre', 'email' => 'marc.lefebvre@example.com', 'telephone' => '0479.01.23.45'],
             ['name' => 'Emma Leroy', 'email' => 'emma.leroy@example.com', 'telephone' => '0470.12.34.56'],
-            ['name' => 'Antoine Roux', 'email' => 'antoine.roux@example.com', 'telephone' => '0471.23.45.67'],
-            ['name' => 'Laura David', 'email' => 'laura.david@example.com', 'telephone' => '0472.34.56.78'],
         ];
 
         $adopters = collect();
