@@ -33,12 +33,10 @@ new class extends Component {
     #[Computed]
     public function speciesOptions(): array
     {
-        return array_merge(
-            Specie::all()->map(fn($specie) => [
+        return Specie::all()->map(fn($specie) => [
                 'value' => $specie->id,
                 'trad' => $specie->name,
-            ])->toArray()
-        );
+            ])->toArray();
     }
 
     public function goToAnimal($id)

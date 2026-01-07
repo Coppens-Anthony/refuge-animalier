@@ -98,9 +98,8 @@ new class extends Component {
                 <p>{{ ucfirst(Carbon::create($year, $month)->locale(App::getLocale())->translatedFormat('F Y')) }}</p>
 
                 <button wire:click="changeMonth('next')"
-                        @if($year > now()->year || ($year == now()->year && $month >= now()->month))
-                            disabled
-                        class="hidden"
+                        @if($year >= now()->year && $month >= now()->month)
+                            class="hidden"
                         @else
                             class="cursor-pointer"
                     @endif>

@@ -14,9 +14,9 @@ new class extends Component {
     public function mount()
     {
         $this->animals = Animal::where('status', Status::PENDING)->count();
-       $this->adoptions = Adoption::count();
-       $this->members = User::count();
-   }
+        $this->adoptions = Adoption::count();
+        $this->members = User::count();
+    }
 };
 ?>
 
@@ -33,14 +33,14 @@ new class extends Component {
                 route="index.adoptions"
             />
             @can('view-any', User::class)
-            <livewire:admin.dashboard.key_card
-                title="{!! __('admin/nav.validations') !!}"
-                number="{{$this->animals}}"
-                image="dashboard_validations"
-                image_alt="{!! __('admin/nav.validation_icon') !!}"
-                link_title="{!! __('admin/nav.to_validations') !!}"
-                route="index.validations"
-            />
+                <livewire:admin.dashboard.key_card
+                    title="{!! __('admin/nav.validations') !!}"
+                    number="{{$this->animals}}"
+                    image="dashboard_validations"
+                    image_alt="{!! __('admin/nav.validation_icon') !!}"
+                    link_title="{!! __('admin/nav.to_validations') !!}"
+                    route="index.validations"
+                />
             @endcan
             <livewire:admin.dashboard.key_card
                 title="{!! __('admin/nav.messages') !!}"
