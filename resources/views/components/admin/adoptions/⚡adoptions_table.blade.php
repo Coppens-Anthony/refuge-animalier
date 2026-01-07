@@ -65,12 +65,6 @@ new class extends Component {
         session()->flash('success', __('admin/global.adoption_created'));
         return redirect(route('show.adoptions', $adoption->id));
     }
-
-    public function goToAdoption($id)
-    {
-        return redirect()->route('show.adoptions', $id);
-    }
-
 };
 ?>
 <div class="col-span-full">
@@ -151,7 +145,7 @@ new class extends Component {
             :titles="[__('admin/global.animal_name'), __('admin/global.adopter_name'), __('admin/global.date'), __('admin/global.status')]">
             @foreach($this->adoptions as $adoption)
                 <tr class="table__tr"
-                    wire:click="goToAdoption({{ $adoption->id }})"
+                    onclick="Livewire.navigate('{{ route('show.adoptions', $adoption->id) }}')"
                     wire:key="adoption-{{ $adoption->id }}"
                     title="Vers la fiche de {{$adoption->animal->name}}">
                     <td class="text_td">

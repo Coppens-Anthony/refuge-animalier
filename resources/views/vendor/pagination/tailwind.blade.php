@@ -7,14 +7,14 @@
                     {!! __('pagination.previous') !!}
                 </span>
             @else
-                <a href="{{ $paginator->previousPageUrl() }}" rel="prev"
+                <a wire:navigate href="{{ $paginator->previousPageUrl() }}" rel="prev"
                    class="inline-flex items-center px-4 py-2 text-sm font-medium border border-primary rounded-xl hover:bg-primary-opacity transition-colors">
                     {!! __('pagination.previous') !!}
                 </a>
             @endif
 
             @if ($paginator->hasMorePages())
-                <a href="{{ $paginator->nextPageUrl() }}" rel="next"
+                <a wire:navigate href="{{ $paginator->nextPageUrl() }}" rel="next"
                    class="inline-flex items-center px-4 py-2 text-sm font-medium border border-primary rounded-xl hover:bg-primary-opacity transition-colors">
                     {!! __('pagination.next') !!}
                 </a>
@@ -32,7 +32,7 @@
                         {!! __('pagination.previous') !!}
                     </span>
                 @else
-                    <a href="{{ $paginator->previousPageUrl() }}" rel="prev"
+                    <a wire:navigate href="{{ $paginator->previousPageUrl() }}" rel="prev"
                        class="inline-flex items-center px-3 py-2 text-sm font-medium border border-primary rounded-lg hover:bg-primary-opacity transition-colors">
                         {!! __('pagination.previous') !!}
                     </a>
@@ -50,7 +50,7 @@
                                     {{ $page }}
                                 </span>
                             @else
-                                <a href="{{ $url }}"
+                                <a wire:navigate href="{{ $url }}"
                                    class="inline-flex items-center px-4 py-2 text-sm font-medium border border-primary rounded-lg hover:bg-primary-opacity transition-colors">
                                     {{ $page }}
                                 </a>
@@ -60,7 +60,7 @@
                 @endforeach
 
                 @if ($paginator->hasMorePages())
-                    <a href="{{ $paginator->nextPageUrl() }}" rel="next"
+                    <a wire:navigate href="{{ $paginator->nextPageUrl() }}" rel="next"
                        class="inline-flex items-center px-3 py-2 text-sm font-medium border border-primary rounded-lg hover:bg-primary-opacity transition-colors">
                         {!! __('pagination.next') !!}
                     </a>

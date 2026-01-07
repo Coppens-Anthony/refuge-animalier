@@ -23,11 +23,6 @@ new class extends Component {
             ->orderBy('created_at')
             ->paginate(10);
     }
-
-    public function goToMember($id)
-    {
-        return redirect()->route('show.members', $id);
-    }
 };
 ?>
 
@@ -57,7 +52,7 @@ new class extends Component {
             :titles="[__('admin/global.avatar'), __('admin/global.name'),__('admin/global.email'), __('admin/global.status')]">
             @foreach($this->members as $member)
                 <tr class="table__tr"
-                    wire:click="goToMember({{ $member->id }})"
+                    onclick="Livewire.navigate('{{ route('show.members', $member->id) }}')"
                     wire:key="member-{{ $member->id }}"
                     title="Vers la fiche de {{$member->firstname . ' ' . $member->lastname}}">
                     <td class="avatar_td">

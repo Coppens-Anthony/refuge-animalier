@@ -8,6 +8,7 @@ use Livewire\Component;
 new class extends Component {
     public string $vaccine = '';
     public ?int $specieId = null;
+    public array $speciesOptions;
 
     public string $editVaccine = '';
     public ?int $editSpecieId = null;
@@ -17,15 +18,6 @@ new class extends Component {
     public function vaccines()
     {
         return Vaccine::with('specie')->get();
-    }
-
-    #[Computed]
-    public function speciesOptions(): array
-    {
-        return Specie::all()->map(fn($specie) => [
-            'value' => $specie->id,
-            'trad' => $specie->name,
-        ])->toArray();
     }
 
     public function store()

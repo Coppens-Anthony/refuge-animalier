@@ -34,16 +34,10 @@ new class extends Component {
     public function speciesOptions(): array
     {
         return Specie::all()->map(fn($specie) => [
-                'value' => $specie->id,
-                'trad' => $specie->name,
-            ])->toArray();
+            'value' => $specie->id,
+            'trad' => $specie->name,
+        ])->toArray();
     }
-
-    public function goToAnimal($id)
-    {
-        return redirect()->route('show.animals', $id);
-    }
-
 };
 ?>
 
@@ -83,7 +77,7 @@ new class extends Component {
             ]">
             @foreach($this->animals as $animal)
                 <tr class="table__tr"
-                    wire:click="goToAnimal({{ $animal->id }})"
+                    onclick="Livewire.navigate('{{ route('show.animals', $animal->id) }}')"
                     wire:key="animal-{{ $animal->id }}"
                     title="Vers la fiche de {{$animal->name}}">
                     <td class="avatar_td">
@@ -126,4 +120,3 @@ new class extends Component {
         </div>
     </section>
 </div>
-

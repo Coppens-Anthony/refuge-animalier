@@ -34,11 +34,6 @@ new class extends Component {
                 'trad' => $specie->name,
             ])->toArray();
     }
-
-    public function goToAnimal($id)
-    {
-        return redirect()->route('edit.animals', $id);
-    }
 };
 ?>
 
@@ -67,7 +62,7 @@ new class extends Component {
             :titles="[__('admin/global.avatar'), __('admin/global.name'),__('admin/global.specie'),__('admin/global.breed'), __('admin/global.sex'), __('admin/global.age')]">
             @foreach($this->animals as $animal)
                 <tr class="table__tr"
-                    wire:click="goToAnimal({{ $animal->id }})"
+                    onclick="Livewire.navigate('{{ route('edit.animals', $animal->id) }}')"
                     wire:key="animal-{{ $animal->id }}"
                     title="Vers la fiche de {{$animal->name}}">
                     <td class="avatar_td">

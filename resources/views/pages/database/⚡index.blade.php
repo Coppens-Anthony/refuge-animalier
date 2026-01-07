@@ -11,26 +11,26 @@ use Livewire\Attributes\Title;
 
 new #[Title('Base de données')]
 class extends Component {
-    public $species = [];
-    public $breeds = [];
-    public $vaccines = [];
-    public $coats = [];
 
     #[Computed]
     public function mount()
     {
         $this->authorize('view-any', User::class);
+    }
 
-        $this->species = Specie::all();
-        $this->breeds = Breed::with('specie')->get();
-        $this->vaccines = Vaccine::all();
-        $this->coats = Coat::all();
+    #[Computed]
+    public function speciesOptions(): array
+    {
+        return Specie::all()->map(fn($specie) => [
+            'value' => $specie->id,
+            'trad' => $specie->name,
+        ])->toArray();
     }
 };
 ?>
 <div class="flex flex-col gap-8">
     <livewire:admin.database.species/>
-    <livewire:admin.database.breeds/>
-    <livewire:admin.database.vaccines/>
+    <livewire:admin.database.breeds :speciesOptions="$this->speciesOptions"/>
+    <livewire:admin.database.vaccines :speciesOptions="$this->speciesOptions"/>
     <livewire:admin.database.coats/>
 </div>

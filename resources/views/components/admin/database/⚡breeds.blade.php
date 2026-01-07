@@ -8,10 +8,13 @@ use Livewire\Component;
 new class extends Component {
     public string $breed = '';
     public ?int $specieId = null;
+    public array $speciesOptions;
 
     public string $editBreed = '';
     public ?int $editSpecieId = null;
     public ?int $editingId = null;
+
+
 
     #[Computed]
     public function breeds()
@@ -19,14 +22,6 @@ new class extends Component {
         return Breed::with('specie')->get();
     }
 
-    #[Computed]
-    public function speciesOptions(): array
-    {
-        return Specie::all()->map(fn($specie) => [
-            'value' => $specie->id,
-            'trad' => $specie->name,
-        ])->toArray();
-    }
 
     public function store()
     {
