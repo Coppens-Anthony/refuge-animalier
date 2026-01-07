@@ -15,7 +15,6 @@ class AdoptionController extends Controller
 {
     public function create(Animal $animal)
     {
-        $animal->load(['breed', 'coat', 'vaccine']);
         return view('client.animals.request', compact('animal'));
     }
 
