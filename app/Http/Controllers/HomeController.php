@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Enums\Adoptions;
 use App\Enums\Status;
 use App\Models\Adoption;
