@@ -1,10 +1,10 @@
 @component('mail::message')
-    Félicitations ! Votre demande d'adoption a été acceptée.
+    {!! __('mail/adoption_accepted.congrats') !!}
 
-    Bonjour {{ $adoption->adopter->name }},
+    Hey {{ $adoption->adopter->name }},
 
-    Nous avons le plaisir de vous informer que votre demande d'adoption pour {{ $adoption->animal->name }} a été acceptée !
+    {!! __('mail/adoption_accepted.desc', ['name' => $adoption->animal->name]) !!}
 
-    Vous pouvez dès lors venir au refuge durant ses heures d'ouvertures pour avancer dans les démarches.
+    {!! __('mail/adoption_accepted.start_process') !!}
 
 @endcomponent

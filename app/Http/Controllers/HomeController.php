@@ -15,7 +15,7 @@ class HomeController
         $adoptions = Adoption::where('status', Adoptions::FINISHED)->count();
         $animalsAdoptable = Animal::where('status', Status::ADOPTABLE)->count();
 
-        $lastAnimals = Animal::where('status', Status::ADOPTABLE)
+        $lastAnimals = Animal::with('breed.specie')->where('status', Status::ADOPTABLE)
             ->orderBy('created_at', 'desc')
             ->limit(3)
             ->get();

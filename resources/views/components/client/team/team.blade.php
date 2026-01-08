@@ -13,7 +13,7 @@
                     :image_src="$imageSrc"
                     :image_alt="__('client/animals.animal_image_alt', ['name' => $item->name])"
                     :status="$item->status->label()"
-                    :name="$item->name"
+                    :name="$item->firstname . ' ' . $item->lastname"
                     :arg_1="$item->email"
                     :arg_2="$item->telephone"
                     :id="$item->id"

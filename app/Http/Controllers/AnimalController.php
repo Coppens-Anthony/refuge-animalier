@@ -14,7 +14,7 @@ class AnimalController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Animal::where('status', Status::ADOPTABLE);
+        $query = Animal::with('breed.specie')->where('status', Status::ADOPTABLE);
 
         $query->when($request->input('search'), function ($q, $search) {
             $q->where('name', 'like', '%' . $search . '%');
@@ -92,7 +92,7 @@ class AnimalController extends Controller
 
     public function show(Animal $animal)
     {
-        $suggestedAnimals = Animal::where('status', Status::ADOPTABLE)
+        $suggestedAnimals = Animal::with('breed.specie')->where('status', Status::ADOPTABLE)
             ->where('id', '!=', $animal->id)
             ->inRandomOrder()
             ->limit(3)

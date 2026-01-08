@@ -28,7 +28,7 @@ class AdoptionAccepted extends Mailable
     {
         return new Envelope(
             from: config('mail.from.address'),
-            subject: 'Adoption Accepted'
+            subject: 'Adoption accepted'
         );
     }
 
