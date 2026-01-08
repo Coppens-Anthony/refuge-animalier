@@ -23,7 +23,7 @@ new class extends Component {
     public function mount()
     {
         $this->animals = Animal::where('status', Status::ADOPTABLE)->get();
-        $this->adopters = Adopter::whereHas('adoption')->get();
+        $this->adopters = Adopter::all();
     }
 
     #[Computed]
@@ -37,7 +37,7 @@ new class extends Component {
                     $q->where('name', 'like', '%' . $this->term . '%');
                 });
         })
-            ->when($this->adoptionStatus !== '', function ($query) {
+            ->when($this->adoptionStatus, function ($query) {
                 $query->where('status', $this->adoptionStatus);
             })
             ->orderBy('created_at', 'desc')
